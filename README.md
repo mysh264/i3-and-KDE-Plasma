@@ -63,7 +63,10 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 10. - [x] Turn off the startup screen.
 11. - [x] Fix mouse cursor.
 12. - [x] Fix fonts (i3bar & i3 frame).
-13. - [ ] Add URLs Sources.
+13. - [ ] [Conky](https://github.com/jxai/lean-conky-config)
+14.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
+15.	- [ ] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
+16. - [ ] Add URLs Sources.
 
 ---
 
@@ -226,8 +229,8 @@ qdbus6 org.kde.krunner /App org.kde.krunner.App.display
 ---
 
 ### Removing stuff from the i3 config
-1. Startup apps
-KDE Plasma will handle the startup apps. Remove any ```exec``` line that is used for auto startup in the i3 config file; also, do not use ```dex```, the only exception will be feh for wallpaper and picom.
+1. **Startup apps**
+* _KDE Plasma will handle the startup apps._ Remove any ```exec``` line that is used for auto startup in the i3 config file; also, do not use ```dex```, the only exception will be feh for wallpaper and picom.
 ```
 exec --no-startup-id feh --bg-scale "/path/of/wallpaper"
 ```
@@ -236,24 +239,32 @@ More info about picom down below.
 exec --no-startup-id picom -b
 ```
 
-2. Display brightness buttons integration
-KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+2. **Display brightness buttons integration**
+* _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-3. Audio buttons integration
-KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+3. **Audio buttons integration**
+* _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-4. Lock screen
-KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+4. **Lock screen**
+* _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
 ---
 
 ### Disabling a shortcut that breaks stuff
 
 #### Meta+Q "*Kill apps*"
-Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category System Services > Plasma* and disable the shortcut "Activities..." that uses the combination ```Meta+Q```.
+Launch the Plasma System Settings and go to *Keyboard > Shortcuts > Category System Services > Plasma Workspace* and disable the shortcut "Activities..." that uses the combination ```Meta+Q```.
+
+> <p align="center">"Screenshot of Activities Shortcut Settings"</p>
+
+> ![Screenshot of Activities Shortcut Settings](Images/Screenshot_20260430_232850.png)
 
 #### Meta+R "*Resize*"
 Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category Applications > Spectacle* and disable the shortcut "Start/Stop Region Recording" that uses the combination ```Meta+R```.
+
+> <p align="center">"Screenshot of Spectacle Shortcut Settings"</p>
+
+> ![Screenshot of Spectacle Shortcut Settings](Images/Screenshot_20260430_232931.png)
 
 ---
 
