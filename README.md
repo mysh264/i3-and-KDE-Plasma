@@ -66,7 +66,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 13. - [ ] [Conky](https://github.com/jxai/lean-conky-config)
 14.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
 15.	- [ ] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
-16. - [ ] Add URLs Sources.
+16. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
 
 ---
 
