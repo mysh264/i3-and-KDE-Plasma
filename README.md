@@ -249,6 +249,7 @@ exec --no-startup-id picom -b
 
 4. **Lock screen**
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
+* *Note: This is the terminal command line to lock the screen, if you need it.* ```loginctl lock-session```
 
 ---
 
