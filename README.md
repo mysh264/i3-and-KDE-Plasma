@@ -1,6 +1,7 @@
 # i3 and KDE Plasma
 
-<h3 align="center">How to install the i3 window manager on KDE Plasma.</h3>
+<h3 align="center">The Best of Both Worlds</h3>
+A comprehensive guide to integrating the i3 tiling window manager seamlessly into KDE Plasma. Get the ultimate tiling workflow without sacrificing KDE's out-of-the-box utilities.
 
 ---
 
@@ -45,51 +46,24 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ## To Do
 
-1. Install Packages.
-2. ~Download This clone for i3, i3block, rofi, picom, conky~
-3. Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
-4. Merge rofi configuration pre pared files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
-5. Merge i3block configuration prepared files (**i3block.conf and Scripts Folder**) into (**$HOME.config/i3/**)
-6. Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
-7. Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
-    * No need for any Bright or volume shortcut keys, **KDE will handle it.**
-    * No need for `dex`, **KDE will handle it.**
-    * No need for any Lock screen shortcut or configuration, **KDE will handle it.**
-
-    * 
-    * `Feh` will take care of wallpaper; **Do not use KDE for wallpaper.**
-    * Exit Menu `rofi` will handle it. **Do not use KDE for that.**
-8. Modify the i3wm config file for KDE Plasma 
-9. Turn off some KDE shortcuts.
-10. Turn off the startup screen.
-11. Fix mouse cursor.
-12. Fix fonts (i3bar & i3 frame).
-13. Add URLs Sources.
-
----
-
-## To Do
-
-1. ~Install Packages.~
-2. ~Download This clone for i3, i3block, rofi, picom, conky~
-3. Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
-4. Merge rofi configuration pre pared files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
-5. Merge i3block configuration prepared files (**i3block.conf and Scripts Folder**) into (**$HOME.config/i3/**)
-6. Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
-7. ~Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)~
-    * ~No need for any Bright or volume shortcut keys, **KDE will handle it.**~
-    * ~No need for `dex`, **KDE will handle it.**~
-    * ~No need for any Lock screen shortcut or configuration, **KDE will handle it.**~
-
-    * 
-    * ~`Feh` will take care of wallpaper; **Do not use KDE for wallpaper.**~
-    * ~Exit Menu `rofi` will handle it. **Do not use KDE for that.**~
-8. ~Modify the i3wm config file for KDE Plasma~
-9. ~Turn off some KDE shortcuts.~
-10. Turn off the startup screen.
-11. ~Fix mouse cursor.~
-12. ~Fix fonts (i3bar & i3 frame).~
-13. Add URLs Sources.
+1. - [x] Install Packages.
+2. - [x] Clone this repository: ```git clone https://github.com/mysh264/i3-and-KDE-Plasma.git``` for i3, i3block, rofi, picom, conky
+3. - [ ] Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
+4. - [ ] Merge rofi configuration prepared files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
+5. - [ ] Merge i3block configuration prepared files (**i3block.conf and Scripts Folder**) into (**$HOME/.config/i3/**)
+6. - [ ] Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
+7. - [x] Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
+    *  - [x] No need for any Bright or volume shortcut keys, **KDE will handle it.**
+    *  - [x] No need for `dex`, **KDE will handle it.**
+    *  - [x] No need for any Lock screen shortcut or configuration, **KDE will handle it.**
+    *  - [x] `Feh` will take care of wallpaper; **Do not use KDE for wallpaper.**
+    *  - [x] Exit Menu `rofi` will handle it. **Do not use KDE for that.**
+8. - [x] Modify the i3wm config file for KDE Plasma 
+9. - [x] Turn off some KDE shortcuts.
+10. - [x] Turn off the startup screen.
+11. - [x] Fix mouse cursor.
+12. - [x] Fix fonts (i3bar & i3 frame).
+13. - [ ] Add URLs Sources.
 
 ---
 
@@ -325,7 +299,7 @@ Write the following into `.Xresources`
 Xft.antialias: 1
 Xft.hinting: 1
 Xft.hintstyle: hintslight
-Xft.rgba: rgb```
+Xft.rgba: rgb
 ```
 
 Then run this to load parameters from your configuration file `.Xresources` during your X Session.
