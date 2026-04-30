@@ -62,13 +62,14 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 9. - [x] Turn off some KDE shortcuts.
 10. - [x] Turn off the startup screen.
 11. - [x] Fix mouse cursor.
-12. - [x] Fix fonts (i3bar & i3 frame).
-13. - [ ] [Conky](https://github.com/jxai/lean-conky-config)
-14.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
-15.	- [ ] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
-16. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
-17.	- [x] Redshift. "use geoclue fix for url"
-18.	- [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
+12. - [x] Fix flatpak mouse cursor.
+13. - [x] Fix fonts (i3bar & i3 frame).
+14. - [ ] [Conky](https://github.com/jxai/lean-conky-config)
+15.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
+16.	- [x] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
+17. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
+18.	- [x] Redshift. "use geoclue fix for url"
+19.	- [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
 
 ---
 
@@ -295,7 +296,7 @@ Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* an
 
 ### Fix mouse cursor
 When changing the mouse cursor theme or size, some apps will show a different mouse cursor.
-In my case, I used breeze_cursors and changed the size to 32.
+In my case, I used [Layan border cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup> and changed the size to 36.
 
 To fix it, create the `$HOME/.icons/default` directory
 
@@ -313,15 +314,33 @@ Write the following into `index.theme`
 
 ```conf
 [Icon Theme]
-Inherits=breeze_cursors
-Size=32
+Name=layan-border-cursors
+Size=36
+```
+
+#### For Flatpak apps, the problem is still the same; to fix it you need to give read access to ```/usr/share/icons``` ```/home/$USER/.icons/``` ```/.local/share/icons/``` <sup>[Arch Wiki](https://wiki.archlinux.org/title/Flatpak#Applications_do_not_use_the_correct_cursor_theme)</sup>
+
+```
+flatpak -u override --filesystem=/usr/share/icons/:ro
+```
+
+```
+flatpak -u override --filesystem=/home/$USER/.icons/:ro
+```
+
+```
+flatpak --user override --filesystem=~/.local/share/icons/:ro
+```
+
+```
+flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
 ```
 
 ---
 
 ### Fix Fonts (**i3bar & i3-frame**)
 When you restart the system, the i3bar uses a different font. Using Meta+Shift+R solves it.
-It's annoying, so here is another workaround/solution.
+I know this is frustrating, so here is another workaround/solution.
 
 Create a new file called `.Xresources` in your $HOME
 
