@@ -189,6 +189,25 @@ for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
 
 ---
 
+### Removing stuff from the i3 config
+1. Auto Start
+KDE Plasma will handle the startup apps. Remove any exec line that uses for auto startup in the i3 config file; also, do not use dex, the only exception will be feh for wallpaper and picom.
+```
+exec --no-startup-id feh --bg-scale ***/path/of/wallpaper***
+```
+More info about picom down below.
+```
+exec --no-startup-id picom -b
+```
+
+2. Display brightness buttons integration
+KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+
+3. Audio buttons integration
+KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+
+---
+
 ### Disabling a shortcut that breaks stuff
 
 #### Meta+Q "*Kill apps*"
