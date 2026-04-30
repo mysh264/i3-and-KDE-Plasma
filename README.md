@@ -67,8 +67,8 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 14.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
 15.	- [ ] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
 16. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
-17.	- [ ] Redshift.
-18.	- [ ] geooclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
+17.	- [x] Redshift. "use geoclue fix for url"
+18.	- [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
 
 ---
 
@@ -89,6 +89,7 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 
 * ```viewnior```, my favourit [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
 * ```conky```, [light-weight system monitor](https://github.com/brndnmtthws/conky)
+* ```redshift```, Color temperature adjustment tool <sup>[Geoclue fix]()</Sup>
 * ```awesome-terminal-fonts```, if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/), you will need it
 * ```xfce4-terminal```, [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
 * ```sysstat tk gnuplot```, some i3blocks scripts need it
@@ -105,7 +106,7 @@ sudo pacman -Syyu && sudo pacman -S i3 i3blocks picom feh rofi wmctrl
 
 Another one for ***i3wm optional Packages***:
 ```bash
-sudo pacman -S viewnior conky awesome-terminal-fonts xfce4-terminal sysstat tk gnuplot
+sudo pacman -S viewnior conky redshift awesome-terminal-fonts xfce4-terminal sysstat tk gnuplot
 ```
 
 A third one for ***KDE Plasma panel optional Packages***:
