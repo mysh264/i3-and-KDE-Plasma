@@ -26,9 +26,9 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 ## Pros & Cons
 
 * **Pros** :
-	* If you used KDE Plasma and i3wm before, you will love to have them together.
+	* If you used KDE Plasma and i3wm before, you will love having them together.
 	* Tilling support for KDE Plasma.
-	* Most utilities and configurations, for example, (***GTK & QT theme***) will work out of the box.
+	* Most utilities and configurations, for example, (***GTK & QT theme, Display brightness buttons, Audio buttons, ...etc***) will work out of the box.
 
 * **Cons**:
 	* Not even one. “*At least for me*.”
@@ -64,6 +64,31 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 10. Turn off the startup screen.
 11. Fix mouse cursor.
 12. Fix fonts (i3bar & i3 frame).
+13. Add URLs Sources.
+
+---
+
+## To Do
+
+1. ~Install Packages.~
+2. ~Download This clone for i3, i3block, rofi, picom, conky~
+3. Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
+4. Merge rofi configuration pre pared files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
+5. Merge i3block configuration prepared files (**i3block.conf and Scripts Folder**) into (**$HOME.config/i3/**)
+6. Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
+7. ~Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)~
+    * ~No need for any Bright or volume shortcut keys, **KDE will handle it.**~
+    * ~No need for `dex`, **KDE will handle it.**~
+    * ~No need for any Lock screen shortcut or configuration, **KDE will handle it.**~
+
+    * 
+    * ~`Feh` will take care of wallpaper; **Do not use KDE for wallpaper.**~
+    * ~Exit Menu `rofi` will handle it. **Do not use KDE for that.**~
+8. ~Modify the i3wm config file for KDE Plasma~
+9. ~Turn off some KDE shortcuts.~
+10. Turn off the startup screen.
+11. ~Fix mouse cursor.~
+12. ~Fix fonts (i3bar & i3 frame).~
 13. Add URLs Sources.
 
 ---
@@ -206,6 +231,9 @@ KDE Plasma will handle it out of the box. Remove any shortcut for that from the 
 3. Audio buttons integration
 KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
 
+4. Lock screen
+KDE Plasma will handle it out of the box. Remove any shortcut for that from the i3wm config file.
+
 ---
 
 ### Disabling a shortcut that breaks stuff
@@ -214,12 +242,70 @@ KDE Plasma will handle it out of the box. Remove any shortcut for that from the 
 Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category System Services > Plasma* and disable the shortcut "Activities..." that uses the combination ```Meta+Q```.
 
 #### Meta+R "*Resize*"
-Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category Applications > Spectacle and disable the shortcut "Start/Stop Region Recording" that uses the combination ```Meta+R```.
+Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category Applications > Spectacle* and disable the shortcut "Start/Stop Region Recording" that uses the combination ```Meta+R```.
 
 ---
 
 ### Do not use the plasma shutdown screen
 Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Meta+Shift+E```
+
+---
+
+### Turn off the KDE Plasma startup screen "*Splash Screen*"
+Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* and disable it.
+
+> ![screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
+
+### Fix mouse cursor
+When changing the mouse cursor theme or size, some apps will show a different mouse cursor
+In my case, I used breeze_cursors and changed the size to 32
+
+to fix it, create `$HOME/.icons/default` directory
+
+```
+mkdir -p $HOME/.icons/default
+```
+
+Then create a new file called `index.theme`
+
+```
+nano $HOME/.icons/default/index.theme
+```
+
+Write the following into `index.theme`
+
+```conf
+[Icon Theme]
+Inherits=breeze_cursors
+Size=32
+```
+
+---
+
+### Fix Fonts (**i3bar & i3-frame**)
+when restart the system, you will notice the i3bar using a different font. Using Meta+Shift+R solves it.
+It's annoying, so another workaround
+
+Create a new file called `.Xresources` in your $HOME
+
+```
+nano $HOME/.Xresources
+```
+
+Write the following into `.Xresources`
+
+```conf
+Xft.antialias: 1
+Xft.hinting: 1
+Xft.hintstyle: hintslight
+Xft.rgba: rgb```
+```
+
+Then run this to load parameters from your configuration file `.Xresources` during your X Session.
+
+```
+xrdb -merge ~/.Xresources
+```
 
 ---
 
