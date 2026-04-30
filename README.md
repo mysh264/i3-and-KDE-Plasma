@@ -2,13 +2,14 @@
 
 How to install the i3 window manager on KDE Plasma.
 
-> Preview image:
+---
+
 > ![screenshot of my current setup - 1](Images/Screenshot_20260430_153753.png)
 > ![screenshot of my current setup - 2](Images/Screenshot_20260430_153807.png)
 
 ---
 
-## Why i3 and KDE Plasma
+## Why i3 and KDE Plasma?
 
 * KDE Plasma is one of the most full-featured and beautiful desktop environments.
 * i3wm is one of the lightest, most customizable, and simplest window managers.
@@ -109,13 +110,97 @@ yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 
 ---
 
+## Configuration
+
+Replace kwin with i3 using systemd user service
+
+Note that for this method, you do not need to be the root user. However, that means the changes will not effect the other users.
+
+Create a new service file called plasma-i3.service in `$HOME/.config/systemd/user`.
+
+```
+mkdir -p $HOME/.config/systemd/user
+```
+
+```
+cd $HOME/.config/systemd/user
+```
+
+```
+nano plasma-i3.service
+```
+
+Write the following into `$HOME/.config/systemd/user/plasma-i3.service`:
+
+```conf
+[Unit]
+Description=Launch Plasma with i3
+Before=plasma-workspace.target
+
+[Service]
+ExecStart=/usr/bin/i3
+Restart=on-failure
+
+[Install]
+WantedBy=plasma-workspace.target
+```
+
+Mask `plasma-kwin_x11.service` by running
+```systemctl mask plasma-kwin_x11.service --user```
+
+Enable the plasma-i3 service by running
+```systemctl enable plasma-i3 --user```
+
+To go back to KWin, just unmask the `plasma-kwin_x11.service` and disable your `plasma-i3` service in the same way.
+
+---
 
 
+### Adding stuff to the i3 config
+
+To improve compatibility with Plasma, add the following lines in your i3 config.
+
+```sh
+# Plasma compatibility improvements
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
 
 
+no_focus [class="plasmashell" window_type="notification"]
 
 
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move absolute position center, move down 400px
 
+# Killing the existing window that covers everything
+for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
+```
 
+---
 
+### Disabling a shortcut that breaks stuff
+
+#### Meta+Q "*Kill apps*"
+Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category System Services > Plasma* and disable the shortcut "Activities..." that uses the combination ```Meta+Q```.
+
+#### Meta+R "*Resize*"
+Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category Applications > Spectacle and disable the shortcut "Start/Stop Region Recording" that uses the combination ```Meta+R```.
+
+---
+
+### Do not use the plasma shutdown screen
+Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Meta+Shift+E```
+
+---
 
