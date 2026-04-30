@@ -28,7 +28,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 * **Pros** :
 	* If you used KDE Plasma and i3wm before, you will love having them together.
-	* Tilling support for KDE Plasma.
+	* Tiling support for KDE Plasma.
 	* Most utilities and configurations, for example, (***GTK & QT theme, Display brightness buttons, Audio buttons, ...etc***) will work out of the box.
 
 * **Cons**:
@@ -107,6 +107,7 @@ A third one for ***KDE Plasma panel optional Packages***:
 ```bash
 sudo pacman -S plasma-applet-window-buttons
 ```
+
 ```bash
 yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 ```
@@ -125,11 +126,11 @@ Create a new service file called plasma-i3.service in `$HOME/.config/systemd/use
 mkdir -p $HOME/.config/systemd/user
 ```
 
-```
+```bash
 cd $HOME/.config/systemd/user
 ```
 
-```
+```bash
 nano plasma-i3.service
 ```
 
@@ -178,7 +179,7 @@ systemctl disable plasma-i3 --user
 
 1. To improve compatibility with Plasma, add the following lines in your i3 config.
 
-```sh
+```conf
 # Plasma compatibility improvements
 
 for_window [window_role="pop-up"] floating enable
@@ -218,7 +219,7 @@ Also, you can use `rofi` launcher. *Meta+E*
 > ![Rofi application launcher](Images/Screenshot_20260430_214059.png)
 
 If you prefer to use `krunner`, this is the terminal command line to launch it, if you need it.
-```
+```bash
 qdbus6 org.kde.krunner /App org.kde.krunner.App.display
 ```
 
@@ -289,7 +290,7 @@ mkdir -p $HOME/.icons/default
 
 Then create a new file called `index.theme`
 
-```
+```bash
 nano $HOME/.icons/default/index.theme
 ```
 
@@ -309,7 +310,7 @@ It's annoying, so here is another workaround/solution.
 
 Create a new file called `.Xresources` in your $HOME
 
-```
+```bash
 nano $HOME/.Xresources
 ```
 
@@ -324,7 +325,7 @@ Xft.rgba: rgb
 
 Then run this to load parameters from your configuration file `.Xresources` during your X Session.
 
-```
+```bash
 xrdb -merge ~/.Xresources
 ```
 
