@@ -183,7 +183,7 @@ To go back to KWin, just unmask the `plasma-kwin_x11.service` and disable your `
 
 ### Adding stuff to the i3 config
 
-To improve compatibility with Plasma, add the following lines in your i3 config.
+1. To improve compatibility with Plasma, add the following lines in your i3 config.
 
 ```sh
 # Plasma compatibility improvements
@@ -212,13 +212,29 @@ for_window [class="plasmashell" window_type="notification"] floating enable, bor
 for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
 ```
 
+2. For the application launcher, you can still use the application launcher from Plasma Panel.
+
+> <p align="center">"KDE Plasma application launcher"</p>
+
+> ![KDE Plasma application launcher](Images/Screenshot_20260430_214529.png)
+
+Also, you can use `rofi` launcher. *Meta+E*
+
+> <p align="center">"Rofi application launcher"</p>
+
+> ![Rofi application launcher](Images/Screenshot_20260430_214059.png)
+
+If you prefer to use `krunner`, this is the terminal command line to launch it, if you need it.
+```
+qdbus6 org.kde.krunner /App org.kde.krunner.App.display
+```
 ---
 
 ### Removing stuff from the i3 config
 1. Auto Start
 KDE Plasma will handle the startup apps. Remove any exec line that uses for auto startup in the i3 config file; also, do not use dex, the only exception will be feh for wallpaper and picom.
 ```
-exec --no-startup-id feh --bg-scale ***/path/of/wallpaper***
+exec --no-startup-id feh --bg-scale "/path/of/wallpaper"
 ```
 More info about picom down below.
 ```
@@ -249,12 +265,23 @@ Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Ca
 ### Do not use the plasma shutdown screen
 Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Meta+Shift+E```
 
+```
+# exit-menu
+bindsym Mod4+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
+```
+
+> <p align="center">"Rofi exit menu"</p>
+
+> ![Rofi exit Menu](Images/Screenshot_20260430_215358.png)
+
 ---
 
 ### Turn off the KDE Plasma startup screen "*Splash Screen*"
 Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* and disable it.
 
-> ![screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
+> <p align="center">"Screenshot of Splash Screen Settings"</p>
+
+> ![Screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
 
 ### Fix mouse cursor
 When changing the mouse cursor theme or size, some apps will show a different mouse cursor
