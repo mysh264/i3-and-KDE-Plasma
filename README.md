@@ -18,7 +18,7 @@ A comprehensive guide to integrating the i3 tiling window manager seamlessly int
 
 ---
 
-## Why using i3wm, not kwin script?
+## Why use i3wm instead of a KWin script?
 
 Short answer: **I3wm is better and more stable than any kwin script I tried**, and I will be happy to prove me wrong.
 
@@ -44,13 +44,13 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ---
 
-## To Do
+## Setup Checklist
 
 1. - [x] Install Packages.
 2. - [x] Clone this repository: ```git clone https://github.com/mysh264/i3-and-KDE-Plasma.git``` for i3, i3block, rofi, picom, conky
 3. - [ ] Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
-4. - [ ] Merge rofi configuration prepared files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
-5. - [ ] Merge i3block configuration prepared files (**i3block.conf and Scripts Folder**) into (**$HOME/.config/i3/**)
+4. - [ ] Merge the prepared rofi configuration files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
+5. - [ ] Merge the prepared i3blocks configuration files (**i3block.conf and Scripts Folder**) into (**$HOME/.config/i3/**)
 6. - [ ] Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
 7. - [x] Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
     *  - [x] No need for any Bright or volume shortcut keys, **KDE will handle it.**
@@ -89,21 +89,25 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 * ```sysstat tk gnuplot```, some i3blocks scripts need it
 
 *optional for KDE Plasma Panel*
-* ```plasma6-applets-panel-spacer-extended``` <sup>AUR</sup> , [Spacer with Mouse gestures for the KDE Plasma Panel](https://github.com/luisbocanegra/plasma-panel-spacer-extended)
-* ```plasma6-applets-kurve```  <sup>AUR</sup> , [Audio visualizer widget powered by CAVA for the KDE Plasma Desktop](https://github.com/luisbocanegra/kurve)
+* ```plasma-applet-window-buttons``` <sup>[Extra](https://archlinux.org/packages/extra/x86_64/plasma-applet-window-buttons/)</sup>, [This is a Plasma 6 applet that shows window buttons in your panels](https://github.com/moodyhunter/applet-window-buttons6)
+* ```plasma6-applets-panel-spacer-extended``` <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-panel-spacer-extended)</sup> , [Spacer with Mouse gestures for the KDE Plasma Panel](https://github.com/luisbocanegra/plasma-panel-spacer-extended)
+* ```plasma6-applets-kurve```  <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-kurve)</sup> , [Audio visualizer widget powered by CAVA for the KDE Plasma Desktop](https://github.com/luisbocanegra/kurve)
 
-**Here's a one-liner on how I installed everything:**
-```
+**Here's a one-liner on how I installed everything needed:**
+```bash
 sudo pacman -Syyu && sudo pacman -S i3 i3blocks picom feh rofi wmctrl
 ```
 
 Another one for ***i3wm optional Packages***:
-```
+```bash
 sudo pacman -S viewnior conky awesome-terminal-fonts xfce4-terminal sysstat tk gnuplot
 ```
 
 A third one for ***KDE Plasma panel optional Packages***:
+```bash
+sudo pacman -S plasma-applet-window-buttons
 ```
+```bash
 yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 ```
 
@@ -113,11 +117,11 @@ yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 
 Replace kwin with i3 using systemd user service
 
-Note that for this method, you do not need to be the root user. However, that means the changes will not effect the other users.
+Note that for this method, you do not need to be the root user. However, that means the changes will not affect the other users.
 
 Create a new service file called plasma-i3.service in `$HOME/.config/systemd/user`.
 
-```
+```bash
 mkdir -p $HOME/.config/systemd/user
 ```
 
@@ -144,13 +148,28 @@ Restart=on-failure
 WantedBy=plasma-workspace.target
 ```
 
+Reload Systemd Daemon
+```bash
+systemctl --user daemon-reload
+```
+
 Mask `plasma-kwin_x11.service` by running
-```systemctl mask plasma-kwin_x11.service --user```
+```bash
+systemctl mask plasma-kwin_x11.service --user
+```
 
 Enable the plasma-i3 service by running
-```systemctl enable plasma-i3 --user```
+```bash
+systemctl enable plasma-i3 --user
+```
 
 To go back to KWin, just unmask the `plasma-kwin_x11.service` and disable your `plasma-i3` service in the same way.
+```bash
+systemctl unmask plasma-kwin_x11.service --user
+```
+```bash
+systemctl disable plasma-i3 --user
+```
 
 ---
 
@@ -202,11 +221,12 @@ If you prefer to use `krunner`, this is the terminal command line to launch it, 
 ```
 qdbus6 org.kde.krunner /App org.kde.krunner.App.display
 ```
+
 ---
 
 ### Removing stuff from the i3 config
-1. Auto Start
-KDE Plasma will handle the startup apps. Remove any exec line that uses for auto startup in the i3 config file; also, do not use dex, the only exception will be feh for wallpaper and picom.
+1. Startup apps
+KDE Plasma will handle the startup apps. Remove any ```exec``` line that is used for auto startup in the i3 config file; also, do not use ```dex```, the only exception will be feh for wallpaper and picom.
 ```
 exec --no-startup-id feh --bg-scale "/path/of/wallpaper"
 ```
@@ -258,12 +278,12 @@ Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* an
 > ![Screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
 
 ### Fix mouse cursor
-When changing the mouse cursor theme or size, some apps will show a different mouse cursor
-In my case, I used breeze_cursors and changed the size to 32
+When changing the mouse cursor theme or size, some apps will show a different mouse cursor.
+In my case, I used breeze_cursors and changed the size to 32.
 
-to fix it, create `$HOME/.icons/default` directory
+To fix it, create the `$HOME/.icons/default` directory
 
-```
+```bash
 mkdir -p $HOME/.icons/default
 ```
 
@@ -284,8 +304,8 @@ Size=32
 ---
 
 ### Fix Fonts (**i3bar & i3-frame**)
-when restart the system, you will notice the i3bar using a different font. Using Meta+Shift+R solves it.
-It's annoying, so another workaround
+When you restart the system, the i3bar uses a different font. Using Meta+Shift+R solves it.
+It's annoying, so here is another workaround/solution.
 
 Create a new file called `.Xresources` in your $HOME
 
