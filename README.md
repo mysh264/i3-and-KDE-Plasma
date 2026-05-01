@@ -93,7 +93,7 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 * ```redshift```, Color temperature adjustment tool <sup>[Geoclue fix]()</Sup>
 * ```awesome-terminal-fonts```, if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/), you will need it
 * ```xfce4-terminal```, [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
-* ```sysstat tk gnuplot```, some i3blocks scripts need it
+* ```sysstat tk gnuplot```, some i3blocks scripts need them
 
 *optional for KDE Plasma Panel*
 * ```plasma-applet-window-buttons``` <sup>[Extra](https://archlinux.org/packages/extra/x86_64/plasma-applet-window-buttons/)</sup>, [This is a Plasma 6 applet that shows window buttons in your panels](https://github.com/moodyhunter/applet-window-buttons6)
