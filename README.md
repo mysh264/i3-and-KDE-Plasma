@@ -27,12 +27,12 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 ## Pros & Cons
 
 * **Pros** :
-	* If you used KDE Plasma and i3wm before, you will love having them together.
-	* Tiling support for KDE Plasma.
-	* Most utilities and configurations, for example, (***GTK & QT theme, Display brightness buttons, Audio buttons, ...etc***) will work out of the box.
+    * If you used KDE Plasma and i3wm before, you will love having them together.
+    * Tiling support for KDE Plasma.
+    * Most utilities and configurations, for example, (***GTK & QT theme, Display brightness buttons, Audio buttons, ...etc***) will work out of the box.
 
 * **Cons**:
-	* Not even one. “*At least for me*.”
+    * Not even one. “*At least for me*.”
 
 ---
 
@@ -65,11 +65,11 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 12. - [x] Fix flatpak mouse cursor.
 13. - [x] Fix fonts (i3bar & i3 frame).
 14. - [ ] [Conky](https://github.com/jxai/lean-conky-config)
-15.	- [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
-16.	- [x] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
+15.    - [ ] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
+16.    - [x] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
 17. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
-18.	- [x] Redshift. "use geoclue fix for url"
-19.	- [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
+18.    - [x] Redshift. "use geoclue fix for url"
+19.    - [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
 
 ---
 
@@ -295,7 +295,7 @@ Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* an
 > ![Screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
 
 ### Fix mouse cursor
-When changing the mouse cursor theme or size, some apps will show a different mouse cursor.
+When changing the mouse cursor theme or size, some apps may display a different cursor.
 In my case, I used [Layan border cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup> and changed the size to 36.
 
 To fix it, create the `$HOME/.icons/default` directory
@@ -318,7 +318,7 @@ Name=layan-border-cursors
 Size=36
 ```
 
-#### For Flatpak apps, the problem is still the same; to fix it you need to give read access to ```/usr/share/icons``` ```/home/$USER/.icons/``` ```/.local/share/icons/``` <sup>[Arch Wiki](https://wiki.archlinux.org/title/Flatpak#Applications_do_not_use_the_correct_cursor_theme)</sup>
+#### For Flatpak apps, the problem is still the same; to fix it you need to give read access to ```/usr/share/icons/``` ```/home/$USER/.icons/``` ```/.local/share/icons/``` <sup>[Arch Wiki](https://wiki.archlinux.org/title/Flatpak#Applications_do_not_use_the_correct_cursor_theme)</sup>
 
 ```
 flatpak -u override --filesystem=/usr/share/icons/:ro
@@ -339,7 +339,7 @@ flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
 ---
 
 ### Fix Fonts (**i3bar & i3-frame**)
-When you restart the system, the i3bar uses a different font. Using Meta+Shift+R solves it.
+When you restart the system, the i3bar uses a different font. Restarting i3 in place using ```Meta+Shift+R``` solves it.
 I know this is frustrating, so here is another workaround/solution.
 
 Create a new file called `.Xresources` in your $HOME
@@ -364,4 +364,6 @@ xrdb -merge ~/.Xresources
 ```
 
 ---
+
+
 
