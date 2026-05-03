@@ -5,8 +5,8 @@ A comprehensive guide to integrating the i3 tiling window manager seamlessly int
 
 ---
 
-> ![screenshot of my current setup - 1](Images/Screenshot_20260430_153753.png)
-> ![screenshot of my current setup - 2](Images/Screenshot_20260430_153807.png)
+> ![screenshot of my current setup - 1](Images/Screenshot_20260503_160155.png)
+> ![screenshot of my current setup - 2](Images/Screenshot_20260503_160341.png)
 
 ---
 
