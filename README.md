@@ -72,6 +72,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 19.    - [ ] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
 20.    - [ ] Grub Theme <sup>[1](https://github.com/AdisonCavani/distro-grub-themes)</sup> <sup>[2](https://github.com/jacksaur/Gorgeous-GRUB)</sup>
 21.    - [ ] Toggle hide plasma panel
+22.    - [ ] Easy effects <sup>[1](https://github.com/droidwayin/GentleDynamics)</sup>
 
 ---
 
