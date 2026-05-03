@@ -48,11 +48,11 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 1. - [x] Install Packages.
 
-2. - [ ] Clone this repository: ```git clone https://github.com/mysh264/i3-and-KDE-Plasma.git``` for i3, i3block, rofi, picom, conky
+2. - [x] Clone this repository: ```git clone https://github.com/mysh264/i3-and-KDE-Plasma.git``` for i3, i3block, rofi, picom, conky
 
-3. - [ ] Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
+3. - [x] Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
 
-4. - [ ] Merge the prepared rofi configuration files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
+4. - [x] Merge the prepared rofi configuration files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
 
 5. - [ ] Merge the prepared i3blocks configuration files (**i3block.conf and Scripts Folder**) into (**$HOME/.config/i3/**)
 
@@ -101,9 +101,171 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 25. - [x] mutli wallpaper.
 
+26. - [x] Tree Map ```mysh264/i3-and-KDE-Plasma/etc/skel/```
+
+27. - [x] Tree Map ```endeavouros-team/endeavouros-i3wm-setup/etc/skel/```
+
+28. - [x] Rofi theme.
+
+29. - [ ] i3blocks.
+
 ---
 
 ## Installation
+
+### Clone This Repo
+
+#### [mysh264/i3-and-KDE-Plasma/etc/skel/](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main/etc/skel)
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+cd i3-and-KDE-Plasma
+cp -dvr /etc/skel/. $HOME
+```
+
+##### Tree Map ````i3-and-KDE-Plasma/etc/skel/```
+
+```tree
+.
+├── .config
+│   ├── conky
+│   │   └── *lean-conky-config-0.9.0 # https://github.com/mysh264/i3-and-KDE-Plasma#conky
+│   │       ├── *conky.conf # "Edited to work for Plasma + i3wm"
+│   ├── i3
+│   │   ├── *config # Edited to run with Plasma + i3wm
+│   │   ├── *i3blocks.conf # "Edited to run scripts-2/plasma_panel_i3blocks.sh + ... etc"
+│   │   ├── scripts # EndeavourOS scripts.
+│   │   └── *scripts-2
+│   │       ├── *fehbg.sh # "Random wallpapers (Feh)" # https://github.com/mysh264/i3-and-KDE-Plasma#random-wallpapers-feh
+│   │       ├── *plasma_panel_i3blocks.sh "Plasma Panel status" # https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel
+│   │       └── *plasma_panel.sh "Toggle Plasma Panel" # https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel
+│   ├── nano
+│   │   └── nanorc
+│   ├── picom
+│   │   └── *picom.conf "Edited to run Smoothly"
+│   ├── rofi
+│   │   ├── config.rasi
+│   │   ├── powermenu.rasi
+│   │   ├── power-profiles.rasi
+│   │   ├── rofidmenu.rasi
+│   │   └── rofikeyhint.rasi
+│   ├── systemd
+│   │   └── user
+│   │       └── *plasma-i3.service "Systemd service to run i3 inside kde plasma" # https://github.com/mysh264/i3-and-KDE-Plasma#configuration
+│   └── viewnior
+│       └── viewnior.conf
+├── .icons
+│   ├── default
+│   │   └── *index.theme # https://github.com/mysh264/i3-and-KDE-Plasma#fix-mouse-cursor
+│   ├── Layan-border-cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
+│   └── material_cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
+├── .local
+│   └── share
+│       ├── *easyeffects # https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets
+│       │   └── output
+│       │       ├── GentleDynamics Dialogue Clarity Engine.json
+│       │       ├── GentleDynamics Feather Loudness.json
+│       │       └── GentleDynamics.json
+│       └── rofi
+│           └── themes
+│               ├── arc_dark_colors.rasi
+│               ├── arc_dark_transparent_colors.rasi
+│               └── deep-purple.rasi
+├── .Xresources # https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame
+└── .zshrc # https://github.com/mysh264/i3-and-KDE-Plasma#shell
+```
+
+---
+
+### Or Clone [EndeavourOS i3wm Setup](https://github.com/endeavouros-team/endeavouros-i3wm-setup)
+
+#### [endeavouros-team/endeavouros-i3wm-setup/etc/skel/](https://github.com/endeavouros-team/endeavouros-i3wm-setup/tree/main/etc/skel)
+
+```bash
+git clone https://github.com/endeavouros-team/endeavouros-i3wm-setup.git
+cd endeavouros-i3wm-setup/etc/skel/
+```
+
+##### Tree Map ```endeavouros-i3wm-setup/etc/skel/```
+
+```tree
+.
+├── .config
+│   ├── autostart
+│   │   └── firewall-applet.desktop
+│   ├── dunst
+│   │   └── dunstrc
+│   ├── example.picom.conf
+│   ├── gtk-3.0
+│   │   ├── gtk.css
+│   │   └── settings.ini
+│   ├── gtk-4.0
+│   │   └── settings.ini
+│   ├── i3
+│   │   ├── config
+│   │   ├── i3blocks.conf
+│   │   ├── keybindings
+│   │   └── scripts
+│   │       ├── audio-device-switch
+│   │       ├── bandwidth2
+│   │       ├── battery
+│   │       ├── battery-pinebook-pro
+│   │       ├── blur-lock
+│   │       ├── cputemp
+│   │       ├── cpu_usage
+│   │       ├── disk
+│   │       ├── empty_workspace
+│   │       ├── gputemp
+│   │       ├── import-gsettings
+│   │       ├── keyhint
+│   │       ├── keyhint-2
+│   │       ├── memory
+│   │       ├── openweather
+│   │       ├── powermenu
+│   │       ├── power-profiles
+│   │       ├── ppd-status
+│   │       ├── temperature
+│   │       ├── volume
+│   │       ├── volume_brightness2.sh
+│   │       ├── volume_brightness.sh
+│   │       └── vpn
+│   ├── nano
+│   │   └── nanorc
+│   ├── nwg-look
+│   │   └── config
+│   ├── rofi
+│   │   ├── config.rasi
+│   │   ├── powermenu.rasi
+│   │   ├── power-profiles.rasi
+│   │   ├── rofidmenu.rasi
+│   │   └── rofikeyhint.rasi
+│   ├── xfce4
+│   │   └── xfconf
+│   │       └── xfce-perchannel-xml
+│   │           └── xfce4-terminal.xml
+│   └── xsettingsd
+│       └── xsettingsd.conf
+├── .gtkrc-2.0
+├── .icons
+│   └── default
+│       └── index.theme
+├── .local
+│   └── share
+│       ├── nwg-look
+│       │   └── gsettings
+│       └── rofi
+│           └── themes
+│               ├── arc_dark_colors.rasi
+│               ├── arc_dark_transparent_colors.rasi
+│               └── deep-purple.rasi
+├── .profile
+├── set_once.sh
+├── tree.txt
+├── xed.dconf
+└── .Xresources
+```
+
+---
 
 ### Packages
 
@@ -590,9 +752,11 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 #### Plymouth Theme
 
+[								]
 
+[								]
 
-
+[								]
 
 ---
 
@@ -627,7 +791,7 @@ cd i3-and-KDE-Plasma
 ```
 
 ```bash
-cp -vr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
+cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 ```
 
 2. Install xdotool to run the scripts
@@ -758,7 +922,7 @@ fi
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
 cd i3-and-KDE-Plasma
-cp -vr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
+cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 ```
 
 2. Make Wallpaper directory ```$HOME/.Wallpapers```, ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
@@ -807,6 +971,49 @@ done
 ```
 
 ---
+
+#### Picom
+
+[								]
+
+[								]
+
+[								]
+
+---
+
+#### I3blocks
+
+[								]
+
+[								]
+
+[								]
+
+---
+
+#### Rofi *"Application Luncher"* Theme
+
+1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+cd i3-and-KDE-Plasma
+cp -dvr etc/skel/.config/rofi $HOME/.config/
+cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
+```
+
+---
+
+
+
+
+
+
+
+
+
+
 
 
 
