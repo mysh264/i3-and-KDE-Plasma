@@ -123,7 +123,7 @@ cd i3-and-KDE-Plasma
 cp -dvr /etc/skel/. $HOME
 ```
 
-##### Tree Map ````i3-and-KDE-Plasma/etc/skel/```
+##### Tree Map ```i3-and-KDE-Plasma/etc/skel/```
 
 ```tree
 .
