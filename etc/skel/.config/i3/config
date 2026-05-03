@@ -356,6 +356,9 @@ $exec $feh
 # Load ~/.Xresources
 $exec xrdb -merge ~/.Xresources
 
+# Restart i3wm
+$exec sleep 2 && i3-msg restart
+
 # start conky:
 $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
