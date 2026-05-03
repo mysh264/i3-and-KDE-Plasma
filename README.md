@@ -568,7 +568,7 @@ cp -dvr etc/skel/.config/conky $HOME/.config/
 Then add this line to your i3 config file to auto start conky.
 
 ```conf
-$exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
+exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 ```
 
 ---
@@ -640,7 +640,7 @@ sudo pacman -S xdotool
 
 ```conf
 # Toggle plasma panel
-bindsym Mod4+u $exec ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
+bindsym Mod4+u exec --no-startup-id ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
 ```
 
 4. Edit i3blocks.conf and add this lines
