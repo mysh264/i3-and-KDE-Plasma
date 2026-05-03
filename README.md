@@ -543,29 +543,33 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 #### Conky
 
-![Conky screenshot](Images/Screenshot_20260503_160341.png)
-
 * [Lean Conky Config](https://github.com/jxai/lean-conky-config), Lean Conky Config (LCC) is, well, a lean [Conky](https://github.com/brndnmtthws/conky/wiki) config that just works.
 
-  ***Note: I Edited conky.conf to make it work for plasma + i3wm***
+  
 
-  ```bash
-  git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
-  ```
+![Conky screenshot](Images/Screenshot_20260503_160341.png)
 
-  ```bash
-  cd i3-and-KDE-Plasma
-  ```
 
-  ```bash
-  cp -dvr etc/skel/.config/conky $HOME/.config/
-  ```
 
-  Then add this line to your i3 config file to auto start conky.
+***Note: I Edited conky.conf to make it work for plasma + i3wm***
 
-  ```conf
-  $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
-  ```
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+```
+
+```bash
+cd i3-and-KDE-Plasma
+```
+
+```bash
+cp -dvr etc/skel/.config/conky $HOME/.config/
+```
+
+Then add this line to your i3 config file to auto start conky.
+
+```conf
+$exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
+```
 
 ---
 
