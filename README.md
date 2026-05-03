@@ -91,7 +91,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 20. - [x] Grub Theme <sup>[1](https://github.com/AdisonCavani/distro-grub-themes)</sup> <sup>[2](https://github.com/jacksaur/Gorgeous-GRUB)</sup>
 
-21. - [ ] Toggle hide plasma panel
+21. - [x] Toggle hide plasma panel
 
 22. - [x] Easy effects <sup>[1](https://github.com/droidwayin/GentleDynamics)</sup>
 
@@ -99,7 +99,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 24. - [ ] plymouth
 
-25. - [ ] mutli wallpaper.
+25. - [x] mutli wallpaper.
 
 ---
 
