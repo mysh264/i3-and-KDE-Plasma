@@ -1,0 +1,9 @@
+[Icon Theme]
+#Inherits=breeze_cursors
+#Size=32
+
+#Name=material_cursors
+#Size=32
+
+Name=layan-border-cursors
+Size=36
