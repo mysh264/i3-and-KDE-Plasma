@@ -113,6 +113,12 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 31. - [ ] Video Record
 
+32. - [x] Keyboard Layout
+
+33. - [ ] Youtube tui [yt-x](https://github.com/Benexl/yt-x)
+
+34. - [ ] [kitty](https://github.com/kovidgoyal/kitty)
+
 ---
 
 ## Installation
@@ -165,6 +171,8 @@ cp -dvr /etc/skel/. $HOME
 │   └── material_cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
 ├── .local
 │   └── share
+│       └── applications
+│           └── *kitty-yt-x.desktop # https://github.com/kovidgoyal/kitty & https://github.com/Benexl/yt-x
 │       ├── *easyeffects # https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets
 │       │   └── output
 │       │       ├── GentleDynamics Dialogue Clarity Engine.json
@@ -445,20 +453,26 @@ exec --no-startup-id picom -b
 
 * _KDE Plasma will handle it out of the box._
 
-3. **Display brightness buttons integration**
+3. **Keyboard Layout**
+
+* _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
+* Or Keep it if you prefer.
+* ~~```exec --no-startup-id setxkbmap -layout 'us,ara' -variant altgr-intl,qwerty -option 'grp:win_space_toggle'```~~
+
+4. **Display brightness buttons integration**
 
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-4. **Audio buttons integration**
+5. **Audio buttons integration**
 
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-5. **Lock screen**
+6. **Lock screen**
 
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 * *Note: This is the terminal command line to lock the screen, if you need it.* ```loginctl lock-session```
 
-6. **Tray applet**
+7. **Tray applet**
 
 * _KDE Plasma will handle it out of the box._
 * *Note: Make sure to add ```tray_output none``` to your i3 bar { } section in your i3 config file.*

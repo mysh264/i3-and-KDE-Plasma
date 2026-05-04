@@ -36,6 +36,7 @@
 
 # Terminal 
 	set $term1 konsole
+	set $term2 kitty
 	set $drop xfce4-terminal --drop-down
 
 # Mail
@@ -283,6 +284,7 @@ $code $mod+$a focus parent
 # Applications
 # Start a terminal
 $sym $mod+Return $exec $term1
+$sym $mod+Shift+Return $exec $term2
 $sym XF86Favorites $exec $drop
 
 # Web Browser
@@ -419,8 +421,8 @@ set $ws4 "4:  "
 set $ws5 "5:  "
 set $ws6 "6:  "
 set $ws7 "7:  "
-set $ws8 "8:  "
-set $ws9 "9:  "
+set $ws8 "8:  "
+set $ws9 "9:  "
 set $ws10 "10:  "
 set $ws11 "11:  "
 set $ws12 "12:  "
@@ -456,12 +458,12 @@ assign [class="gwenview"] $ws6
 
 assign [class="Stremio"] $ws7
 
-#assign [class="########"] $ws8
+assign [class="kitty"] $ws8
 
 assign [class="thunderbird"] $ws9
 #assign [class="TelegramDesktop"] $ws9
 
-#assign [class="########"] $ws10
+assign [class="Typora"] $ws10
 
 assign [class="plasma-systemmonitor"] $ws11
 
@@ -490,6 +492,8 @@ for_window [class=GParted] focus
 for_window [class=com.github.tchx84.Flatseal] focus
 for_window [class=Grub-customizer] focus
 for_window [class=Thunderbird] focus
+for_window [class=kitty] focus
+for_window [class=Typora] focus
 
 #for_window [class=pamac-manager] focus
 #for_window [class=dolphin] focus
