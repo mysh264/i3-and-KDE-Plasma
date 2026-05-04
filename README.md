@@ -171,9 +171,9 @@ cp -dvr /etc/skel/. $HOME
 │   └── material_cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
 ├── .local
 │   └── share
-│       └── applications
-│           └── *kitty-yt-x.desktop # https://github.com/kovidgoyal/kitty & https://github.com/Benexl/yt-x
-│       ├── *easyeffects # https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets
+│       ├── applications
+│       │   └── *kitty-yt-x.desktop # https://github.com/kovidgoyal/kitty & https://github.com/Benexl/yt-x
+│       ├── *easyeffects # https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets
 │       │   └── output
 │       │       ├── GentleDynamics Dialogue Clarity Engine.json
 │       │       ├── GentleDynamics Feather Loudness.json
