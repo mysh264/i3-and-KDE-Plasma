@@ -109,11 +109,15 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 29. - [ ] i3blocks.
 
+30. - [ ] OCR
+
+31. - [ ] Video Record
+
 ---
 
 ## Installation
 
-### Clone This Repo
+### Clone This Repo *"Prepared for KDE Plasma + i3wm"*
 
 #### [mysh264/i3-and-KDE-Plasma/etc/skel/](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main/etc/skel)
 
@@ -282,14 +286,14 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 
 * ```viewnior```, my favourit [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
 * ```conky```, [light-weight system monitor](https://github.com/brndnmtthws/conky)
-* ```redshift```, Color temperature adjustment tool <sup>[Geoclue fix]()</Sup>
+* ```redshift```, Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshit-fix-geoclue)</Sup>
 * ```awesome-terminal-fonts otf-font-awesome```, if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/), you will need it
 * ```xfce4-terminal```, [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
 * ```sysstat tk gnuplot```, some i3blocks scripts need them
 
 *optional for KDE Plasma Panel*
 
-* ```xdotool``` to hide plasma panel
+* ```xdotool xorg-xwininfo``` to hide plasma panel
 * ```plasma-applet-window-buttons``` <sup>[Extra](https://archlinux.org/packages/extra/x86_64/plasma-applet-window-buttons/)</sup>, [This is a Plasma 6 applet that shows window buttons in your panels](https://github.com/moodyhunter/applet-window-buttons6)
 * ```plasma6-applets-panel-spacer-extended``` <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-panel-spacer-extended)</sup> , [Spacer with Mouse gestures for the KDE Plasma Panel](https://github.com/luisbocanegra/plasma-panel-spacer-extended)
 * ```plasma6-applets-kurve```  <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-kurve)</sup> , [Audio visualizer widget powered by CAVA for the KDE Plasma Desktop](https://github.com/luisbocanegra/kurve)
@@ -306,7 +310,7 @@ sudo pacman -S viewnior conky redshift awesome-terminal-fonts otf-font-awesome x
 
 A third one for ***KDE Plasma panel optional Packages***:
 ```bash
-sudo pacman -S xdotool plasma-applet-window-buttons
+sudo pacman -S xdotool xorg-xwininfo plasma-applet-window-buttons
 ```
 
 ```bash
@@ -437,17 +441,25 @@ More info about picom down below.
 exec --no-startup-id picom -b
 ```
 
-2. **Display brightness buttons integration**
+2. **Notifications**
+
+* _KDE Plasma will handle it out of the box._
+
+3. **Display brightness buttons integration**
+
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-3. **Audio buttons integration**
+4. **Audio buttons integration**
+
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 
-4. **Lock screen**
+5. **Lock screen**
+
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 * *Note: This is the terminal command line to lock the screen, if you need it.* ```loginctl lock-session```
 
-5. **Tray applet**
+6. **Tray applet**
+
 * _KDE Plasma will handle it out of the box._
 * *Note: Make sure to add ```tray_output none``` to your i3 bar { } section in your i3 config file.*
 
@@ -472,7 +484,7 @@ Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Ca
 ---
 
 ### Do not use the plasma logout screen
-Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Meta+Shift+E```
+Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Super+Shift+E```
 
 ```
 # exit-menu
@@ -505,7 +517,7 @@ To fix it, create the `$HOME/.icons/default` directory. ***If it's not exists.**
 mkdir -p $HOME/.icons/default
 ```
 
-Then create/edit a new file called `index.theme`
+Then edit/create a new file called `index.theme`
 
 ```bash
 nano $HOME/.icons/default/index.theme
@@ -540,7 +552,7 @@ flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
 ---
 
 ### Fix Fonts (**i3bar & i3-frame**)
-When you restart the system, the i3bar uses a different font. Restarting i3 in place using ```Meta+Shift+R``` solves it.
+When you restart the system, the i3bar uses a different font. Restarting i3 in place using ```Super+Shift+R``` solves it.
 I know this is frustrating, so here is another workaround/solution.
 
 Create a new file called `.Xresources` in your $HOME
@@ -770,7 +782,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 #### Toggle Hide Plasma Panel
 
-##### i3WM do not support auto hide or toggle for plasma panel, and most of the time i don't use it, so i made a script using xdotool to work around this using ```Mod4+U``` to toggle plasma panel.
+##### i3WM do not support auto hide or toggle for plasma panel, and most of the time i don't use it, so i made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
 
 ![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.gif)
 
@@ -794,10 +806,10 @@ cd i3-and-KDE-Plasma
 cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 ```
 
-2. Install xdotool to run the scripts
+2. Install ```xdotool``` and ```xorg-xwininfo``` to run the scripts
 
 ```bash
-sudo pacman -S xdotool
+sudo pacman -S xdotool xorg-xwininfo
 ```
 
 3. Add this line to your i3 config file ```Super+U```
@@ -816,9 +828,9 @@ nano $HOME/i3/i3blocks.conf
 ```
 [plasma-panel]
 label=
-command=~/.config/i3/scripts-2/plasma_panel_i3block.sh
-interval=2
-signal=once
+command=~/.config/i3/scripts-2/plasma_panel_i3blocks.sh
+interval=once
+signal=2
 ```
 
 
