@@ -24,8 +24,9 @@
 #########################################
 # Applicatons
 # Internet Browser
-	set $browser1 firefox
-	set $browser2 chromium
+	set $browser1 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=brave --file-forwarding com.brave.Browser @@u %U @@
+	set $browser2 firefox
+	set $browser3 chromium
 
 # File Manager
 	set $file1 dolphin
@@ -415,21 +416,21 @@ $sym $mod+r mode "resize"
 # or just use xprop | grep "WM_CLASS(STRING)"
 
 set $ws1 "1:  "
-set $ws2 "2:  "
+set $ws2 "2:  "
 set $ws3 "3:  "
 set $ws4 "4:  "
 set $ws5 "5:  "
 set $ws6 "6:  "
 set $ws7 "7:  "
 set $ws8 "8:  "
-set $ws9 "9:  "
+set $ws9 "9:  "
 set $ws10 "10:  "
 set $ws11 "11:  "
 set $ws12 "12:  "
 
 #            
 
-#                           
+#                             @  
 
 # use workspaces on different displays:
 # where you have to replace VGA-0/HDMI-0 with the names for your displays
@@ -444,6 +445,7 @@ set $ws12 "12:  "
 assign [class="konsole"] $ws1
 assign [class="Xfce4-terminal"] $ws1
 
+assign [class="Brave-browser"] $ws2
 assign [class="(?i)firefox"] $ws2
 
 assign [class="dolphin"] $ws3
@@ -460,7 +462,7 @@ assign [class="Stremio"] $ws7
 
 assign [class="kitty"] $ws8
 
-assign [class="thunderbird"] $ws9
+assign [class="org.mozilla.Thunderbird"] $ws9
 #assign [class="TelegramDesktop"] $ws9
 
 assign [class="Typora"] $ws10
@@ -479,6 +481,7 @@ assign [class="Grub-customizer"] $ws12
 # automatic set focus new window if it opens on another workspace than the current:
 #for_window [class=Xfce4-terminal] focus
 for_window [class=konsole] focus
+for_window [class=Brave-browser] focus
 for_window [class=(?i)firefox] focus
 for_window [class=kate] focus
 for_window [class=Stremio] focus
@@ -491,7 +494,7 @@ for_window [class=partitionmanager] focus
 for_window [class=GParted] focus
 for_window [class=com.github.tchx84.Flatseal] focus
 for_window [class=Grub-customizer] focus
-for_window [class=Thunderbird] focus
+for_window [class=org.mozilla.Thunderbird] focus
 for_window [class=kitty] focus
 for_window [class=Typora] focus
 
