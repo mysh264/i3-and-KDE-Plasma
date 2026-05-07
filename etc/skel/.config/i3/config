@@ -24,7 +24,7 @@
 #########################################
 # Applicatons
 # Internet Browser
-	set $browser1 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=brave --file-forwarding com.brave.Browser @@u %U @@
+	set $browser1 brave
 	set $browser2 firefox
 	set $browser3 chromium
 
@@ -556,6 +556,8 @@ for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
 
 # Whole color settings
 set $bg-color 	         #2f343f
+set $active-bg-bar-color #204e66
+#set $urgent-bg-bar-color #512c1a
 set $inactive-bg-color   #2f343f
 set $text-color          #419DCC
 set $inactive-text-color #676E7D
@@ -606,10 +608,10 @@ bar {
         colors {
 		background $bg-color
 	    separator $separator
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $bg-color          $bg-color          $urgent-text-color
+		#                  border					background				text
+		focused_workspace  $active-bg-bar-color		$active-bg-bar-color	$text-color
+		inactive_workspace $inactive-bg-color		$inactive-bg-color		$inactive-text-color
+		urgent_workspace   $bg-color				$bg-color				$urgent-text-color
 	}
 
         # Right click to go to workspace 10

@@ -1031,9 +1031,95 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 ---
 
+### Random Apps
 
+* ```thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar```, Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
+  ```bash
+  sudo pacman -S thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar
+  ```
 
+* ```birdtray``` <sup>[AUR](http://aur.archlinux.org/packages/birdtray)</sup> , Run Thunderbird with a system tray icon.
+
+  ```bash
+  yay -S birdtray
+  ```
+
+* ```kitty```, The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
+
+  ```bash
+  sudo pacman -S kitty
+  ```
+
+* ```yt-x``` <sup>[AUR](http://aur.archlinux.org/packages/yt-x)</sup> <sup>[Github](https://github.com/Benexl/yt-x)</sup> , Browse YouTube from your terminal. Plus other sites yt-dlp supports.
+
+  *Note: Use ```yt-x``` with ```kitty```*
+
+  ```
+  yay -S yt-x
+  ```
+
+* ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
+
+  ```
+  yay -S brave-bin
+  ```
+
+* ```qbittorrent```, An open source Bittorrent client.
+
+  ```
+  sudo pacman -S qbittorrent
+  ```
+
+* ```video-trimmer```, Trim videos quickly.
+
+  ```bash
+  sudo pacman -S video-trimmer
+  ```
+
+* ```handbrake```, Video Transcoder.
+
+  ```bash
+  sudo pacman -S handbrake
+  ```
+
+* ```github-disktop```
+
+* ```typora```
+
+* ```meld```
+
+* stremio
+
+* zen
+
+* zed
+
+* portal for teams
+
+* maim
+
+* easy effects
+
+* sniffnet
+
+* gparted
+
+* gnome-disk-utility
+
+* ventoy
+
+* ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
+
+  ```bash
+  yay -S jdownloader2
+  ```
+
+* enpass
+
+* mpv-mpris2-bin playerctl ffmpegthumbnailer
+
+* 
 
 
 
