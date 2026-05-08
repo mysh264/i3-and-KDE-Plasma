@@ -52,8 +52,8 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 
 3. **[Configuration](https://github.com/mysh264/i3-and-KDE-Plasma#configuration)**
-    * [Replacing KWin with i3 (Systemd Service)](https://github.com/mysh264/i3-and-KDE-Plasma#replace-kwin-with-i3-using-systemd-user-service)
-    * [Troubleshooting / Recovery](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main#troubleshooting--recovery)
+    * [Replace kwin with i3 using systemd user service](https://github.com/mysh264/i3-and-KDE-Plasma#replace-kwin-with-i3-using-systemd-user-service)
+    * [Troubleshooting / Recovery](https://github.com/mysh264/i3-and-KDE-Plasma#troubleshooting--recovery)
     * [i3 Config: Plasma Compatibility](https://github.com/mysh264/i3-and-KDE-Plasma#adding-stuff-to-the-i3-config)
     * [i3 Config: Cleanup & Optimization](https://github.com/mysh264/i3-and-KDE-Plasma#removing-stuff-from-the-i3-config)
 
@@ -470,7 +470,9 @@ exec --no-startup-id picom -b
 
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 * Or Keep it if you prefer.
-* ```exec --no-startup-id setxkbmap -layout 'us,ara' -variant altgr-intl,qwerty -option 'grp:win_space_toggle'```
+  ```bash
+  exec --no-startup-id setxkbmap -layout 'us,ara' -variant altgr-intl,qwerty -option 'grp:win_space_toggle'
+  ```
 
 4. **Display brightness buttons integration**
 
@@ -848,7 +850,7 @@ done
 
 ### Picom
 
-Coming Soon: Check my config here [picom.conf](etc/skel/.config/picom/picom.conf)
+Coming Soon: Check my config here [picom.conf](/etc/skel/.config/picom/picom.conf)
 
 https://wiki.archlinux.org/title/Picom
 
@@ -858,10 +860,10 @@ https://wiki.archlinux.org/title/Picom
 
 ### I3blocks
 
-Coming Soon: Check my config here [i3block.conf](etc/skel/.config/i3/i3blocks.conf)
+Coming Soon: Check my config here [i3block.conf](/etc/skel/.config/i3/i3blocks.conf)
 
-* [scripts "EndeavourOS"](etc/skel/.config/i3/scripts)
-* [scripts-2](etc/skel/.config/i3/scripts-2)
+* [scripts "EndeavourOS"](/etc/skel/.config/i3/scripts)
+* [scripts-2](/etc/skel/.config/i3/scripts-2)
 
 https://github.com/vivien/i3blocks
 
@@ -1289,6 +1291,9 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 </details>
 
 ---
+
+<h3 align="center">Found this useful?</h3>
+<h3 align="center">Give it a ⭐ to help others find the best way to tile their KDE Plasma desktop!</h3>
 
 
 
