@@ -6,7 +6,7 @@
 * - [x] Clone primary repo: `git clone [https://github.com/mysh264/i3-and-KDE-Plasma.git](https://github.com/mysh264/i3-and-KDE-Plasma.git)`
 * - [x] Download EndeavourOS i3wm base config files.
 * - [x] Merge Rofi configuration files into `~/.local/share/rofi` and `~/.config/rofi`.
-* - [ ] **Merge i3blocks configuration files (i3blocks.conf & Scripts) into `~/.config/i3/**`
+* - [ ] **Merge i3blocks configuration files (i3blocks.conf & Scripts) into `~/.config/i3/`**
 * - [ ] **Configure Picom (Merge custom config or use EndeavourOS default).**
 
 ### 2. Desktop Environment Integration
