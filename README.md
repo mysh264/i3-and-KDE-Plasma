@@ -65,7 +65,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
     * [Fixing i3bar & Frame Fonts](https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame)
     * [Redshift & Geoclue Fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshift-fix-geoclue)
 
-    
+
 5. **Workflow Enhancements**
     * [Toggle/Hide Plasma Panel Script](https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel)
     * [Random Wallpapers (Feh)](https://github.com/mysh264/i3-and-KDE-Plasma#random-wallpapers-feh)
@@ -76,7 +76,10 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 6. **[System Customization](https://github.com/mysh264/i3-and-KDE-Plasma#system-customization)**
     * [Shell (ZSH & Oh My Zsh)](https://github.com/mysh264/i3-and-KDE-Plasma#shell)
-    * [Themes, Icons, and Cursors](https://github.com/mysh264/i3-and-KDE-Plasma#kde-themes)
+    * Themes
+        * [KDE Themes](https://github.com/mysh264/i3-and-KDE-Plasma#kde-themes)
+        * [Icons](https://github.com/mysh264/i3-and-KDE-Plasma#icons)
+        * [Mouse Cursor Themes](https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-themes)
     * [Conky Setup](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
     * [Grub](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
     * [Plymouth](https://github.com/mysh264/i3-and-KDE-Plasma#plymouth)
@@ -123,7 +126,7 @@ cp -dvr etc/skel/. $HOME
 ##### Tree Map ```i3-and-KDE-Plasma/etc/skel/```
 <details>
   <summary>Click to expand!</summary>
-  
+
 ```tree
 .
 ├── .config
@@ -191,7 +194,7 @@ cd endeavouros-i3wm-setup/etc/skel/
 ##### Tree Map ```endeavouros-i3wm-setup/etc/skel/```
 <details>
   <summary>Click to expand!</summary>
-  
+
 ```tree
 .
 ├── .config
@@ -451,7 +454,7 @@ exec --no-startup-id picom -b
 
 * _KDE Plasma will handle it out of the box._ Remove any shortcut for that from the i3wm config file.
 * Or Keep it if you prefer.
-* ~~```exec --no-startup-id setxkbmap -layout 'us,ara' -variant altgr-intl,qwerty -option 'grp:win_space_toggle'```~~
+* ```exec --no-startup-id setxkbmap -layout 'us,ara' -variant altgr-intl,qwerty -option 'grp:win_space_toggle'```
 
 4. **Display brightness buttons integration**
 
@@ -621,9 +624,9 @@ systemctl status geoclue.service
 
 ---
 
-#### Toggle Hide Plasma Panel
+### Toggle Hide Plasma Panel
 
-##### i3wm does not support auto hide or toggle for plasma panel, and most of the time I don't use it, so I made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
+i3wm does not support auto hide or toggle for plasma panel, and most of the time I don't use it, so I made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
 
 ![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.gif)
 
@@ -676,7 +679,7 @@ signal=2
 
 <details>
   <summary>Click to view plasma_panel.sh</summary>
-   
+
 ```sh
 
 #!/bin/bash
@@ -724,7 +727,7 @@ fi
 
 <details>
   <summary>Click to view plasma_panel_i3blocks.sh</summary>
-   
+
 ```sh
 
 #!/bin/bash
@@ -768,7 +771,7 @@ fi
 
 ---
 
-#### Random wallpapers (Feh)
+### Random wallpapers (Feh)
 
 ![feh](Images/feh.gif)
 
@@ -780,7 +783,7 @@ cd i3-and-KDE-Plasma
 cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 ```
 
-2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
+2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln/copy your wallpapers folders/Images to this folder***
 
 ```
 mkdir ~/.Wallpapers
@@ -794,7 +797,7 @@ exec --no-startup-id ~/.config/i3/scripts-2/fehbg.sh -t 300 # -t means sleep tim
 
 <details>
   <summary>Click to view fehbg.sh</summary>
-   
+
 ```sh
 #!/bin/bash
 
@@ -827,19 +830,19 @@ done
 
 ---
 
-#### Picom
+### Picom
 
 <!-- Section coming soon -->
 
 ---
 
-#### I3blocks
+### I3blocks
 
 <!-- Section coming soon -->
 
 ---
 
-#### Rofi *"Application Launcher"* Theme
+### Rofi *"Application Launcher"* Theme
 
 1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
 
@@ -850,11 +853,17 @@ cp -dvr etc/skel/.config/rofi $HOME/.config/
 cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 ```
 
-### System Customization
 
-#### Shell
 
-##### 1. Using ZSH instead of Bash, + OH MY ZSH
+---
+
+
+
+## System Customization
+
+### Shell
+
+#### 1. Using ZSH instead of Bash, + OH MY ZSH
 
 * ```zsh``` , A very advanced and programmable command interpreter (shell) for UNIX.
 
@@ -873,13 +882,13 @@ sudo pacman -S zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-h
 yay -S oh-my-zsh-git
 ```
 
-##### 2. Change user shell to ZSH
+#### 2. Change user shell to ZSH
 
 ```bash
 chsh -s $(which zsh)
 ```
 
-##### 3. Edit ZSH config file.
+#### 3. Edit ZSH config file.
 
 ```bash
 nano .zshrc
@@ -929,7 +938,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 ---
 
-#### Mouse Cursor Theme
+#### Mouse Cursor Themes
 
 * [Layan border cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup> , This is an x-cursor theme inspired by layan gtk theme and based on [capitaine-cursors](https://github.com/keeferrourke/capitaine-cursors).
 
@@ -1004,9 +1013,9 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-### App Recommendations
+## App Recommendations
 
-#### Terminals
+### Terminals
 
 * ```kitty``` , The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
 
@@ -1016,7 +1025,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Web Browsers
+### Web Browsers
 
 * ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
 
@@ -1034,7 +1043,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Email Clients
+### Email Clients
 
 * ```thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
@@ -1050,7 +1059,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Editors
+### Editors
 
 * ```github-desktop``` <sup>[Flatpak](https://flathub.org/en/apps/io.github.shiftey.Desktop)</sup> , GUI for managing Git and GitHub.
 
@@ -1078,7 +1087,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Downloader
+### Downloader
 
 * ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
 
@@ -1088,7 +1097,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Torrent Downloaders
+### Torrent Downloaders
 
 * ```qbittorrent``` , An open source Bittorrent client.
 
@@ -1098,7 +1107,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Multimedia Tools
+### Multimedia Tools
 
 * ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
 
@@ -1142,7 +1151,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Screenshot & Screen Recorder Tools
+### Screenshot & Screen Recorder Tools
 
 * ```maim``` , Utility to take a screenshot using imlib2.
 
@@ -1158,7 +1167,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Disk Utilities
+### Disk Utilities
 
 * ```ventoy``` <sup>[AUR](http://aur.archlinux.org/packages/ventoy-bin)</sup> , [A new bootable USB solution](http://www.ventoy.net)
 
@@ -1180,7 +1189,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Password Managers
+### Password Managers
 
 * ```enpass``` <sup>[AUR](http://aur.archlinux.org/packages/enpass-bin)</sup> , [A multiplatform password manager](http://enpass.io/)
 
@@ -1190,7 +1199,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Network
+### Network
 
 * ```sniffnet``` , Application to comfortably monitor your network traffic
 
@@ -1200,7 +1209,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Communication and Productivity
+### Communication and Productivity
 
 * ```portal for teams``` <sup>[Flatpak](https://flathub.org/en/apps/com.github.IsmaelMartinez.teams_for_linux)</sup> , Unofficial Microsoft Teams client for Linux.
 
