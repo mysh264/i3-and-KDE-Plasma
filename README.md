@@ -924,7 +924,21 @@ yay -S oh-my-zsh-git
 chsh -s $(which zsh)
 ```
 
-#### 3. Edit ZSH config file.
+#### 3. Edit ZSH config file
+
+##### Optionally, Backup Your Existing ~/.zshrc File
+
+```bash
+cp ~/.zshrc ~/.zshrc.orig
+```
+
+##### Copy OH MY ZSH Configuration File
+
+```bash
+cp -v /usr/share/oh-my-zsh/zshrc $HOME/.zshrc
+```
+
+##### Edit ZSH config file:
 
 ```bash
 nano .zshrc
@@ -948,7 +962,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 fastfetch
 ```
 
-#### 2. Useful alias 
+##### Useful alias 
 
 ```bash
 alias update-full="sudo pacman -Syyu --noconfirm ; yay -Syu --noconfirm ;  flatpak update --appstream && flatpak update --assumeyes"
