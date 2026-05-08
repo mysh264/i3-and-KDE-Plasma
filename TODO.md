@@ -34,20 +34,25 @@
 * - [x] Easy Effects (GentleDynamics presets).
 * - [x] Shell: ZSH + [Oh My Zsh]().
 * - [x] Keyboard Layout configuration.
-* - [ ] **Set up YouTube TUI ([yt-x]()).**
-* - [ ] **Configure [Kitty]() terminal.**
+* - [x] **Set up YouTube TUI ([yt-x]()).**
+* - [x] **Configure [Kitty]() terminal.**
 * - [ ] **Implement OCR utility.**
-* - [ ] **Configure Video Recording/Screen capture.**
+* - [x] **Configure Video Recording/Screen capture.**
 
 ### 5. Documentation & Structure
 
 * - [x] Generate Tree Map for `mysh264/i3-and-KDE-Plasma`.
+
 * - [x] Generate Tree Map for `endeavouros-i3wm-setup`.
+
 * - [ ] **Finalize i3blocks documentation/scripts.**
+
 * - [ ] **Add Source URLs/References.**
-* - [KDE Wiki: Using Other WMs]()
-* - [Heckelson i3-and-kde-plasma]()
-* - [Avivace Dotfiles]()
+
+    * [KDE Wiki: Using Other WMs]()
+    * [Heckelson i3-and-kde-plasma]()
+
+    * [Avivace Dotfiles]()
 
 
 
@@ -55,5 +60,5 @@
 
 ### Quick Status
 
-* **Completed:** 26 tasks
-* **Pending:** 8 tasks
+* **Completed:** 28 tasks
+* **Pending:** 6 tasks

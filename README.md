@@ -53,6 +53,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 3. **[Configuration](https://github.com/mysh264/i3-and-KDE-Plasma#configuration)**
     * [Replacing KWin with i3 (Systemd Service)](https://github.com/mysh264/i3-and-KDE-Plasma#replace-kwin-with-i3-using-systemd-user-service)
+    * [Troubleshooting / Recovery]()
     * [i3 Config: Plasma Compatibility](https://github.com/mysh264/i3-and-KDE-Plasma#adding-stuff-to-the-i3-config)
     * [i3 Config: Cleanup & Optimization](https://github.com/mysh264/i3-and-KDE-Plasma#removing-stuff-from-the-i3-config)
 
@@ -382,6 +383,21 @@ systemctl unmask plasma-kwin_x11.service --user
 systemctl disable plasma-i3 --user
 ```
 
+### Troubleshooting / Recovery
+
+***if the service fails Press Ctrl+Alt+F3, log in, and run***
+
+```bash
+systemctl unmask plasma-kwin_x11.service --user
+```
+
+```bash
+systemctl disable plasma-i3 --user
+```
+
+```bash
+reboot
+```
 ---
 
 
@@ -441,7 +457,7 @@ qdbus6 org.kde.krunner /App org.kde.krunner.App.display
 ```
 exec --no-startup-id feh --bg-scale "/path/to/wallpaper"
 ```
-More info about picom down below.
+More info about picom [down below](https://github.com/mysh264/i3-and-KDE-Plasma#picom).
 ```
 exec --no-startup-id picom -b
 ```
@@ -666,7 +682,7 @@ bindsym Mod4+u exec --no-startup-id ~/.config/i3/scripts-2/plasma_panel.sh && pk
 4. Edit i3blocks.conf and add this lines
 
 ```bash
-nano $HOME/i3/i3blocks.conf
+nano $HOME/.config/i3/i3blocks.conf
 ```
 
 ```
@@ -832,11 +848,22 @@ done
 
 ### Picom
 
+Coming Soon: Check my config here [picom.conf](etc/skel/.config/picom/picom.conf)
+
+https://wiki.archlinux.org/title/Picom
+
 <!-- Section coming soon -->
 
 ---
 
 ### I3blocks
+
+Coming Soon: Check my config here [i3block.conf](etc/skel/.config/i3/i3blocks.conf)
+
+* [scripts "EndeavourOS"](etc/skel/.config/i3/scripts)
+* [scripts-2](etc/skel/.config/i3/scripts-2)
+
+https://github.com/vivien/i3blocks
 
 <!-- Section coming soon -->
 
@@ -844,7 +871,7 @@ done
 
 ### Rofi *"Application Launcher"* Theme
 
-1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
+1. Copy ```.config/rofi``` & ```.local/share/rofi``` to their respective locations in $HOME.
 
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
@@ -999,6 +1026,8 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ### Plymouth
 
+* https://wiki.archlinux.org/title/Plymouth
+
 <!-- Section coming soon -->
 
 ---
@@ -1017,15 +1046,19 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ### Terminals
 
+<details><summary>Click to view</summary>
+
 * ```kitty``` , The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
 
   ```bash
   sudo pacman -S kitty
   ```
-
+</details>
 ---
 
 ### Web Browsers
+
+<details><summary>Click to view</summary>
 
 * ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
 
@@ -1040,10 +1073,13 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   
   yay -S zen-browser-bin
   ```
+</details>
 
 ---
 
 ### Email Clients
+
+<details><summary>Click to view</summary>
 
 * ```thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
@@ -1056,10 +1092,13 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   yay -S birdtray
   ```
+</details>
 
 ---
 
 ### Editors
+
+<details><summary>Click to view</summary>
 
 * ```github-desktop``` <sup>[Flatpak](https://flathub.org/en/apps/io.github.shiftey.Desktop)</sup> , GUI for managing Git and GitHub.
 
@@ -1084,30 +1123,39 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   sudo pacman -S meld
   ```
+</details>
 
 ---
 
 ### Downloader
+
+<details><summary>Click to view</summary>
 
 * ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
 
   ```bash
   yay -S jdownloader2
   ```
+</details>
 
 ---
 
 ### Torrent Downloaders
+
+<details><summary>Click to view</summary>
 
 * ```qbittorrent``` , An open source Bittorrent client.
 
   ```bash
   sudo pacman -S qbittorrent
   ```
+</details>
 
 ---
 
 ### Multimedia Tools
+
+<details><summary>Click to view</summary>
 
 * ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
 
@@ -1148,10 +1196,13 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   sudo pacman -S handbrake
   ```
+</details>
 
 ---
 
 ### Screenshot & Screen Recorder Tools
+
+<details><summary>Click to view</summary>
 
 * ```maim``` , Utility to take a screenshot using imlib2.
 
@@ -1164,10 +1215,13 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   sudo pacman -S obs-studio
   ```
+</details>
 
 ---
 
 ### Disk Utilities
+
+<details><summary>Click to view</summary>
 
 * ```ventoy``` <sup>[AUR](http://aur.archlinux.org/packages/ventoy-bin)</sup> , [A new bootable USB solution](http://www.ventoy.net)
 
@@ -1186,30 +1240,39 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   sudo pacman -S gnome-disk-utility
   ```
+</details>
 
 ---
 
 ### Password Managers
+
+<details><summary>Click to view</summary>
 
 * ```enpass``` <sup>[AUR](http://aur.archlinux.org/packages/enpass-bin)</sup> , [A multiplatform password manager](http://enpass.io/)
 
   ```bash
   yay -S enpass-bin
   ```
+</details>
 
 ---
 
 ### Network
+
+<details><summary>Click to view</summary>
 
 * ```sniffnet``` , Application to comfortably monitor your network traffic
 
   ```bash
   sudo pacman -S sniffnet
   ```
+</details>
 
 ---
 
 ### Communication and Productivity
+
+<details><summary>Click to view</summary>
 
 * ```portal for teams``` <sup>[Flatpak](https://flathub.org/en/apps/com.github.IsmaelMartinez.teams_for_linux)</sup> , Unofficial Microsoft Teams client for Linux.
 
@@ -1222,6 +1285,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   yay -S teams-for-linux
   ```
+</details>
 
 ---
 
