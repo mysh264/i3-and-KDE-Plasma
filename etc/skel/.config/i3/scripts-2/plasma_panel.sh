@@ -24,14 +24,14 @@ status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
 if [ $status == $hide ] ; then
 
     if xdotool search -all --class "plasmashell" search --name "^$name"  windowmap ; then
-        echo "Plasma Panel is unhide now"
+        echo "Plasma Panel is unhidden now"
     fi
 else
 
 ## is the panel is not hidden then hide it.
     if [ $status == $unhide ] ; then
         if xdotool search -all --class "plasmashell" search --name "^$name"  windowunmap ; then
-            echo "Plasma Panel is hide now"
+            echo "Plasma Panel is hidden now"
             fi
         fi
 

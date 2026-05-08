@@ -5,8 +5,8 @@ A comprehensive guide to integrating the i3 tiling window manager seamlessly int
 
 ---
 
-> ![screenshot of my current setup - 1](Images/Screenshot_20260503_160155.png)
-> ![screenshot of my current setup - 2](Images/Screenshot_20260503_160341.png)
+> ![KDE Plasma and i3wm desktop integration overview - 1](Images/Screenshot_20260503_160155.png)
+> ![KDE Plasma and i3wm desktop integration overview - 2](Images/Screenshot_20260503_160341.png)
 
 ---
 
@@ -14,13 +14,13 @@ A comprehensive guide to integrating the i3 tiling window manager seamlessly int
 
 * KDE Plasma is one of the most full-featured and beautiful desktop environments.
 * i3wm is one of the lightest, most customizable, and simplest window managers.
-* Together, we will have the easy, working out-of-the-box desktop environment (***KDE Plasma***) and tiling style, light, fully customizable window manager (***i3wm***).
+* Together, we combine an easy, out-of-the-box desktop environment (***KDE Plasma***) with a lightweight, fully customizable tiling window manager (***i3wm***).
 
 ---
 
 ## Why use i3wm instead of a KWin script?
 
-Short answer: **I3wm is better and more stable than any kwin script I tried**, and I will be happy to prove me wrong.
+Short answer: **I3wm is better and more stable than any kwin script I tried**, and I would be happy for someone to prove me wrong.
 
 ---
 
@@ -36,15 +36,79 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ---
 
-## Situation before the installation
+## Table of Contents
+
+1. **[Introduction](https://github.com/mysh264/i3-and-KDE-Plasma#i3-and-kde-plasma)**
+    * [Why i3 and KDE Plasma?](https://github.com/mysh264/i3-and-KDE-Plasma#why-i3-and-kde-plasma)
+    * [i3wm vs. KWin Scripts](http://github.com/mysh264/i3-and-KDE-Plasma#why-use-i3wm-instead-of-a-kwin-script)
+    * [Pros & Cons](https://github.com/mysh264/i3-and-KDE-Plasma#pros--cons)
+
+
+2. **[Installation & Setup](https://github.com/mysh264/i3-and-KDE-Plasma#installation)**
+    * [Pre-installation State](https://github.com/mysh264/i3-and-KDE-Plasma#situation-before-the-installation)
+    * [Clone This Repo (Recommended)](https://github.com/mysh264/i3-and-KDE-Plasma#clone-this-repo-prepared-for-kde-plasma--i3wm-recommended)
+    * [EndeavourOS i3wm Base Setup](https://github.com/mysh264/i3-and-KDE-Plasma#or-clone-endeavouros-i3wm-setup)
+    * [Packages (Required & Optional)](https://github.com/mysh264/i3-and-KDE-Plasma#packages)
+
+
+3. **[Configuration](https://github.com/mysh264/i3-and-KDE-Plasma#configuration)**
+    * [Replacing KWin with i3 (Systemd Service)](https://github.com/mysh264/i3-and-KDE-Plasma#replace-kwin-with-i3-using-systemd-user-service)
+    * [i3 Config: Plasma Compatibility](https://github.com/mysh264/i3-and-KDE-Plasma#adding-stuff-to-the-i3-config)
+    * [i3 Config: Cleanup & Optimization](https://github.com/mysh264/i3-and-KDE-Plasma#removing-stuff-from-the-i3-config)
+
+
+4. **Desktop Fixes & Optimization**
+    * [Keyboard Shortcut Conflicts](https://github.com/mysh264/i3-and-KDE-Plasma#disabling-a-shortcut-that-breaks-stuff)
+    * [Plasma Logout Screen](https://github.com/mysh264/i3-and-KDE-Plasma#do-not-use-the-plasma-logout-screen)
+    * [Splash Screen](https://github.com/mysh264/i3-and-KDE-Plasma#disable-the-kde-plasma-startup-screen-splash-screen)
+    * [Fixing Mouse Cursors (System & Flatpak)](https://github.com/mysh264/i3-and-KDE-Plasma#fix-mouse-cursor)
+    * [Fixing i3bar & Frame Fonts](https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame)
+    * [Redshift & Geoclue Fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshift-fix-geoclue)
+
+    
+5. **Workflow Enhancements**
+    * [Toggle/Hide Plasma Panel Script](https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel)
+    * [Random Wallpapers (Feh)](https://github.com/mysh264/i3-and-KDE-Plasma#random-wallpapers-feh)
+    * [Picom](https://github.com/mysh264/i3-and-KDE-Plasma#picom)
+    * [i3blocks](https://github.com/mysh264/i3-and-KDE-Plasma#i3blocks)
+    * [Rofi](https://github.com/mysh264/i3-and-KDE-Plasma#rofi-application-launcher-theme)
+
+
+6. **[System Customization](https://github.com/mysh264/i3-and-KDE-Plasma#system-customization)**
+    * [Shell (ZSH & Oh My Zsh)](https://github.com/mysh264/i3-and-KDE-Plasma#shell)
+    * [Themes, Icons, and Cursors](https://github.com/mysh264/i3-and-KDE-Plasma#kde-themes)
+    * [Conky Setup](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
+    * [Grub](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
+    * [Plymouth](https://github.com/mysh264/i3-and-KDE-Plasma#plymouth)
+    * [Easy Effects Audio Presets](https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets)
+
+
+7. **[App Recommendations](https://github.com/mysh264/i3-and-KDE-Plasma#app-recommendations)**
+    * [Terminals](https://github.com/mysh264/i3-and-KDE-Plasma#terminals)
+    * [Web Browsers](https://github.com/mysh264/i3-and-KDE-Plasma#web-browsers)
+    * [Email Clients](https://github.com/mysh264/i3-and-KDE-Plasma#email-clients)
+    * [Editors](https://github.com/mysh264/i3-and-KDE-Plasma#editors)
+    * [Downloader](https://github.com/mysh264/i3-and-KDE-Plasma#downloader)
+    * [Torrent](https://github.com/mysh264/i3-and-KDE-Plasma#torrent-downloaders)
+    * [Multimedia & Creative](https://github.com/mysh264/i3-and-KDE-Plasma#multimedia-tools)
+    * [Screenshot & Recording](https://github.com/mysh264/i3-and-KDE-Plasma#screen-recorder-tools)
+    * [Disk Utilities](https://github.com/mysh264/i3-and-KDE-Plasma#disk-utilities)
+    * [Password Managers](https://github.com/mysh264/i3-and-KDE-Plasma#password-managers)
+    * [Network](https://github.com/mysh264/i3-and-KDE-Plasma#network)
+    * [Communication & Productivity](https://github.com/mysh264/i3-and-KDE-Plasma#communication-and-productivity)
+
+
+---
+
+## Installation
+
+### Situation before the installation
 
 * EndeavourOS KDE Edition, all updates installed
 * KDE Plasma (X11)
 * KWin
 
 ---
-
-## Installation
 
 ### Clone This Repo *"Prepared for KDE Plasma + i3wm"* *Recommended*
 
@@ -53,7 +117,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
 cd i3-and-KDE-Plasma
-cp -dvr /etc/skel/. $HOME
+cp -dvr etc/skel/. $HOME
 ```
 
 ##### Tree Map ```i3-and-KDE-Plasma/etc/skel/```
@@ -213,7 +277,7 @@ cd endeavouros-i3wm-setup/etc/skel/
 We're gonna install a couple of packages that are required or nice-to-haves on i3, as well as i3 itself. This consists of:
 
 * ```i3``` , [the window manager itself](https://i3wm.org/)
-* ```i3blocks``` , [for i3bar staus line](https://github.com/vivien/i3blocks)
+* ```i3blocks``` , [for i3bar status line](https://github.com/vivien/i3blocks)
 * ```picom``` , [compositor](https://github.com/yshui/picom) (kwin replacement)
 * ```feh``` , [to set up the background](https://github.com/derf/feh)
 * ```rofi``` , [application launcher](https://github.com/davatorium/rofi) (dmenu replacement)
@@ -221,9 +285,9 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 
 *optional for i3wm*
 
-* ```viewnior``` , my favourit [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
+* ```viewnior``` , My favorite [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
 * ```conky``` , [light-weight system monitor](https://github.com/brndnmtthws/conky)
-* ```redshift``` , Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshit-fix-geoclue)</Sup>
+* ```redshift``` , Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#Redshift-fix-geoclue)</Sup>
 * ```awesome-terminal-fonts otf-font-awesome``` , if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/) , you will need it
 * ```xfce4-terminal``` , [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
 * ```sysstat tk gnuplot``` , some i3blocks scripts need them
@@ -258,9 +322,10 @@ yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 
 ## Configuration
 
-Replace kwin with i3 using systemd user service
+### Replace kwin with i3 using systemd user service
 
-Note that for this method, you do not need to be the root user. However, that means the changes will not affect the other users.
+***Note1: For this method, you do not need to be the root user.***
+***Note2: Changes made with this method only affect the current user.***
 
 Create a new service file called plasma-i3.service in `$HOME/.config/systemd/user`.
 
@@ -518,19 +583,10 @@ Then run this to load parameters from your configuration file `.Xresources` duri
 ```bash
 xrdb -merge ~/.Xresources
 ```
-To check run ***"This command will export the parameters to ```Random-name``` text file"***
+To check run
 
 ```bash
-xrdb -edit "Random-Name"
-```
-
-```bash
-cat Random-name
-```
-***"This command will remove the ```Random-name``` text file"***
-
-```bash
-rm Random-Name
+xrdb -query -all
 ```
 
 Finally, add these lines to your i3 config file to load the parameters and restart i3 at the start up.
@@ -543,13 +599,11 @@ exec --no-startup-id xrdb -merge ~/.Xresources
 no-startup-id sleep 2 && i3-msg restart
 ```
 
-
-
 ---
 
 ### Redshift fix *(geoclue)*
 
-If you tried to run redshift, the first thing you will notice is it can't locate your location, all what you need to do is **start Geoclue Demo agent.**
+If you tried to run redshift, the first thing you will notice is it can't locate your location, all that is required is **start Geoclue Demo agent.**
 
 ```bash
 /usr/lib/geoclue-2.0/demos/agent &
@@ -567,7 +621,236 @@ systemctl status geoclue.service
 
 ---
 
-### System Customize
+#### Toggle Hide Plasma Panel
+
+##### i3wm does not support auto hide or toggle for plasma panel, and most of the time I don't use it, so I made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
+
+![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.gif)
+
+***Note1: This script works perfectly if the Plasma panel is at the top of the screen, if you prefer to have the panel down, please check out the script before running it.***
+
+***Note2: This script needs to be run at the startup, But we will not do that, just run the script once, and it will move the mouse cursor to the top edge of the screen, then it will give a unique name for the panel, so you can hide it or unhide it only, nothing else.***
+
+***Note3: Plasma panel shares the classname [plasmashell] with other utilities "Like plasma notification" the only way to make it unique is to give it a name***
+
+1. Copy scripts-2 folder to i3 config directory
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+```
+
+```bash
+cd i3-and-KDE-Plasma
+```
+
+```bash
+cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
+```
+
+2. Install ```xdotool``` and ```xorg-xwininfo``` to run the scripts
+
+```bash
+sudo pacman -S xdotool xorg-xwininfo
+```
+
+3. Add this line to your i3 config file ```Super+U```
+
+```conf
+# Toggle plasma panel
+bindsym Mod4+u exec --no-startup-id ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
+```
+
+4. Edit i3blocks.conf and add this lines
+
+```bash
+nano $HOME/i3/i3blocks.conf
+```
+
+```
+[plasma-panel]
+label=
+command=~/.config/i3/scripts-2/plasma_panel_i3blocks.sh
+interval=once
+signal=2
+```
+
+<details>
+  <summary>Click to view plasma_panel.sh</summary>
+   
+```sh
+
+#!/bin/bash
+
+name=Togglehidepanelplasma
+
+# xwininfo reply (xorg-xwininfo)
+hide=IsUnMapped
+unhide=IsViewable
+
+# Check if plasma panel name is set
+if xwininfo -name $name ; then
+    echo " All set"
+else
+    #xdotool selectwindow set_window --name "$name"
+    ## Auto select the panel by mouse
+    xdotool mousemove 500 15 ; xdotool selectwindow set_window --name "$name" & sleep 0.2 ;  xdotool click 1
+fi
+
+# Current panel status
+status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
+
+# Toggle the panel
+
+## if the panel is hidden then show it
+if [ $status == $hide ] ; then
+
+    if xdotool search -all --class "plasmashell" search --name "^$name"  windowmap ; then
+        echo "Plasma Panel is unhidden now"
+    fi
+else
+
+## is the panel is not hidden then hide it.
+    if [ $status == $unhide ] ; then
+        if xdotool search -all --class "plasmashell" search --name "^$name"  windowunmap ; then
+            echo "Plasma Panel is hidden now"
+            fi
+        fi
+
+fi
+
+```
+</details>
+
+
+<details>
+  <summary>Click to view plasma_panel_i3blocks.sh</summary>
+   
+```sh
+
+#!/bin/bash
+
+## I3blocks colours
+# https://unix.stackexchange.com/questions/583409/i3blocks-script-coloring
+
+name=Togglehidepanelplasma
+
+# xwininfo reply (xorg-xwininfo)
+hide=IsUnMapped
+unhide=IsViewable
+
+# Current panel status
+status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
+
+# Check if plasma panel name is set
+if xwininfo -name $name &> /dev/null ; then
+    if [ $status == $hide ] ; then
+        #echo " "
+        echo
+        #echo \#961c90
+
+    else
+        if [ $status == $unhide ] ; then
+            echo " "
+            echo
+            echo \#15ff00
+        fi
+    fi
+
+else
+    echo "  Plasma Panel"
+    echo
+    echo  \#c20707
+fi
+
+```
+</details>
+
+
+---
+
+#### Random wallpapers (Feh)
+
+![feh](Images/feh.gif)
+
+1. Copy scripts-2 folder to i3 config directory
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+cd i3-and-KDE-Plasma
+cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
+```
+
+2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
+
+```
+mkdir ~/.Wallpapers
+```
+
+2. Add this line to your i3 config file to startup the scripts ```fehbg.sh```
+
+```
+exec --no-startup-id ~/.config/i3/scripts-2/fehbg.sh -t 300 # -t means sleep time (300 = 5 min)
+```
+
+<details>
+  <summary>Click to view fehbg.sh</summary>
+   
+```sh
+#!/bin/bash
+
+walldir=$HOME/.Wallpapers/*
+app=feh
+scale=--bg-fill
+options="--randomize --recursive"
+
+# Default values
+SLEEP_TIME=300 # 5 min
+
+# ':' after a letter means that option requires an argument
+while getopts "t:" opt; do
+  case $opt in
+    t)
+      SLEEP_TIME=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+while $app $options $scale $walldir;
+do sleep $SLEEP_TIME;
+done
+```
+</details>
+
+---
+
+#### Picom
+
+<!-- Section coming soon -->
+
+---
+
+#### I3blocks
+
+<!-- Section coming soon -->
+
+---
+
+#### Rofi *"Application Launcher"* Theme
+
+1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+cd i3-and-KDE-Plasma
+cp -dvr etc/skel/.config/rofi $HOME/.config/
+cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
+```
+
+### System Customization
 
 #### Shell
 
@@ -575,11 +858,11 @@ systemctl status geoclue.service
 
 * ```zsh``` , A very advanced and programmable command interpreter (shell) for UNIX.
 
-* ```zsh-autosuggestions``` , Fish-like autosuggestions for zsh.
+* ```zsh-autosuggestions``` , Brings Fish-shell autosuggestions to ZSH.
 
 * ```zsh-history-substring-search``` , ZSH port of Fish history search (up arrow).
 
-* ```zsh-syntax-highlighting``` , Fish shell like syntax highlighting for Zsh.
+* ```zsh-syntax-highlighting``` , Fish-shell-like syntax highlighting for Zsh.
 * ```oh-my-zsh-git``` <sup>[Github](https://github.com/ohmyzsh/ohmyzsh)</sup> <sup>[AUR](http://aur.archlinux.org/packages/oh-my-zsh-git)</sup> , A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.
 
 ``````bash
@@ -668,7 +951,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 
 
-***Note: I Edited conky.conf to make it work for plasma + i3wm***
+***Note: I edited conky.conf to make it work for plasma + i3wm***
 
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
@@ -705,13 +988,9 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 ---
 
 
-#### Plymouth Theme
+#### Plymouth
 
-[								]
-
-[								]
-
-[								]
+<!-- Section coming soon -->
 
 ---
 
@@ -725,246 +1004,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Toggle Hide Plasma Panel
-
-##### i3WM do not support auto hide or toggle for plasma panel, and most of the time i don't use it, so i made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
-
-![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.gif)
-
-***Note1: This script work perfectly if the plasma panel is Up, if you prefer to have the panel down, please check out the script before run it.***
-
-***Note2: This script needs to be run at the startup, But we will not do that, just run the script once, and it will move the mouse cursor to the top edge of the screen, then it will give a unique name for the panel, so you can hide it or unhide it only, not any thing else.***
-
-***Note3: Plasma panel share the classname [plasmashell] with other utilities "Like plasma notification" the only way to make it unique is to give it a name***
-
-1. Copy scripts-2 folder to i3 config directory
-
-```bash
-git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
-```
-
-```bash
-cd i3-and-KDE-Plasma
-```
-
-```bash
-cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
-```
-
-2. Install ```xdotool``` and ```xorg-xwininfo``` to run the scripts
-
-```bash
-sudo pacman -S xdotool xorg-xwininfo
-```
-
-3. Add this line to your i3 config file ```Super+U```
-
-```conf
-# Toggle plasma panel
-bindsym Mod4+u exec --no-startup-id ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
-```
-
-4. Edit i3blocks.conf and add this lines
-
-```bash
-nano $HOME/i3/i3blocks.conf
-```
-
-```
-[plasma-panel]
-label=
-command=~/.config/i3/scripts-2/plasma_panel_i3blocks.sh
-interval=once
-signal=2
-```
-
-<details>
-  <summary>Click to view plasma_panel.sh</summary>
-   
-```sh
-
-#!/bin/bash
-
-name=Togglehidepanelplasma
-
-# xwininfo reply (xorg-xwininfo)
-hide=IsUnMapped
-unhide=IsViewable
-
-# Check if plasma panel name is set
-if xwininfo -name $name ; then
-    echo " All set"
-else
-    #xdotool selectwindow set_window --name "$name"
-    ## Auto select the panel by mouse
-    xdotool mousemove 500 15 ; xdotool selectwindow set_window --name "$name" & sleep 0.2 ;  xdotool click 1
-fi
-
-# Current panel status
-status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
-
-# Toggle the panel
-
-## if the panel is hidden then show it
-if [ $status == $hide ] ; then
-
-    if xdotool search -all --class "plasmashell" search --name "^$name"  windowmap ; then
-        echo "Plasma Panel is unhide now"
-    fi
-else
-
-## is the panel is not hidden then hide it.
-    if [ $status == $unhide ] ; then
-        if xdotool search -all --class "plasmashell" search --name "^$name"  windowunmap ; then
-            echo "Plasma Panel is hide now"
-            fi
-        fi
-
-fi
-
-```
-</details>
-
-
-<details>
-  <summary>Click to view plasma_panel_i3blocks.sh</summary>
-   
-```sh
-
-#!/bin/bash
-
-## I3blocks colours
-# https://unix.stackexchange.com/questions/583409/i3blocks-script-coloring
-
-name=Togglehidepanelplasma
-
-# xwininfo reply (xorg-xwininfo)
-hide=IsUnMapped
-unhide=IsViewable
-
-# Current panel status
-status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
-
-# Check if plasma panel name is set
-if xwininfo -name $name &> /dev/null ; then
-    if [ $status == $hide ] ; then
-        #echo " "
-        echo
-        #echo \#961c90
-
-    else
-        if [ $status == $unhide ] ; then
-            echo " "
-            echo
-            echo \#15ff00
-        fi
-    fi
-
-else
-    echo "  Plasma Panel"
-    echo
-    echo  \#c20707
-fi
-
-```
-</details>
-
-
----
-
-#### Random wallpapers (Feh)
-
-![feh](Images/feh.gif)
-
-1. Copy scripts-2 folder to i3 config directory
-
-```bash
-git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
-cd i3-and-KDE-Plasma
-cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
-```
-
-2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
-
-```
-mkdir ~/.Wallpaper
-```
-
-2. Add this line to your i3 config file to startup the scripts ```fehbg.sh```
-
-```
-exec --no-startup-id ~/.config/i3/scripts-2/fehbg.sh -t 300 # -t means sleep time (300 = 5 min)
-```
-
-<details>
-  <summary>Click to view fehbg.sh</summary>
-   
-```sh
-#!/bin/bash
-
-walldir=$HOME/.Wallpapers/*
-app=feh
-scale=--bg-fill
-options="--randomize --recursive"
-
-# Default values
-VERBOSE=300 # 5 min
-
-# ':' after a letter means that option requires an argument
-while getopts "t:" opt; do
-  case $opt in
-    t)
-      VERBOSE=$OPTARG
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-  esac
-done
-
-while $app $options $scale $walldir;
-do sleep $VERBOSE;
-done
-```
-</details>
-
----
-
-#### Picom
-
-[								]
-
-[								]
-
-[								]
-
----
-
-#### I3blocks
-
-[								]
-
-[								]
-
-[								]
-
----
-
-#### Rofi *"Application Launcher"* Theme
-
-1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
-
-```bash
-git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
-cd i3-and-KDE-Plasma
-cp -dvr etc/skel/.config/rofi $HOME/.config/
-cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
-```
-
----
-
-### Random Apps
+### App Recommendations
 
 #### Terminals
 
@@ -980,7 +1020,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 * ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
 
-  ```
+  ```bash
   yay -S brave-bin
   ```
 
@@ -996,10 +1036,10 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 #### Email Clients
 
-* ```thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
+* ```thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
   ```bash
-  sudo pacman -S thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar
+  sudo pacman -S thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar
   ```
 
 * ```birdtray``` <sup>[AUR](http://aur.archlinux.org/packages/birdtray)</sup> , Run Thunderbird with a system tray icon.
@@ -1014,7 +1054,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 * ```github-desktop``` <sup>[Flatpak](https://flathub.org/en/apps/io.github.shiftey.Desktop)</sup> , GUI for managing Git and GitHub.
 
-  ```
+  ```bash
   flatpak install flathub io.github.shiftey.Desktop
   ```
 
@@ -1038,7 +1078,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 ---
 
-#### Downloaders
+#### Downloader
 
 * ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
 
@@ -1052,7 +1092,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 * ```qbittorrent``` , An open source Bittorrent client.
 
-  ```
+  ```bash
   sudo pacman -S qbittorrent
   ```
 
@@ -1084,7 +1124,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
   ***Note: Use ```yt-x``` with ```kitty```***
 
-  ```
+  ```bash
   yay -S yt-x
   ```
 
@@ -1102,14 +1142,19 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 ---
 
-#### Screen Recorder Tools
+#### Screenshot & Screen Recorder Tools
 
 * ```maim``` , Utility to take a screenshot using imlib2.
 
   ```bash
-  sudo pacman -S maim
+  sudo pacman -S maim slop
   ```
 
+* ```obs-studio``` , Free, open source software for live streaming and recording.
+
+  ```bash
+  sudo pacman -S obs-studio
+  ```
 
 ---
 
@@ -1139,7 +1184,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 * ```enpass``` <sup>[AUR](http://aur.archlinux.org/packages/enpass-bin)</sup> , [A multiplatform password manager](http://enpass.io/)
 
-  ```
+  ```bash
   yay -S enpass-bin
   ```
 
@@ -1155,7 +1200,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 ---
 
-#### Others
+#### Communication and Productivity
 
 * ```portal for teams``` <sup>[Flatpak](https://flathub.org/en/apps/com.github.IsmaelMartinez.teams_for_linux)</sup> , Unofficial Microsoft Teams client for Linux.
 
