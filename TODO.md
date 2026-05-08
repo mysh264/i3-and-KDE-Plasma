@@ -39,6 +39,10 @@
 * - [ ] **Implement OCR utility.**
 * - [x] **Configure Video Recording/Screen capture.**
 
+* - [x] Catfish
+
+* - [x] Kfind
+
 ### 5. Documentation & Structure
 
 * - [x] Generate Tree Map for `mysh264/i3-and-KDE-Plasma`.
@@ -60,5 +64,5 @@
 
 ### Quick Status
 
-* **Completed:** 28 tasks
+* **Completed:** 27 tasks
 * **Pending:** 6 tasks

@@ -1106,7 +1106,10 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 * ```thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
   ```bash
-  sudo pacman -S thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar
+  sudo pacman -S thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us
+  ```
+  ```bash
+  yay -S hunspell-ar
   ```
 
 * ```birdtray``` <sup>[AUR](http://aur.archlinux.org/packages/birdtray)</sup> , Run Thunderbird with a system tray icon.
@@ -1179,10 +1182,10 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 <details><summary>Click to view</summary>
 
-* ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
+* ```mpv``` , A free, open source, and cross-platform media player.
 
   ```bash
-  sudo pacman -S easyeffects
+  sudo pacman -S mpv xclip
   ```
 
 * ```mpv-mpris2-bin```<sup>[AUR](http://aur.archlinux.org/packages/mpv-mpris2-bin)</sup> , Rust implementation of the MPRIS v2 DBus interface for the mpv.
@@ -1191,6 +1194,30 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   sudo pacman -S playerctl ffmpegthumbnailer
   
   yay -S mpv-mpris2-bin
+  ```
+
+* ```mpv-config``` , My personal mpv configurations and scripts. <sup>[Github](https://github.com/mysh264/mpv-config)</sup> , <sup>[Forked](https://github.com/noelsimbolon/mpv-config)</sup>
+
+  ```bash
+  cd $HOME/.config/mpv
+  ```
+  ```bash
+  git clone https://github.com/mysh264/mpv-config.git
+  ```
+  ```bash
+  mv mpv-config/{*,.*} .
+  ```
+  ```bash
+  rm -rvf mpv-config
+  ```
+  ```bash
+  cd
+  ```
+
+* ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
+
+  ```bash
+  sudo pacman -S easyeffects
   ```
 
 * ```stremio``` <sup>[Flatpak](https://flathub.org/en/apps/com.stremio.Stremio)</sup> , [A one-stop hub for video content aggregation (Movies, TV shows, series, live television or web channels)](https://www.stremio.com/)
@@ -1279,7 +1306,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-### Network
+### Networking
 
 <details><summary>Click to view</summary>
 
@@ -1287,6 +1314,25 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
   ```bash
   sudo pacman -S sniffnet
+  ```
+</details>
+
+---
+
+### File index and search
+
+<details><summary>Click to view</summary>
+
+* ```catfish``` , Versatile file searching tool.
+
+  ```bash
+  sudo pacman -S catfish plocate zeitgeist
+  ```
+
+* ```kfind``` , Find Files/folders
+
+  ```bash
+  sudo pacman -S kfind mlocate
   ```
 </details>
 
