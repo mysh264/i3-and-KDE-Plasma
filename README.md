@@ -81,7 +81,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
         * [Icons](https://github.com/mysh264/i3-and-KDE-Plasma#icons)
         * [Mouse Cursor Themes](https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-themes)
     * [Conky Setup](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
-    * [Grub](https://github.com/mysh264/i3-and-KDE-Plasma#conky)
+    * [Grub](https://github.com/mysh264/i3-and-KDE-Plasma#grub-theme)
     * [Plymouth](https://github.com/mysh264/i3-and-KDE-Plasma#plymouth)
     * [Easy Effects Audio Presets](https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets)
 
@@ -912,7 +912,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 ---
 
-#### KDE Themes
+### KDE Themes
 
 * [Layan kde](https://github.com/vinceliuice/Layan-kde) <sup>[AUR](http://aur.archlinux.org/packages/plasma6-themes-layan-git)</sup> , Layan kde is a flat Design theme for KDE Plasma desktop.
 
@@ -928,7 +928,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 ---
 
-#### Icons
+### Icons
 
 * [WhiteSur Icon Theme](https://github.com/vinceliuice/WhiteSur-icon-theme) <sup>[AUR](http://aur.archlinux.org/packages/whitesur-icon-theme)</sup> , MacOS Big Sur like icon theme for linux desktops.
 
@@ -938,7 +938,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 ---
 
-#### Mouse Cursor Themes
+### Mouse Cursor Themes
 
 * [Layan border cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup> , This is an x-cursor theme inspired by layan gtk theme and based on [capitaine-cursors](https://github.com/keeferrourke/capitaine-cursors).
 
@@ -950,7 +950,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 ---
 
-#### Conky
+### Conky
 
 * [Lean Conky Config](https://github.com/jxai/lean-conky-config) , Lean Conky Config (LCC) is, well, a lean [Conky](https://github.com/brndnmtthws/conky/wiki) config that just works.
 
@@ -982,7 +982,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-#### Grub Theme
+### Grub Theme
 
 * [Distro Grub Themes](https://github.com/AdisonCavani/distro-grub-themes) <sup>[Themes](https://k1ng.dev/distro-grub-themes/preview)</sup> , A pack of GRUB2 themes for different Linux distributions and OSs.
 
@@ -997,13 +997,13 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 ---
 
 
-#### Plymouth
+### Plymouth
 
 <!-- Section coming soon -->
 
 ---
 
-#### Easy Effects Presets
+### Easy Effects Presets
 
 * [GentleDynamics](https://github.com/droidwayin/GentleDynamics)
   * [GentleDynamics Dialogue Clarity Engine (Movie Preset)](https://github.com/droidwayin/GentleDynamics#-gentledynamics-dialogue-clarity-engine-movie-preset-%EF%B8%8F) , This preset employs surgical compression techniques to solve the common  problem of fluctuating dialogue levels in modern movies without using  AutoGain. This preset ensures the dialogue is always clear, while  respecting the dynamics and impact of the original soundtrack. You get  consistent, ***intelligible speech***.
