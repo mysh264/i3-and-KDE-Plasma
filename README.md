@@ -53,7 +53,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 3. **[Configuration](https://github.com/mysh264/i3-and-KDE-Plasma#configuration)**
     * [Replacing KWin with i3 (Systemd Service)](https://github.com/mysh264/i3-and-KDE-Plasma#replace-kwin-with-i3-using-systemd-user-service)
-    * [Troubleshooting / Recovery]()
+    * [Troubleshooting / Recovery](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main#troubleshooting--recovery)
     * [i3 Config: Plasma Compatibility](https://github.com/mysh264/i3-and-KDE-Plasma#adding-stuff-to-the-i3-config)
     * [i3 Config: Cleanup & Optimization](https://github.com/mysh264/i3-and-KDE-Plasma#removing-stuff-from-the-i3-config)
 
@@ -384,8 +384,8 @@ systemctl disable plasma-i3 --user
 ```
 
 ### Troubleshooting / Recovery
-
-***if the service fails Press Ctrl+Alt+F3, log in, and run***
+> [!CAUTION]
+> **RECOVERY MODE:** If your screen goes black or the service fails, press **Ctrl+Alt+F3**, log in, and run the commands below.
 
 ```bash
 systemctl unmask plasma-kwin_x11.service --user
@@ -1054,6 +1054,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   sudo pacman -S kitty
   ```
 </details>
+
 ---
 
 ### Web Browsers
