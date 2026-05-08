@@ -38,6 +38,8 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ## Table of Contents
 
+<details><summary>Click to view</summary>
+
 1. **[Introduction](https://github.com/mysh264/i3-and-KDE-Plasma#i3-and-kde-plasma)**
     * [Why i3 and KDE Plasma?](https://github.com/mysh264/i3-and-KDE-Plasma#why-i3-and-kde-plasma)
     * [i3wm vs. KWin Scripts](http://github.com/mysh264/i3-and-KDE-Plasma#why-use-i3wm-instead-of-a-kwin-script)
@@ -101,10 +103,11 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
     * [Network](https://github.com/mysh264/i3-and-KDE-Plasma#network)
     * [Communication & Productivity](https://github.com/mysh264/i3-and-KDE-Plasma#communication-and-productivity)
 
+</details>
 
 ---
 
-## Installation
+<h2 align="center">Installation</h2>
 
 ### Situation before the installation
 
@@ -324,7 +327,7 @@ yay -S plasma6-applets-panel-spacer-extended plasma6-applets-kurve
 
 ---
 
-## Configuration
+<h2 align="center">Configuration</h2>
 
 ### Replace kwin with i3 using systemd user service
 
@@ -888,7 +891,8 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 
 
-## System Customization
+<h2 align="center">System Customization</h2>
+
 
 ### Shell
 
@@ -1059,7 +1063,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-## App Recommendations
+<h2 align="center">App Recommendations</h2>
 
 ### Terminals
 
@@ -1307,7 +1311,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 ---
 
-## Web Browsers Extensions/Add-ons
+<h2 align="center">Web Browsers Extensions/Add-ons</h2>
 
 ### Firefox Extensions/Add-ons
 
