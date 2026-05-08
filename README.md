@@ -44,86 +44,9 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ---
 
-## Setup Checklist
-
-1. - [x] Install Packages.
-
-2. - [x] Clone this repository: ```git clone https://github.com/mysh264/i3-and-KDE-Plasma.git``` for i3, i3block, rofi, picom, conky
-
-3. - [x] Download [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), for rofi & i3block configuration files (also i3 & picom configuration files if you like).
-
-4. - [x] Merge the prepared rofi configuration files into (**$HOME/.local/share/rofi**) and (**$HOME/.config/rofi**)
-
-5. - [ ] Merge the prepared i3blocks configuration files (**i3block.conf and Scripts Folder**) into (**$HOME/.config/i3/**)
-
-6. - [ ] Modify picom (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
-
-7. - [x] Modify the i3wm config file in general (Download the one that I have, or use [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), or simply do it yourself as you prefer.)
-    *  - [x] No need for any Bright or volume shortcut keys, **KDE will handle it.**
-    *  - [x] No need for `dex`, **KDE will handle it.**
-    *  - [x] No need for any Lock screen shortcut or configuration, **KDE will handle it.**
-    *  - [x] `Feh` will take care of wallpaper; **Do not use KDE for wallpaper.**
-    *  - [x] Exit Menu `rofi` will handle it. **Do not use KDE for that.**
-
-8. - [x] Modify the i3wm config file for KDE Plasma 
-
-9. - [x] Turn off some KDE shortcuts.
-
-10. - [x] Turn off the startup screen.
-
-11. - [x] Fix mouse cursor.
-
-12. - [x] Fix flatpak mouse cursor.
-
-13. - [x] Fix fonts (i3bar & i3 frame).
-
-14. - [x] [Conky](https://github.com/jxai/lean-conky-config)
-
-15. - [x] [material-cursors](https://github.com/varlesh/material-cursors) <sup>[AUR](https://aur.archlinux.org/packages/material-cursors-git)</sup>, <sup>[KDE Store](https://store.kde.org/</sep>p/1346778)</sup>
-
-16. - [x] [Layan cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup>
-
-17. - [ ] Add URLs Sources. [1](https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma) [2](https://github.com/heckelson/i3-and-kde-plasma) [3](https://github.com/avivace/dotfiles)
-
-18. - [x] Redshift. "use geoclue fix for url"
-
-19. - [x] geoclue fix <sup>[Arch Wiki](https://wiki.archlinux.org/title/Redshift#Unable_to_connect_to_GeoClue)</sup> *"Auto start"*```/usr/lib/geoclue-2.0/demos/agent & ``` *"check if GeoClue works properly"* ```/usr/lib/geoclue-2.0/demos/where-am-i```
-
-20. - [x] Grub Theme <sup>[1](https://github.com/AdisonCavani/distro-grub-themes)</sup> <sup>[2](https://github.com/jacksaur/Gorgeous-GRUB)</sup>
-
-21. - [x] Toggle hide plasma panel
-
-22. - [x] Easy effects <sup>[1](https://github.com/droidwayin/GentleDynamics)</sup>
-
-23. - [x] ZSH [Oh My ZSH](https://github.com/ohmyzsh/ohmyzsh)
-
-24. - [ ] plymouth
-
-25. - [x] mutli wallpaper.
-
-26. - [x] Tree Map ```mysh264/i3-and-KDE-Plasma/etc/skel/```
-
-27. - [x] Tree Map ```endeavouros-team/endeavouros-i3wm-setup/etc/skel/```
-
-28. - [x] Rofi theme.
-
-29. - [ ] i3blocks.
-
-30. - [ ] OCR
-
-31. - [ ] Video Record
-
-32. - [x] Keyboard Layout
-
-33. - [ ] Youtube tui [yt-x](https://github.com/Benexl/yt-x)
-
-34. - [ ] [kitty](https://github.com/kovidgoyal/kitty)
-
----
-
 ## Installation
 
-### Clone This Repo *"Prepared for KDE Plasma + i3wm"*
+### Clone This Repo *"Prepared for KDE Plasma + i3wm"* *Recommended*
 
 #### [mysh264/i3-and-KDE-Plasma/etc/skel/](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main/etc/skel)
 
@@ -525,7 +448,7 @@ Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* an
 When changing the mouse cursor theme or size, some apps may display a different cursor.
 In my case, I used [Layan border cursors](https://github.com/vinceliuice/Layan-cursors) <sup>[KDE Store](https://store.kde.org/p/1365214)</sup> and changed the size to 36.
 
-To fix it, create the `$HOME/.icons/default` directory. ***If it's not exists.***
+To fix it, create the `$HOME/.icons/default` directory. ***If it doesn't exist.***
 
 ```bash
 mkdir -p $HOME/.icons/default
@@ -618,7 +541,7 @@ no-startup-id sleep 2 && i3-msg restart
 
 ---
 
-### Redshit fix *(geoclue)*
+### Redshift fix *(geoclue)*
 
 If you tried to run redshift, the first thing you will notice is it can't locate your location, all what you need to do is **start Geoclue Demo agent.**
 
@@ -792,6 +715,8 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   * [GentleDynamics Dialogue Clarity Engine (Movie Preset)](https://github.com/droidwayin/GentleDynamics#-gentledynamics-dialogue-clarity-engine-movie-preset-%EF%B8%8F), This preset employs surgical compression techniques to solve the common  problem of fluctuating dialogue levels in modern movies without using  AutoGain. This preset ensures the dialogue is always clear, while  respecting the dynamics and impact of the original soundtrack. You get  consistent, ***intelligible speech***.
   * [GentleDynamics Feather Loudness V4 (Gentler and Sweeter Preset for Music](https://github.com/droidwayin/GentleDynamics#-gentledynamics-feather-loudness-v4-gentler-and-sweeter-preset-for-music-%EF%B8%8F%E2%80%8D), This EasyEffects preset based on psychoacoustic principles to enhance  your music listening experience. It features an 8-band multiband  compressor (MBC) aligned with human hearing (Bark scale) for natural  sound improvement on both headphones and speakers.
 
+* [Autoeq](https://www.autoeq.app/), AutoEq is a tool for automatically equalizing headphones.
+
 ---
 
 #### Toggle Hide Plasma Panel
@@ -847,11 +772,11 @@ interval=once
 signal=2
 ```
 
+<details>
+  <summary>Click to view plasma_panel.sh</summary>
+   
+```sh
 
-
-<h5 align="center">plasma_panel.sh</h5>
-
-```bash
 #!/bin/bash
 
 name=Togglehidepanelplasma
@@ -892,12 +817,14 @@ else
 fi
 
 ```
+</details>
 
 
+<details>
+  <summary>Click to view plasma_panel_i3blocks.sh</summary>
+   
+```sh
 
-<h5 align="center">plasma_panel_i3blocks.sh</h5>
-
-```bash
 #!/bin/bash
 
 ## I3blocks colours
@@ -934,10 +861,10 @@ else
 fi
 
 ```
+</details>
+
 
 ---
-
-
 
 #### Random wallpapers (Feh)
 
@@ -1018,7 +945,7 @@ done
 
 ---
 
-#### Rofi *"Application Luncher"* Theme
+#### Rofi *"Application Launcher"* Theme
 
 1. Copy ```.config/rofi``` & ```.local/share/rofi``` to ```~/.local/share/rofi``` & ```~/.local/share/rofi```
 
@@ -1033,6 +960,36 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 ### Random Apps
 
+#### Terminals
+
+* ```kitty``` , The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
+
+  ```bash
+  sudo pacman -S kitty
+  ```
+
+---
+
+#### Web Browsers
+
+* ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
+
+  ```
+  yay -S brave-bin
+  ```
+
+* ```zen``` <sup>[Flatpak](http://flathub.org/en/apps/app.zen_browser.zen)</sup> <sup>[AUR](http://aur.archlinux.org/packages/zen-browser-bin)</sup> , [A fast, private and secure web browser built to improve your day-to-day experience.](https://zen-browser.app/)
+
+  ```bash
+  flatpak install flathub app.zen_browser.zen
+  
+  yay -S zen-browser-bin
+  ```
+
+---
+
+#### Email Clients
+
 * ```thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar```, Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
   ```bash
@@ -1045,69 +1002,37 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
   yay -S birdtray
   ```
 
-* ```kitty```, The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
+---
+
+#### Editors
+
+* ```github-desktop``` <sup>[Flatpak](https://flathub.org/en/apps/io.github.shiftey.Desktop)</sup> , GUI for managing Git and GitHub.
+
+  ```
+  flatpak install flathub io.github.shiftey.Desktop
+  ```
+
+* ```typora``` <sup>[AUR](http://aur.archlinux.org/packages/typora)</sup> , [A minimal markdown editor and reader.](https://typora.io/)
 
   ```bash
-  sudo pacman -S kitty
+  yay -S typora
   ```
 
-* ```yt-x``` <sup>[AUR](http://aur.archlinux.org/packages/yt-x)</sup> <sup>[Github](https://github.com/Benexl/yt-x)</sup> , Browse YouTube from your terminal. Plus other sites yt-dlp supports.
-
-  *Note: Use ```yt-x``` with ```kitty```*
-
-  ```
-  yay -S yt-x
-  ```
-
-* ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
-
-  ```
-  yay -S brave-bin
-  ```
-
-* ```qbittorrent```, An open source Bittorrent client.
-
-  ```
-  sudo pacman -S qbittorrent
-  ```
-
-* ```video-trimmer```, Trim videos quickly.
+* ```zed``` <sup>[Flatpak](https://flathub.org/en/apps/dev.zed.Zed)</sup> , High-performance code editor.
 
   ```bash
-  sudo pacman -S video-trimmer
+  flatpak install flathub dev.zed.Zed
   ```
 
-* ```handbrake```, Video Transcoder.
+* ```meld``` , Compare files, directories and working copies.
 
   ```bash
-  sudo pacman -S handbrake
+  sudo pacman -S meld
   ```
 
-* ```github-disktop```
+---
 
-* ```typora```
-
-* ```meld```
-
-* stremio
-
-* zen
-
-* zed
-
-* portal for teams
-
-* maim
-
-* easy effects
-
-* sniffnet
-
-* gparted
-
-* gnome-disk-utility
-
-* ventoy
+#### Downloaders
 
 * ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
 
@@ -1115,11 +1040,132 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
   yay -S jdownloader2
   ```
 
-* enpass
+---
 
-* mpv-mpris2-bin playerctl ffmpegthumbnailer
+#### Torrent Downloaders
 
-* 
+* ```qbittorrent``` , An open source Bittorrent client.
+
+  ```
+  sudo pacman -S qbittorrent
+  ```
+
+---
+
+#### Multimedia Tools
+
+* ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
+
+  ```bash
+  sudo pacman -S easyeffects
+  ```
+
+* ```mpv-mpris2-bin```<sup>[AUR](http://aur.archlinux.org/packages/mpv-mpris2-bin)</sup> , Rust implementation of the MPRIS v2 DBus interface for the mpv.
+
+  ```bash
+  sudo pacman -S playerctl ffmpegthumbnailer
+  
+  yay -S mpv-mpris2-bin
+  ```
+
+* ```stremio``` <sup>[Flatpak](https://flathub.org/en/apps/com.stremio.Stremio)</sup> , [A one-stop hub for video content aggregation (Movies, TV shows, series, live television or web channels)](https://www.stremio.com/)
+
+  ```bash
+  flatpak install flathub com.stremio.Stremio
+  ```
+
+* ```yt-x``` <sup>[AUR](http://aur.archlinux.org/packages/yt-x)</sup> <sup>[Github](https://github.com/Benexl/yt-x)</sup> , Browse YouTube from your terminal. Plus other sites yt-dlp supports.
+
+  ***Note: Use ```yt-x``` with ```kitty```***
+
+  ```
+  yay -S yt-x
+  ```
+
+* ```video-trimmer``` , Trim videos quickly.
+
+  ```bash
+  sudo pacman -S video-trimmer
+  ```
+
+* ```handbrake``` , Video Transcoder.
+
+  ```bash
+  sudo pacman -S handbrake
+  ```
+
+---
+
+#### Screen Recorder Tools
+
+* ```maim``` , Utility to take a screenshot using imlib2.
+
+  ```bash
+  sudo pacman -S maim
+  ```
+
+
+---
+
+#### Disk Utilities
+
+* ```ventoy``` <sup>[AUR](http://aur.archlinux.org/packages/ventoy-bin)</sup> , [A new bootable USB solution](http://www.ventoy.net)
+
+  ```bash
+  yay -S ventoy-bin
+  ```
+
+* ```gparted``` , A Partition Magic clone, frontend to GNU Parted.
+
+  ```bash
+  sudo pacman -S gparted
+  ```
+
+* ```gnome-disk-utility``` , Disk Management Utility for GNOME.
+
+  ```bash
+  sudo pacman -S gnome-disk-utility
+  ```
+
+---
+
+#### Password Managers
+
+* ```enpass``` <sup>[AUR](http://aur.archlinux.org/packages/enpass-bin)</sup> , [A multiplatform password manager](http://enpass.io/)
+
+  ```
+  yay -S enpass-bin
+  ```
+
+---
+
+#### Network
+
+* ```sniffnet``` , Application to comfortably monitor your network traffic
+
+  ```bash
+  sudo pacman -S sniffnet
+  ```
+
+---
+
+#### Others
+
+* ```portal for teams``` <sup>[Flatpak](https://flathub.org/en/apps/com.github.IsmaelMartinez.teams_for_linux)</sup> , Unofficial Microsoft Teams client for Linux.
+
+  ```bash
+  flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
+  ```
+
+* ```teams-for-linux``` <sup>[AUR](https://aur.archlinux.org/packages/teams-for-linux)</sup> , Unofficial Microsoft Teams client for Linux using Electron.
+
+  ```bash
+  yay -S teams-for-linux
+  ```
+
+---
+
+
 
 
 
