@@ -57,7 +57,9 @@ cp -dvr /etc/skel/. $HOME
 ```
 
 ##### Tree Map ```i3-and-KDE-Plasma/etc/skel/```
-
+<details>
+  <summary>Click to expand!</summary>
+  
 ```tree
 .
 ├── .config
@@ -109,6 +111,7 @@ cp -dvr /etc/skel/. $HOME
 ├── .Xresources # https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame
 └── .zshrc # https://github.com/mysh264/i3-and-KDE-Plasma#shell
 ```
+</details>
 
 ---
 
@@ -122,7 +125,9 @@ cd endeavouros-i3wm-setup/etc/skel/
 ```
 
 ##### Tree Map ```endeavouros-i3wm-setup/etc/skel/```
-
+<details>
+  <summary>Click to expand!</summary>
+  
 ```tree
 .
 ├── .config
@@ -199,6 +204,7 @@ cd endeavouros-i3wm-setup/etc/skel/
 ├── xed.dconf
 └── .Xresources
 ```
+</details>
 
 ---
 
@@ -206,26 +212,26 @@ cd endeavouros-i3wm-setup/etc/skel/
 
 We're gonna install a couple of packages that are required or nice-to-haves on i3, as well as i3 itself. This consists of:
 
-* ```i3```, [the window manager itself](https://i3wm.org/)
-* ```i3blocks```, [for i3bar staus line](https://github.com/vivien/i3blocks)
-* ```picom```, [compositor](https://github.com/yshui/picom) (kwin replacement)
-* ```feh```, [to set up the background](https://github.com/derf/feh)
-* ```rofi```, [application launcher](https://github.com/davatorium/rofi) (dmenu replacement)
-* ```wmctrl```, [to get some info for the i3 config](https://github.com/Conservatory/wmctrl) (if you're not on an English installation of Plasma)
+* ```i3``` , [the window manager itself](https://i3wm.org/)
+* ```i3blocks``` , [for i3bar staus line](https://github.com/vivien/i3blocks)
+* ```picom``` , [compositor](https://github.com/yshui/picom) (kwin replacement)
+* ```feh``` , [to set up the background](https://github.com/derf/feh)
+* ```rofi``` , [application launcher](https://github.com/davatorium/rofi) (dmenu replacement)
+* ```wmctrl``` , [to get some info for the i3 config](https://github.com/Conservatory/wmctrl) (if you're not on an English installation of Plasma)
 
 *optional for i3wm*
 
-* ```viewnior```, my favourit [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
-* ```conky```, [light-weight system monitor](https://github.com/brndnmtthws/conky)
-* ```redshift```, Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshit-fix-geoclue)</Sup>
-* ```awesome-terminal-fonts otf-font-awesome```, if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/), you will need it
-* ```xfce4-terminal```, [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
-* ```sysstat tk gnuplot```, some i3blocks scripts need them
+* ```viewnior``` , my favourit [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
+* ```conky``` , [light-weight system monitor](https://github.com/brndnmtthws/conky)
+* ```redshift``` , Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshit-fix-geoclue)</Sup>
+* ```awesome-terminal-fonts otf-font-awesome``` , if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/) , you will need it
+* ```xfce4-terminal``` , [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
+* ```sysstat tk gnuplot``` , some i3blocks scripts need them
 
 *optional for KDE Plasma Panel*
 
 * ```xdotool xorg-xwininfo``` to hide plasma panel
-* ```plasma-applet-window-buttons``` <sup>[Extra](https://archlinux.org/packages/extra/x86_64/plasma-applet-window-buttons/)</sup>, [This is a Plasma 6 applet that shows window buttons in your panels](https://github.com/moodyhunter/applet-window-buttons6)
+* ```plasma-applet-window-buttons``` <sup>[Extra](https://archlinux.org/packages/extra/x86_64/plasma-applet-window-buttons/)</sup> , [This is a Plasma 6 applet that shows window buttons in your panels](https://github.com/moodyhunter/applet-window-buttons6)
 * ```plasma6-applets-panel-spacer-extended``` <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-panel-spacer-extended)</sup> , [Spacer with Mouse gestures for the KDE Plasma Panel](https://github.com/luisbocanegra/plasma-panel-spacer-extended)
 * ```plasma6-applets-kurve```  <sup>[AUR](https://aur.archlinux.org/packages/plasma6-applets-kurve)</sup> , [Audio visualizer widget powered by CAVA for the KDE Plasma Desktop](https://github.com/luisbocanegra/kurve)
 
@@ -421,7 +427,7 @@ Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Ca
 ---
 
 ### Do not use the plasma logout screen
-Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup), Just press ```Super+Shift+E```
+Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup) , Just press ```Super+Shift+E```
 
 ```
 # exit-menu
@@ -567,13 +573,13 @@ systemctl status geoclue.service
 
 ##### 1. Using ZSH instead of Bash, + OH MY ZSH
 
-* ```zsh```, A very advanced and programmable command interpreter (shell) for UNIX.
+* ```zsh``` , A very advanced and programmable command interpreter (shell) for UNIX.
 
-* ```zsh-autosuggestions```, Fish-like autosuggestions for zsh.
+* ```zsh-autosuggestions``` , Fish-like autosuggestions for zsh.
 
-* ```zsh-history-substring-search```, ZSH port of Fish history search (up arrow).
+* ```zsh-history-substring-search``` , ZSH port of Fish history search (up arrow).
 
-* ```zsh-syntax-highlighting```, Fish shell like syntax highlighting for Zsh.
+* ```zsh-syntax-highlighting``` , Fish shell like syntax highlighting for Zsh.
 * ```oh-my-zsh-git``` <sup>[Github](https://github.com/ohmyzsh/ohmyzsh)</sup> <sup>[AUR](http://aur.archlinux.org/packages/oh-my-zsh-git)</sup> , A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.
 
 ``````bash
@@ -602,7 +608,7 @@ Change ```ZSH_THEME=``` to [Bira](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 ```
 
-Enable ```zsh-autosuggestions```, ```zsh-history-substring-search```, & ```zsh-syntax-highlighting```, 
+Enable ```zsh-autosuggestions``` , ```zsh-history-substring-search``` , & ```zsh-syntax-highlighting``` , 
 
 Add these lines to the very end of the file:
 
@@ -654,7 +660,7 @@ source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring
 
 #### Conky
 
-* [Lean Conky Config](https://github.com/jxai/lean-conky-config), Lean Conky Config (LCC) is, well, a lean [Conky](https://github.com/brndnmtthws/conky/wiki) config that just works.
+* [Lean Conky Config](https://github.com/jxai/lean-conky-config) , Lean Conky Config (LCC) is, well, a lean [Conky](https://github.com/brndnmtthws/conky/wiki) config that just works.
 
   
 
@@ -688,7 +694,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 * [Distro Grub Themes](https://github.com/AdisonCavani/distro-grub-themes) <sup>[Themes](https://k1ng.dev/distro-grub-themes/preview)</sup> , A pack of GRUB2 themes for different Linux distributions and OSs.
 
-* [Gorgeous-GRUB](https://github.com/Jacksaur/Gorgeous-GRUB), Collection of decent Community-made GRUB themes.
+* [Gorgeous-GRUB](https://github.com/Jacksaur/Gorgeous-GRUB) , Collection of decent Community-made GRUB themes.
 
 * [Grub Customizer](https://launchpad.net/grub-customizer) <sup>[AUR](https://aur.archlinux.org/packages/grub-customizer)</sup> , A graphical grub2 settings manager.
 
@@ -712,10 +718,10 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 #### Easy Effects Presets
 
 * [GentleDynamics](https://github.com/droidwayin/GentleDynamics)
-  * [GentleDynamics Dialogue Clarity Engine (Movie Preset)](https://github.com/droidwayin/GentleDynamics#-gentledynamics-dialogue-clarity-engine-movie-preset-%EF%B8%8F), This preset employs surgical compression techniques to solve the common  problem of fluctuating dialogue levels in modern movies without using  AutoGain. This preset ensures the dialogue is always clear, while  respecting the dynamics and impact of the original soundtrack. You get  consistent, ***intelligible speech***.
-  * [GentleDynamics Feather Loudness V4 (Gentler and Sweeter Preset for Music](https://github.com/droidwayin/GentleDynamics#-gentledynamics-feather-loudness-v4-gentler-and-sweeter-preset-for-music-%EF%B8%8F%E2%80%8D), This EasyEffects preset based on psychoacoustic principles to enhance  your music listening experience. It features an 8-band multiband  compressor (MBC) aligned with human hearing (Bark scale) for natural  sound improvement on both headphones and speakers.
+  * [GentleDynamics Dialogue Clarity Engine (Movie Preset)](https://github.com/droidwayin/GentleDynamics#-gentledynamics-dialogue-clarity-engine-movie-preset-%EF%B8%8F) , This preset employs surgical compression techniques to solve the common  problem of fluctuating dialogue levels in modern movies without using  AutoGain. This preset ensures the dialogue is always clear, while  respecting the dynamics and impact of the original soundtrack. You get  consistent, ***intelligible speech***.
+  * [GentleDynamics Feather Loudness V4 (Gentler and Sweeter Preset for Music](https://github.com/droidwayin/GentleDynamics#-gentledynamics-feather-loudness-v4-gentler-and-sweeter-preset-for-music-%EF%B8%8F%E2%80%8D) , This EasyEffects preset based on psychoacoustic principles to enhance  your music listening experience. It features an 8-band multiband  compressor (MBC) aligned with human hearing (Bark scale) for natural  sound improvement on both headphones and speakers.
 
-* [Autoeq](https://www.autoeq.app/), AutoEq is a tool for automatically equalizing headphones.
+* [Autoeq](https://www.autoeq.app/) , AutoEq is a tool for automatically equalizing headphones.
 
 ---
 
@@ -878,7 +884,7 @@ cd i3-and-KDE-Plasma
 cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 ```
 
-2. Make Wallpaper directory ```$HOME/.Wallpapers```, ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
+2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln your wallpapers folders/Images to this folder***
 
 ```
 mkdir ~/.Wallpaper
@@ -890,11 +896,10 @@ mkdir ~/.Wallpaper
 exec --no-startup-id ~/.config/i3/scripts-2/fehbg.sh -t 300 # -t means sleep time (300 = 5 min)
 ```
 
-
-
-<h5 align="center">fehbg.sh</h5>
-
-```bash
+<details>
+  <summary>Click to view fehbg.sh</summary>
+   
+```sh
 #!/bin/bash
 
 walldir=$HOME/.Wallpapers/*
@@ -922,6 +927,7 @@ while $app $options $scale $walldir;
 do sleep $VERBOSE;
 done
 ```
+</details>
 
 ---
 
@@ -990,7 +996,7 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 #### Email Clients
 
-* ```thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar```, Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
+* ```thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
 
   ```bash
   sudo pacman -S thunderbird thunderbird-i18-en-us thunderbird-i18-ar hunspell-en_us hunspell-ar
