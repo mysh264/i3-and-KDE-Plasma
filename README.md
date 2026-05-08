@@ -896,15 +896,18 @@ cp -dvr etc/skel/.local/share/rofi $HOME/.local/share/
 
 * ```zsh``` , A very advanced and programmable command interpreter (shell) for UNIX.
 
+* ```fastfetch``` , Fastfetch is a neofetch-like tool for fetching system information and displaying it in a visually appealing way.
+
 * ```zsh-autosuggestions``` , Brings Fish-shell autosuggestions to ZSH.
 
 * ```zsh-history-substring-search``` , ZSH port of Fish history search (up arrow).
 
 * ```zsh-syntax-highlighting``` , Fish-shell-like syntax highlighting for Zsh.
+
 * ```oh-my-zsh-git``` <sup>[Github](https://github.com/ohmyzsh/ohmyzsh)</sup> <sup>[AUR](http://aur.archlinux.org/packages/oh-my-zsh-git)</sup> , A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community.
 
 ``````bash
-sudo pacman -S zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+sudo pacman -S zsh fastfetch zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
 ``````
 
 ```bash
@@ -929,7 +932,7 @@ Change ```ZSH_THEME=``` to [Bira](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="bira"
 ```
 
-Enable ```zsh-autosuggestions``` , ```zsh-history-substring-search``` , & ```zsh-syntax-highlighting``` , 
+Enable ```fastfetch``` , ```zsh-autosuggestions``` , ```zsh-history-substring-search``` , & ```zsh-syntax-highlighting``` , 
 
 Add these lines to the very end of the file:
 
@@ -937,6 +940,18 @@ Add these lines to the very end of the file:
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+fastfetch
+```
+
+#### 2. Useful alias 
+
+```bash
+alias update-full="sudo pacman -Syyu --noconfirm ; yay -Syu --noconfirm ;  flatpak update --appstream && flatpak update --assumeyes"
+alias update="sudo pacman -Syyu --noconfirm"
+alias update-yay="yay -Syyu --noconfirm"
+alias update-flatpak="flatpak update --appstream && flatpak update --assumeyes"
+alias update-fonts="fc-cache -fv"
 ```
 
 ---
@@ -1288,6 +1303,69 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   yay -S teams-for-linux
   ```
+</details>
+
+---
+
+## Web Browsers Extensions/Add-ons
+
+### Firefox Extensions/Add-ons
+
+<details><summary>Click to view</summary>
+
+1. [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+2. [Tweaks for YouTube](https://addons.mozilla.org/en-US/firefox/addon/tweaks-for-youtube/)
+    * _**Note: How to use**_
+      * _Appearance & Other Features > **Enable (Expanded Cinema Mode)**_
+      * _Preferences > Video View - Start New Video In > **Cinema mode**_
+      * _Preferences > Preferred Video Resolution > **1080p (HD)**_
+3. ~[Simple Translate](https://addons.mozilla.org/en-US/firefox/addon/simple-translate/)~
+4. [Simple Translate Popup Fix](https://addons.mozilla.org/en-GB/firefox/addon/simple-translate-popup-fix/)
+    * _**Note: How to use**_
+      * _Target language: **Arabic**_
+      * _Second language : **English**_
+      * _Choose: Behavior when selecting text: **Display translation panel**_
+      * _Enable: **Automatically switch to the second language**_
+5. [Grammarly: AI Writing and Grammar Checker App](https://addons.mozilla.org/en-US/firefox/addon/grammarly-1/)
+6. [AI Grammar Checker & Paraphraser – LanguageTool](https://addons.mozilla.org/en-US/firefox/addon/languagetool/)
+7. [Private Grammar Checker - Harper](https://addons.mozilla.org/en-US/firefox/addon/private-grammar-checker-harper/)
+8. [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/)
+9. [Time Tracker - Web Habit Builder](https://addons.mozilla.org/en-US/firefox/addon/besttimetracker/)
+10. [Server IP](https://addons.mozilla.org/en-US/firefox/addon/server-ip/)
+11. [User-Agent Switcher and Manager](https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/)
+12. [Allow Right-Click](https://addons.mozilla.org/en-US/firefox/addon/re-enable-right-click/)
+13. [Open Link with New Tab](https://addons.mozilla.org/en-US/firefox/addon/open-link-with-new-tab/)
+14. [I still don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/istilldontcareaboutcookies/)
+15. [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/)
+
+</details>
+
+---
+
+## Google Chrome Extensions/Add-ons
+
+<details><summary>Click to view</summary>
+
+1. [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh) *Note: If you are using ```Brave browser```,* ***DO NOT USE IT***
+2. [Tweaks for YouTube](https://chromewebstore.google.com/detail/tweaks-for-youtube/ogkoifddpkoabehfemkolflcjhklmkge)
+    * _**Note: How to use**_
+      * _Appearance & Other Features > **Enable (Expanded Cinema Mode)**_
+      * _Preferences > Video View - Start New Video In > **Cinema mode**_
+      * _Preferences > Preferred Video Resolution > **1080p (HD)**_
+3. [Simple Translate](https://chromewebstore.google.com/detail/simple-translate/ibplnjkanclpjokhdolnendpplpjiace)
+    * _**Note: How to use**_
+      * _Target language: **Arabic**_
+      * _Second language : **English**_
+      * _Choose: Behavior when selecting text: **Display translation panel**_
+      * _Enable: **Automatically switch to the second language**_
+4. [AI Grammar Checker & Paraphraser – LanguageTool](https://chromewebstore.google.com/detail/ai-grammar-checker-paraph/oldceeleldhonbafppcapldpdifcinji)
+5. [Private Grammar Checker - Harper](https://chromewebstore.google.com/detail/private-grammar-checker-h/lodbfhdipoipcjmlebjbgmmgekckhpfb)
+6. [Time Tracker - Web Habit Builder](https://chromewebstore.google.com/detail/time-tracker-web-habit-bu/dkdhhcbjijekmneelocdllcldcpmekmm)
+7. [Server IP](https://chromewebstore.google.com/detail/server-ip/adcbaggcjppnkmhfmjcdgagmggnfeikh)
+8. [User-Agent Switcher and Manager](http://chromewebstore.google.com/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg)
+9. [Allow Right-Click](https://chromewebstore.google.com/detail/allow-right-click/hnafhkjheookmokbkpnfpmemlppjdgoi)
+10. [I still don't care about cookies](https://chromewebstore.google.com/detail/i-still-dont-care-about-c/edibdbjcniadpccecjdfdjjppcpchdlm)
+
 </details>
 
 ---

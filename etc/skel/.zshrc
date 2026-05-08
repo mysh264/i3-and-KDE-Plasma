@@ -114,9 +114,11 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 #source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-alias update-full="sudo pacman -Syyu --noconfirm ; yay -Syyu --noconfirm ;  flatpak update --appstream && flatpak update --assumeyes"
+alias update-full="sudo pacman -Syyu --noconfirm ; yay -Syu --noconfirm ;  flatpak update --appstream && flatpak update --assumeyes"
 alias update="sudo pacman -Syyu --noconfirm"
 alias update-yay="yay -Syyu --noconfirm"
 alias update-flatpak="flatpak update --appstream && flatpak update --assumeyes"
 
 alias update-fonts="fc-cache -fv"
+
+fastfetch
