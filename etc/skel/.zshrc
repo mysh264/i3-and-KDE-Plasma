@@ -121,4 +121,6 @@ alias update-flatpak="flatpak update --appstream && flatpak update --assumeyes"
 
 alias update-fonts="fc-cache -fv"
 
+export EDITOR=nano
+
 fastfetch
