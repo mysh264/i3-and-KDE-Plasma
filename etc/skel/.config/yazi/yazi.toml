@@ -1,0 +1,41 @@
+[mgr]
+ratio          = [ 1, 4, 4 ]
+
+[preview]
+max_width       = 3000
+max_height      = 3000
+cache_dir       = "$HOME/.cache/yazi/preview"
+image_quality   = 90
+
+[opener]
+edit = [
+	{ run = "$EDITOR %s", block = true, for = "unix" },
+	]
+
+# [Git](https://github.com/yazi-rs/plugins/tree/main/git.yazi)
+[[plugin.prepend_fetchers]]
+id    = "git" # Remove if Yazi > v26.1.22
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+id    = "git" # Remove if Yazi > v26.1.22
+url   = "*/"
+run   = "git"
+group = "git"
+
+# [MIME EXT](https://github.com/yazi-rs/plugins/tree/main/mime-ext.yazi)
+[[plugin.prepend_fetchers]]
+id    = "mime" # Remove if Yazi > v26.1.22
+url   = "local://*"
+run   = "mime-ext.local"
+prio  = "high"
+group = "mime"
+
+[[plugin.prepend_fetchers]]
+id    = "mime" # Remove if Yazi > v26.1.22
+url   = "remote://*"
+run   = "mime-ext.remote"
+prio  = "high"
+group = "mime"
