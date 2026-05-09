@@ -38,10 +38,17 @@
 * - [x] **Configure [Kitty]() terminal.**
 * - [ ] **Implement OCR utility.**
 * - [x] **Configure Video Recording/Screen capture.**
-
 * - [x] Catfish
-
 * - [x] Kfind
+* - [x] ncdu
+* - [x] ranger
+
+* - [x] nnn
+
+* - [x] Yazi
+    * yazi config file
+    * yazi .desktop
+    * yazi plugins
 
 ### 5. Documentation & Structure
 
@@ -64,5 +71,5 @@
 
 ### Quick Status
 
-* **Completed:** 27 tasks
+* **Completed:** 31 tasks
 * **Pending:** 6 tasks
