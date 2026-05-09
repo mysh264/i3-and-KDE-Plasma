@@ -1355,15 +1355,15 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   sudo pacman -S ncdu
   ```
 
-* ```ranger``` <sup>[Github]()</sup> , Simple, vim-like file manager.
+  </details>
 
-  * [Video Previews](https://github.com/ranger/ranger/wiki/Video-Previews)
+---
 
-  ```bash
-  sudo pacman -S ranger atool lha lzop unace zip elinks ffmpegthumbnailer highlight imagemagick libcaca lynx mediainfo odt2txt perl-image-exiftool perl-archive-zip perl-io-compress-brotli poppler python-pillow transmission-cli ueberzug w3m
-  ```
+### File Managers
 
-* ```yazi``` <sup>[Github](https://github.com/sxyazi/yazi)</sup> , Blazing fast terminal file manager written in Rust, based on async /0
+<details><summary>Click to view</summary>
+
+* ```yazi``` <sup>TUI</sup> <sup>[Github](https://github.com/sxyazi/yazi)</sup> , Blazing fast terminal file manager written in Rust, based on async /0
 
   * [Quick start](https://yazi-rs.github.io/docs/quick-start)
 
@@ -1375,7 +1375,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
     <details><summary>Click to view</summary>
 
-    * [Full Boarder](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi)
+    * [Full Boarder](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi) , Add a full border to Yazi to make it look fancier.
 
       * Installation:
 
@@ -1398,7 +1398,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
         ---
 
-    * [Git](https://github.com/yazi-rs/plugins/tree/main/git.yazi)
+    * [Git](https://github.com/yazi-rs/plugins/tree/main/git.yazi) , Show the status of Git file changes as linemode in the file list.
 
       * Installation:
 
@@ -1439,16 +1439,40 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
         ---
 
-    * [Mount](https://github.com/yazi-rs/plugins/tree/main/mount.yazi)
+    * [VCS Files](https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi) , Show Git file changes in Yazi.
 
+    
+      * Installation
+    
+          ```bash
+          ya pkg add yazi-rs/plugins:vcs-files
+          ```
+    
+    
+    
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+    
+          ```tmol
+          [[mgr.prepend_keymap]]
+          on   = [ "g", "c" ]
+          run  = "plugin vcs-files"
+          desc = "Show Git file changes"
+          ```
+
+          ---
+
+    
+    
+    * [Mount](https://github.com/yazi-rs/plugins/tree/main/mount.yazi) , A mount manager for Yazi, providing disk mount, unmount, and eject functionality.
+    
       * Installation
 
         ```bash
         ya pkg add yazi-rs/plugins:mount
         ```
-
+    
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-
+    
         ```toml
         [[mgr.prepend_keymap]]
         on  = "M"
@@ -1457,16 +1481,16 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
         ---
 
-    * [Zoom](https://github.com/yazi-rs/plugins/tree/main/zoom.yazi)
-
+    * [Zoom](https://github.com/yazi-rs/plugins/tree/main/zoom.yazi) , Enlarge or shrink the preview image of a file, which is useful for magnifying small files for viewing.
+    
       * Installation
 
         ```bash
         ya pkg add yazi-rs/plugins:zoom
         ```
-
+    
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-
+    
         ```toml
         [[mgr.prepend_keymap]]
         on   = "+"
@@ -1478,38 +1502,38 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
         run  = "plugin zoom -1"
         desc = "Zoom out hovered file"
         ```
-
+    
         ---
-
-    * [Chmod](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi)
-
+    
+    * [Chmod](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi) , Execute `chmod` on the selected files to change their mode.
+    
       * Installation
-
+    
         ```bash
         ya pkg add yazi-rs/plugins:chmod
         ```
-
+    
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-
+    
         ```toml
         [[mgr.prepend_keymap]]
         on   = [ "e", "E" ]
         run  = "plugin chmod"
         desc = "Chmod on selected files"
         ```
-
+    
         ---
-
-    * [MIME EXT](https://github.com/yazi-rs/plugins/tree/main/mime-ext.yazi)
-
+    
+    * [MIME EXT](https://github.com/yazi-rs/plugins/tree/main/mime-ext.yazi) , A MIME type provider based on a file extension database.
+    
       * Installation
 
         ```bash
         ya pkg add yazi-rs/plugins:mime-ext
         ```
-
+    
       * Add this to your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
-
+    
         ```toml
         [[plugin.prepend_fetchers]]
         id    = "mime" # Remove if Yazi > v26.1.22
@@ -1525,9 +1549,9 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
         prio  = "high"
         group = "mime"
         ```
-
+    
       * You can also customize it in your `~/.config/yazi/init.lua` with: ```nano $HOME/.config/yazi/init.lua```
-
+    
         ```lua
         require("mime-ext.local"):setup {
         	-- Expand the existing filename database (lowercase), for example:
@@ -1547,35 +1571,97 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
         	fallback_file1 = false,
             }
         ```
-
+    
         ---
+    
+    * [DIFF](https://github.com/yazi-rs/plugins/tree/main/diff.yazi) , Diff the selected file with the hovered file, create a living patch, and copy it to the clipboard.
+    
+      * Installation
+    
+        ```bash
+        ya pkg add yazi-rs/plugins:diff
+        ```
+    
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+    
+        ```toml
+        [[mgr.prepend_keymap]]
+        on   = "<C-d>"
+        run  = "plugin diff"
+        desc = "Diff the selected with the hovered file"
+        ```
+    
+        ---
+    
+    * [Smart Enter](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi) , Open files or enter directories all in one key!
+    
+      * Installation
+    
+        ```bash
+        ya pkg add yazi-rs/plugins:smart-enter
+        ```
+    
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+    
+        ```tmol
+        [[mgr.prepend_keymap]]
+        on   = "<Enter>"
+        run  = "plugin smart-enter"
+        desc = "Enter the child directory, or open the file"
+        ```
+    
+      * If you still want `open` to target multiple selected files, add this to your `~/.config/yazi/init.lua`: ```nano $HOME/.config/yazi/init.lua```
+    
+        ```lua
+        require("smart-enter"):setup {
+        	open_multi = true,
+        }
+        ```
+    
+        ---
+    
+    * [Toggle Pane](https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi) , Toggle the show, hide, and maximize states for different panes: parent, current, and preview. 
+    
+      * Installation
+    
+        ```bash
+        ya pkg add yazi-rs/plugins:toggle-pane
+        ```
+    
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+    
+        ```tmol
+        [[mgr.prepend_keymap]]
+        on   = "p"
+        run  = "plugin toggle-pane min-preview"
+        desc = "Show or hide the preview pane"
+        
+        [[mgr.prepend_keymap]]
+        on   = "P"
+        run  = "plugin toggle-pane max-preview"
+        desc = "Maximize or restore the preview pane"
+        ```
+    
+        ***Note: You can replace `preview` with `current` or `parent` to toggle the other panes.***
+    
+        ---
+    
+      </details>
 
-      * [DIFF](https://github.com/yazi-rs/plugins/tree/main/diff.yazi)
+* ```ranger``` <sup>TUI</sup> <sup>[Github]()</sup> , Simple, vim-like file manager.
 
-        * Installation
+  * [Video Previews](https://github.com/ranger/ranger/wiki/Video-Previews)
 
-          ```bash
-          ya pkg add yazi-rs/plugins:diff
-          ```
+  ```bash
+  sudo pacman -S ranger atool lha lzop unace zip elinks ffmpegthumbnailer highlight imagemagick libcaca lynx mediainfo odt2txt perl-image-exiftool perl-archive-zip perl-io-compress-brotli poppler python-pillow transmission-cli ueberzug w3m
+  ```
 
-        * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-
-          ```toml
-          [[mgr.prepend_keymap]]
-          on   = "<C-d>"
-          run  = "plugin diff"
-          desc = "Diff the selected with the hovered file"
-          ```
-
-          ---
-    </details>
-
-* ```nnn``` , The fastest terminal file manager ever written.
+* ```nnn``` <sup>TUI</sup> <sup>[Github](https://github.com/jarun/nnn)</sup> , The fastest terminal file manager ever written.
 
   ```bash
   sudo pacman -S nnn atool libarchive zip unzip trash-cli sshfs rclone fuse2
   ```
-</details>
+  </details>
 
 ---
 
