@@ -1343,11 +1343,242 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   sudo pacman -S catfish plocate zeitgeist
   ```
 
-* ```kfind``` , Find Files/folders
+* ```kfind``` , Find Files/folders.
 
   ```bash
   sudo pacman -S kfind mlocate
   ```
+
+* ```ncdu``` , Disk usage analyzer with an ncurses interface.
+
+  ```bash
+  sudo pacman -S ncdu
+  ```
+
+* ```ranger``` <sup>[Github]()</sup> , Simple, vim-like file manager.
+
+  * [Video Previews](https://github.com/ranger/ranger/wiki/Video-Previews)
+
+  ```bash
+  sudo pacman -S ranger atool lha lzop unace zip elinks ffmpegthumbnailer highlight imagemagick libcaca lynx mediainfo odt2txt perl-image-exiftool perl-archive-zip perl-io-compress-brotli poppler python-pillow transmission-cli ueberzug w3m
+  ```
+
+* ```yazi``` <sup>[Github](https://github.com/sxyazi/yazi)</sup> , Blazing fast terminal file manager written in Rust, based on async /0
+
+  * [Quick start](https://yazi-rs.github.io/docs/quick-start)
+
+  ```bash
+  sudo pacman -S yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick xclip chafa git
+  ```
+
+  * [Plugins](https://github.com/yazi-rs/plugins)
+
+    <details><summary>Click to view</summary>
+
+    * [Full Boarder](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi)
+
+      * Installation:
+
+        ```bash
+        ya pkg add yazi-rs/plugins:full-border
+        ```
+
+      * Add this to your init.lua to enable the plugin: ```nano $HOME/.config/init.lua```
+
+        ```bash
+        require("full-border"):setup()
+        
+        # Or you can customize the border type:
+        
+        require("full-border"):setup {
+        	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+        	type = ui.Border.ROUNDED,
+        }
+        ```
+
+        ---
+
+    * [Git](https://github.com/yazi-rs/plugins/tree/main/git.yazi)
+
+      * Installation:
+
+        ```bash
+        ya pkg add yazi-rs/plugins:git
+        ```
+
+      * Add the following to your `~/.config/yazi/init.lua`: ```nano $HOME/.config/init.lua```
+
+        ```bash
+        th.git = th.git or {}
+        th.git.unknown_sign = " "
+        th.git.modified_sign = "M"
+        th.git.deleted_sign = "D"
+        th.git.clean_sign = "✔"
+        
+        require("git"):setup {
+        	-- Order of status signs showing in the linemode
+        	order = 1500,
+        }
+        ```
+
+      * And register it as fetchers in your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
+
+        ```bash
+        [[plugin.prepend_fetchers]]
+        id    = "git" # Remove if Yazi > v26.1.22
+        url   = "*"
+        run   = "git"
+        group = "git"
+        
+        [[plugin.prepend_fetchers]]
+        id    = "git" # Remove if Yazi > v26.1.22
+        url   = "*/"
+        run   = "git"
+        group = "git"
+        ```
+
+        ---
+
+    * [Mount](https://github.com/yazi-rs/plugins/tree/main/mount.yazi)
+
+      * Installation
+
+        ```bash
+        ya pkg add yazi-rs/plugins:mount
+        ```
+
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+
+        ```bash
+        [[mgr.prepend_keymap]]
+        on  = "M"
+        run = "plugin mount"
+        ```
+
+        ---
+
+    * [Zoom](https://github.com/yazi-rs/plugins/tree/main/zoom.yazi)
+
+      * Installation
+
+        ```bash
+        ya pkg add yazi-rs/plugins:zoom
+        ```
+
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+
+        ```bash
+        [[mgr.prepend_keymap]]
+        on   = "+"
+        run  = "plugin zoom 1"
+        desc = "Zoom in hovered file"
+        
+        [[mgr.prepend_keymap]]
+        on   = "-"
+        run  = "plugin zoom -1"
+        desc = "Zoom out hovered file"
+        ```
+
+        ---
+
+    * [Chmod](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi)
+
+      * Installation
+
+        ```bash
+        ya pkg add yazi-rs/plugins:chmod
+        ```
+
+      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+
+        ```bash
+        [[mgr.prepend_keymap]]
+        on   = [ "e", "E" ]
+        run  = "plugin chmod"
+        desc = "Chmod on selected files"
+        ```
+
+        ---
+
+    * [MIME EXT](https://github.com/yazi-rs/plugins/tree/main/mime-ext.yazi)
+
+      * Installation
+
+        ```bash
+        ya pkg add yazi-rs/plugins:mime-ext
+        ```
+
+      * Add this to your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
+
+        ```bash
+        [[plugin.prepend_fetchers]]
+        id    = "mime" # Remove if Yazi > v26.1.22
+        url   = "local://*"
+        run   = "mime-ext.local"
+        prio  = "high"
+        group = "mime"
+        
+        [[plugin.prepend_fetchers]]
+        id    = "mime" # Remove if Yazi > v26.1.22
+        url   = "remote://*"
+        run   = "mime-ext.remote"
+        prio  = "high"
+        group = "mime"
+        ```
+
+      * You can also customize it in your `~/.config/yazi/init.lua` with: ```nano $HOME/.config/yazi/init.lua```
+
+        ```bash
+        require("mime-ext.local"):setup {
+        	-- Expand the existing filename database (lowercase), for example:
+        	with_files = {
+        		makefile = "text/makefile",
+        		-- ...
+        	},
+        
+        	-- Expand the existing extension database (lowercase), for example:
+        	with_exts = {
+        		mk = "text/makefile",
+        		-- ...
+        	},
+        
+        	-- If the MIME type is not in both filename and extension databases,
+        	-- then fallback to Yazi's preset `mime.local` plugin, which uses `file(1)`
+        	fallback_file1 = false,
+        }
+        ```
+
+        ---
+
+      * [DIFF](https://github.com/yazi-rs/plugins/tree/main/diff.yazi)
+
+        * Installation
+
+          ```bash
+          ya pkg add yazi-rs/plugins:diff
+          ```
+
+        * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
+
+          ```bash
+          [[mgr.prepend_keymap]]
+          on   = "<C-d>"
+          run  = "plugin diff"
+          desc = "Diff the selected with the hovered file"
+          ```
+
+          ---
+
+  </details>
+
+* ```nnn``` , The fastest terminal file manager ever written.
+
+  ```bash
+  sudo pacman -S nnn atool libarchive zip unzip trash-cli sshfs rclone fuse2
+  ```
+
+  
+
 </details>
 
 ---
