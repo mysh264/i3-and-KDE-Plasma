@@ -1385,7 +1385,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add this to your init.lua to enable the plugin: ```nano $HOME/.config/init.lua```
 
-        ```bash
+        ```lua
         require("full-border"):setup()
         
         # Or you can customize the border type:
@@ -1408,7 +1408,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add the following to your `~/.config/yazi/init.lua`: ```nano $HOME/.config/init.lua```
 
-        ```bash
+        ```lua
         th.git = th.git or {}
         th.git.unknown_sign = " "
         th.git.modified_sign = "M"
@@ -1423,7 +1423,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * And register it as fetchers in your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
 
-        ```bash
+        ```toml
         [[plugin.prepend_fetchers]]
         id    = "git" # Remove if Yazi > v26.1.22
         url   = "*"
@@ -1449,7 +1449,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
 
-        ```bash
+        ```toml
         [[mgr.prepend_keymap]]
         on  = "M"
         run = "plugin mount"
@@ -1467,7 +1467,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
 
-        ```bash
+        ```toml
         [[mgr.prepend_keymap]]
         on   = "+"
         run  = "plugin zoom 1"
@@ -1491,7 +1491,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
 
-        ```bash
+        ```toml
         [[mgr.prepend_keymap]]
         on   = [ "e", "E" ]
         run  = "plugin chmod"
@@ -1510,7 +1510,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * Add this to your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
 
-        ```bash
+        ```toml
         [[plugin.prepend_fetchers]]
         id    = "mime" # Remove if Yazi > v26.1.22
         url   = "local://*"
@@ -1528,7 +1528,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
       * You can also customize it in your `~/.config/yazi/init.lua` with: ```nano $HOME/.config/yazi/init.lua```
 
-        ```bash
+        ```lua
         require("mime-ext.local"):setup {
         	-- Expand the existing filename database (lowercase), for example:
         	with_files = {
@@ -1545,7 +1545,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
         	-- If the MIME type is not in both filename and extension databases,
         	-- then fallback to Yazi's preset `mime.local` plugin, which uses `file(1)`
         	fallback_file1 = false,
-        }
+            }
         ```
 
         ---
@@ -1560,7 +1560,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
         * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
 
-          ```bash
+          ```toml
           [[mgr.prepend_keymap]]
           on   = "<C-d>"
           run  = "plugin diff"
@@ -1568,7 +1568,7 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
           ```
 
           ---
-  </details>
+    </details>
 
 * ```nnn``` , The fastest terminal file manager ever written.
 
