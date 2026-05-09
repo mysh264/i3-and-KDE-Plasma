@@ -2,7 +2,7 @@
 Name=Yazi File Manager
 Icon=yazi
 Comment=Blazing fast terminal file manager written in Rust, based on async I/O
-Terminal=true
+Terminal=false
 TryExec=yazi
 Exec=/usr/bin/kitty yazi %f
 Type=Application
