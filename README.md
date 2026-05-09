@@ -1568,7 +1568,6 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
           ```
 
           ---
-
   </details>
 
 * ```nnn``` , The fastest terminal file manager ever written.
@@ -1576,9 +1575,6 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   ```bash
   sudo pacman -S nnn atool libarchive zip unzip trash-cli sshfs rclone fuse2
   ```
-
-  
-
 </details>
 
 ---
