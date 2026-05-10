@@ -22,7 +22,7 @@ L_ACT=1; L_DEACT=100; L_WAIT_IN=-0.2; L_WAIT_OUT=-0.4
 L_CMD_IN=""; L_CMD_OUT=""
 
 # RIGHT EDGE
-R_ACT=1; R_DEACT=100; R_WAIT_IN=-0.2; R_WAIT_OUT=-0.4
+R_ACT=1; R_DEACT=20; R_WAIT_IN=-0.2; R_WAIT_OUT=-0.4
 R_CMD_IN="xfce4-terminal --drop-down"; R_CMD_OUT=""
 
 # CORNERS (Example: Top-Left)
