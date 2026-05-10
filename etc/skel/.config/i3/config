@@ -48,7 +48,7 @@
 # Feh Options
 	#set $feh feh --bg-scale
 
-	set $feh $HOME/.config/i3/scripts-2/fehbg.sh -t 300  # -t means sleep time
+	set $feh $HOME/.config/i3/scripts2/fehbg.sh -t 300  # -t means sleep time
 
 #########################################
 # Border
@@ -317,7 +317,13 @@ $code $mod+Shift+$r restart
 #########################################
 
 # Toggle plasma panel
-$code $mod+$u $exec ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
+$code $mod+$u $exec ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma_panel/panel_toggle.sh && pkill -RTMIN+2 i3blocks
+
+# Toggle plasma panel (Dock Mode)
+$code $mod+Shift+$u $exec ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma_panel/panel_dock_toggle.sh && pkill -RTMIN+2 i3blocks
+
+# Press Mod+Shift+p to rescue/restart the Plasma Panel
+bindsym $mod+Shift+p exec --no-startup-id plasmashell --replace
 
 # Multimedia Keys
 #$sym XF86AudioRaiseVolume $exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
@@ -360,13 +366,19 @@ $exec $feh
 $exec xrdb -merge ~/.Xresources
 
 # Restart i3wm
-$exec sleep 2 && i3-msg restart
+$exec i3-msg restart
 
 # start conky:
 $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 # Auto login , Lock The screen after login
-$exec sleep 3 && loginctl lock-session
+$exec sleep 1 && loginctl lock-session
+
+# Start the listener script in the background
+$exalways killall plasma-i3-orchestrator.sh ;  ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma-i3-orchestrator.sh
+
+# Run the master_perimeter_control.sh script
+$exalways killall master_perimeter_control.sh ; ~/.config/i3/scripts2/'Screen Edges'/master_perimeter_control.sh
 
 #########################################
 
@@ -523,8 +535,8 @@ for_window [class="Yad"] floating enable
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [class="yakuake"] floating enable
-for_window [class="systemsettings"] floating enable
+#for_window [class="yakuake"] floating enable
+#for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable
 for_window [class="Plasma"] floating enable, border none
 for_window [title="plasma-desktop"] floating enable, border none
@@ -537,10 +549,17 @@ for_window [class="(?i)*nextcloud*"] floating disable
 
 no_focus [class="plasmashell" window_type="notification"]
 
-for_window [class="plasmashell" window_type="notification"] floating enable, border none, move absolute position center, move down 400px
-
 # Killing the existing window that covers everything
 for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
+
+# 1. Strip the dock behavior and force it into the floating layer
+for_window [title="Togglehidepanelplasma"] floating enable, border none, sticky enable
+
+# 2. Prevent it from stealing focus when it appears
+no_focus [title="Togglehidepanelplasma"]
+
+# 3. Position it at the absolute top (0,0) without reserving space
+for_window [title="Togglehidepanelplasma"] move absolute position 0 0
 
 #########################################
 
@@ -619,7 +638,7 @@ bar {
 	
         # Display mode
         ## https://i3wm.org/docs/userguide.html#_display_mode
-        #mode hide # dock|hide|invisible
+        mode hide # dock|hide|invisible
         #hidden_state hide # hide|show
         #modifier Mod1
         #modifier Ctrl
