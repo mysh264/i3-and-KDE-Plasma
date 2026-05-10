@@ -58,7 +58,7 @@ chosen="$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
 
 case $chosen in
     "$lock")
-        $lockcmd
+        loginctl lock-session
         ;;
     "$cancel"|"")
         exit 0
