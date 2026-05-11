@@ -1,5 +1,6 @@
 #!/bin/bash
-set -x
+trap 'pkill -P $$' EXIT
+
 # Listen for new window events
 i3-msg -t subscribe -m '["window"]' | while read -r line; do
     # Extract event details
@@ -32,7 +33,7 @@ i3-msg -t subscribe -m '["window"]' | while read -r line; do
         # --- THE NOTIFICATION LOGIC ---
         # Catching both Critical and Standard notifications
         elif echo "$WINDOW_TYPE" | grep -E -q "(_KDE_NET_WM_WINDOW_TYPE_CRITICAL_NOTIFICATION|_NET_WM_WINDOW_TYPE_NOTIFICATION)"; then
-            i3-msg "[id=$WID] floating enable, border none, move position 1450 px 45 px, sticky enable"
+            i3-msg "[id=$WID] floating enable, border none, move position 1450 px 100 px, sticky enable"
         fi
     fi
 done
