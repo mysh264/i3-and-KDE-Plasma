@@ -52,7 +52,7 @@
 
 #########################################
 # Border
-set $pix 0
+set $pix 5
 
 #########################################
 # Character
@@ -160,6 +160,10 @@ new_window pixel $pix
 # Set inner/outer gaps
 gaps inner 8
 gaps outer 3
+
+# This ensures that when a window is the only one,
+# it effectively becomes "maximized" so Picom can see it
+smart_borders on
 
 # Enabling “Smart Gaps” means no gaps will be shown when there is
 # precisely one window or split container on the workspace.
@@ -374,11 +378,8 @@ $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 # Auto login , Lock The screen after login
 $exec sleep 1 && loginctl lock-session
 
-# Start the listener script in the background
-$exalways killall plasma-i3-orchestrator.sh ;  ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma-i3-orchestrator.sh
-
-# Run the master_perimeter_control.sh script
-$exalways killall master_perimeter_control.sh ; ~/.config/i3/scripts2/'Screen Edges'/master_perimeter_control.sh
+# Restart the scripts and kill the old one.
+exec_always --no-startup-id ~/.config/i3/scripts2/restart_perimeter.sh
 
 #########################################
 
