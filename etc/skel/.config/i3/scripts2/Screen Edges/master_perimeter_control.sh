@@ -1,4 +1,5 @@
 #!/bin/bash
+trap 'pkill -P $$' EXIT
 
 # --- 1. SCREEN RESOLUTION AUTO-DETECTION ---
 RES=$(xdpyinfo | grep dimensions | awk '{print $2}')
