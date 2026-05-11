@@ -576,7 +576,7 @@ for_window [title="Togglehidepanelplasma"] move absolute position 0 0
 # Whole color settings
 set $bg-color 	         #2f343f
 set $active-bg-bar-color #204e66
-#set $urgent-bg-bar-color #512c1a
+set $urgent-bg-bar-color #663820
 set $inactive-bg-color   #2f343f
 set $text-color          #419DCC
 set $inactive-text-color #676E7D
@@ -630,8 +630,8 @@ bar {
 		#                  border					background				text
 		focused_workspace  $active-bg-bar-color		$active-bg-bar-color	$text-color
 		inactive_workspace $inactive-bg-color		$inactive-bg-color		$inactive-text-color
-		urgent_workspace   $bg-color				$bg-color				$urgent-text-color
-	}
+		urgent_workspace   $urgent-bg-bar-color		$urgent-bg-bar-color	$urgent-text-color
+		}
 
         # Right click to go to workspace 10
         $sym button3 workspace $ws10
