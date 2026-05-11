@@ -1242,10 +1242,10 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 * ```yt-x``` <sup>[AUR](http://aur.archlinux.org/packages/yt-x)</sup> <sup>[Github](https://github.com/Benexl/yt-x)</sup> , Browse YouTube from your terminal. Plus other sites yt-dlp supports.
 
-  ***Note: Use ```yt-x``` with ```kitty```***
+  ***~Note: Use ```yt-x``` with ```kitty```~***
 
   ```bash
-  yay -S yt-x
+  yay -S yt-x-git
   ```
 
 * ```video-trimmer``` , Trim videos quickly.
