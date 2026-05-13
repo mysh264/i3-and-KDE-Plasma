@@ -52,7 +52,7 @@
 
 #########################################
 # Border
-set $pix 5
+set $pix 0
 
 #########################################
 # Character
@@ -321,13 +321,13 @@ $code $mod+Shift+$r restart
 #########################################
 
 # Toggle plasma panel
-$code $mod+$u $exec ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma_panel/panel_toggle.sh && pkill -RTMIN+2 i3blocks
+$code $mod+$u $exec ~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_toggle.sh && pkill -RTMIN+2 i3blocks
 
 # Toggle plasma panel (Dock Mode)
-$code $mod+Shift+$u $exec ~/.config/i3/scripts2/'KDE Plasma {OSD + Notify + Panel}'/plasma_panel/panel_dock_toggle.sh && pkill -RTMIN+2 i3blocks
+$code $mod+Shift+$u $exec ~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_dock_toggle.sh && pkill -RTMIN+2 i3blocks
 
 # Press Mod+Shift+p to rescue/restart the Plasma Panel
-bindsym $mod+Shift+p exec --no-startup-id plasmashell --replace
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_restart.sh && pkill -RTMIN+2 i3blocks
 
 # Multimedia Keys
 #$sym XF86AudioRaiseVolume $exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
@@ -366,6 +366,8 @@ $exec $feh
 #           Utility Startup             #
 #########################################
 
+$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh &>> ~/startup.log"
+
 # Load ~/.Xresources
 $exec xrdb -merge ~/.Xresources
 
@@ -376,10 +378,10 @@ $exec i3-msg restart
 $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 # Auto login , Lock The screen after login
-$exec sleep 1 && loginctl lock-session
+#$exec sleep 1 && loginctl lock-session
 
 # Restart the scripts and kill the old one.
-exec_always --no-startup-id ~/.config/i3/scripts2/restart_perimeter.sh
+exec_always --no-startup-id sleep 8 && ~/.config/i3/scripts2/restart_perimeter.sh
 
 #########################################
 
@@ -554,13 +556,13 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
 
 # 1. Strip the dock behavior and force it into the floating layer
-for_window [title="Togglehidepanelplasma"] floating enable, border none, sticky enable
+for_window [class="plasmashell" title="Togglehidepanelplasma"] floating enable, border none, sticky enable
 
 # 2. Prevent it from stealing focus when it appears
-no_focus [title="Togglehidepanelplasma"]
+no_focus [class="plasmashell" title="Togglehidepanelplasma"]
 
 # 3. Position it at the absolute top (0,0) without reserving space
-for_window [title="Togglehidepanelplasma"] move absolute position 0 0
+for_window [class="plasmashell" title="Togglehidepanelplasma"] move absolute position 0 0
 
 #########################################
 
