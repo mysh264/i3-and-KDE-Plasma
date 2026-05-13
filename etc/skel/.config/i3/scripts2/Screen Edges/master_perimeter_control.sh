@@ -1,5 +1,6 @@
 #!/bin/bash
-trap 'pkill -P $$' EXIT
+
+set -x
 
 # --- 1. SCREEN RESOLUTION AUTO-DETECTION ---
 RES=$(xdpyinfo | grep dimensions | awk '{print $2}')
@@ -29,12 +30,12 @@ L_CMD_IN=""; L_CMD_OUT=""
 R_ENABLED=true
 R_ACT=1; R_DEACT=20; R_WAIT_IN=0; R_WAIT_OUT=0
 R_START=400; R_END=700
-R_CMD_IN="xfce4-terminal --drop-down"; R_CMD_OUT=""
+R_CMD_IN="xfce4-terminal --drop-down > /dev/null 2>&1 &"; R_CMD_OUT=""
 
 # TOP-LEFT CORNER
 TL_ENABLED=true
 TL_ACT=10; TL_DEACT=50; TL_WAIT_IN=0; TL_WAIT_OUT=0
-TL_CMD_IN="bash '$HOME/.config/i3/scripts2/KDE Plasma {OSD + Notify + Panel}/plasma_panel/panel_toggle.sh'"; TL_CMD_OUT=""
+TL_CMD_IN="bash '$HOME/.config/i3/scripts2/KDE Plasma/plasma_panel/panel_toggle.sh'"; TL_CMD_OUT=""
 
 # TOP-RIGHT CORNER
 TR_ENABLED=true
@@ -49,7 +50,7 @@ BL_CMD_IN=""; BL_CMD_OUT=""
 # BOTTOM-RIGHT CORNER
 BR_ENABLED=true
 BR_ACT=10; BR_DEACT=50; BR_WAIT_IN=0; BR_WAIT_OUT=0
-BR_CMD_IN="i3-msg bar mode toggle"; BR_CMD_OUT=""
+BR_CMD_IN="i3-msg workspace back_and_forth"; BR_CMD_OUT=""
 
 DELAY=0.05
 
