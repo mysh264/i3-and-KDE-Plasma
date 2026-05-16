@@ -1,6 +1,8 @@
 #!/bin/bash
+set -x
 CLASS_TARGET="plasmashell"
 TYPE_TARGET="_NET_WM_WINDOW_TYPE_DOCK"
+TYPE_TARGET_GHOST="_NET_WM_WINDOW_TYPE_MENU"
 
 # 1. Get all window IDs matching the class name
 # --class ignores window titles and names
@@ -11,7 +13,7 @@ for WID in $IDS; do
     # We look for the ATOM value assigned to _NET_WM_WINDOW_TYPE
     ACTUAL_TYPE=$(xprop -id "$WID" _NET_WM_WINDOW_TYPE 2>/dev/null)
 
-    if [[ "$ACTUAL_TYPE" == *"$TYPE_TARGET"* ]]; then
+    if [[ "$ACTUAL_TYPE" == *"$TYPE_TARGET"* ]] || [[ "$ACTUAL_TYPE" == *"$TYPE_TARGET_GHOST"* ]]; then
         echo "$WID"
     fi
 done
