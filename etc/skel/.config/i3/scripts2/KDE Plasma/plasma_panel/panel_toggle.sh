@@ -18,7 +18,6 @@ fi
 
 [ -z "$ID" ] && exit 1
 
-
 # xwininfo reply (xorg-xwininfo)
 hide=IsUnMapped
 unhide=IsViewable
