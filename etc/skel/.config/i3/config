@@ -366,13 +366,13 @@ $exec $feh
 #           Utility Startup             #
 #########################################
 
-$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh &>> ~/startup.log"
-
 # Load ~/.Xresources
 $exec xrdb -merge ~/.Xresources
 
+$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh &> ~/startup.log"
+
 # Restart i3wm
-$exec i3-msg restart
+#$exec i3-msg restart
 
 # start conky:
 $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
@@ -476,6 +476,7 @@ assign [class="gwenview"] $ws6
 assign [class="Stremio"] $ws7
 
 assign [class="kitty"] $ws8
+assign [class="qBittorrent"] $ws8
 
 assign [class="org.mozilla.Thunderbird"] $ws9
 #assign [class="TelegramDesktop"] $ws9
@@ -511,6 +512,7 @@ for_window [class=com.github.tchx84.Flatseal] focus
 for_window [class=Grub-customizer] focus
 for_window [class=org.mozilla.Thunderbird] focus
 for_window [class=kitty] focus
+for_window [class=qBittorrent] focus
 for_window [class=Typora] focus
 
 #for_window [class=pamac-manager] focus
