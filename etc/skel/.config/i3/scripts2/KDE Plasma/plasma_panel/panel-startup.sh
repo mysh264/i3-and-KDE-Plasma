@@ -6,6 +6,8 @@ TYPE_TARGET="_NET_WM_WINDOW_TYPE_DOCK"
 PANEL_NAME="Togglehidepanelplasma"
 GHOST_SCRIPT="$HOME/.config/i3/scripts2/KDE Plasma/plasma_panel/panel_ghost_mode.sh"
 
+sleep 5
+
 echo "Waiting for Plasma Panel to initialize..."
 
 # --- THE SEARCH LOOP ---
@@ -25,6 +27,7 @@ while true; do
 
             # 4. Trigger Ghost Mode
             if [[ -f "$GHOST_SCRIPT" ]]; then
+                sleep 5
                 bash "$GHOST_SCRIPT" &
                 disown
             else
