@@ -50,6 +50,11 @@
     * yazi .desktop
     * yazi plugins
 
+* - [ ] jq
+
+* - [ ] wc
+  - [ ] fix flatpak mouse cursor (copy)
+
 ### 5. Documentation & Structure
 
 * - [x] Generate Tree Map for `mysh264/i3-and-KDE-Plasma`.
