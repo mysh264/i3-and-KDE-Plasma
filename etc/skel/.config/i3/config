@@ -24,7 +24,8 @@
 #########################################
 # Applicatons
 # Internet Browser
-	set $browser1 brave
+	#set $browser1 brave
+	set $browser1 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=brave --file-forwarding com.brave.Browser @@u %U @@
 	set $browser2 firefox
 	set $browser3 chromium
 
