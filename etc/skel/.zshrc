@@ -110,17 +110,22 @@ source $ZSH/oh-my-zsh.sh
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-#source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 alias update-full="sudo pacman -Syyu --noconfirm ; yay -Syu --noconfirm ;  flatpak update --appstream && flatpak update --assumeyes"
 alias update="sudo pacman -Syyu --noconfirm"
 alias update-yay="yay -Syyu --noconfirm"
 alias update-flatpak="flatpak update --appstream && flatpak update --assumeyes"
-
 alias update-fonts="fc-cache -fv"
 
+alias blue="sudo modprobe -r btusb ; sudo modprobe btusb ; sudo systemctl restart bluetooth"
+
+# Tailscale Exit Node Controls
+alias vpn-on="sudo tailscale up --exit-node=100.100.1.2 --exit-node-allow-lan-access --accept-routes --operator=$USER; sleep 2; pkill -RTMIN+10 i3blocks"
+alias vpn-off="sudo tailscale up --exit-node= --exit-node-allow-lan-access=false --accept-routes --operator=$USER; sleep 2; pkill -RTMIN+10 i3blocks"
+
+# alias tailscaleuser="sudo tailscale set --operator=$USER"
+# alias ts='docker exec tailscale tailscale'
 export EDITOR=nano
 
 fastfetch
