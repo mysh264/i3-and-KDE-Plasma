@@ -49,7 +49,7 @@
 # Feh Options
 	#set $feh feh --bg-scale
 
-	set $feh $HOME/.config/i3/scripts2/fehbg.sh -t 300  # -t means sleep time
+	#set $feh $HOME/.config/i3/scripts2/fehbg.sh -t 300  # -t means sleep time
 
 #########################################
 # Border
@@ -227,6 +227,9 @@ $code $mod+Shift+21    move container to workspace  $ws12
 # Workspace by mouse
 $sym Mod1+space workspace $ws10
 
+# i3 will now see these as two completely different keys
+# bindsym --whole-window F13 workspace back_and_forth
+# bindsym --whole-window F14 exec --no-startup-id alacritty
 #########################################
 
 #########################################
@@ -359,7 +362,7 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts2/'KDE Plasma'/pla
 $exec picom --config  ~/.config/picom.conf
 
 # set wallpaper
-$exec $feh
+#$exec $feh
 
 #########################################
 
@@ -367,10 +370,11 @@ $exec $feh
 #           Utility Startup             #
 #########################################
 
+#$exec "sleep 15 && audiorelay -minimized"
 # Load ~/.Xresources
 $exec xrdb -merge ~/.Xresources
 
-$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh &> ~/startup.log"
+$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh"
 
 # Restart i3wm
 #$exec i3-msg restart
@@ -384,7 +388,28 @@ $exec ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 # Restart the scripts and kill the old one.
 exec_always --no-startup-id sleep 8 && ~/.config/i3/scripts2/restart_perimeter.sh
 
+
 #########################################
+
+#########################################
+#         Mouse Keys Remaping           #
+#########################################
+
+# Start xbindkeys for extra moue buttons remaping
+# Note1: "pkill -f xbindkeys" To kill xbindkeys
+# Note2: "nano nano ~/.xbindkeysrc"
+# Note3:
+#			# i3WM Workspace Toggle
+#			"xdotool key Shift+space"
+#			b:8    #Down Button
+#
+#			# Start xfce4-dropdown therminal
+#			"xdotool key XF86Favorites"
+#			b:9    #Up Button
+# Note4: The Shortcuts Should be first in this file "i3 config"
+# Note5: It works by (MouseButton to Shortcus)
+
+$exec xbindkeys
 
 #########################################
 #              Tray Startup             #
@@ -641,10 +666,11 @@ bar {
 
         # Right click to go to workspace 10
         $sym button3 workspace $ws10
+        #$sym button8 workspace back_and_forth
 	
         # Display mode
         ## https://i3wm.org/docs/userguide.html#_display_mode
-        mode hide # dock|hide|invisible
+        #mode hide # dock|hide|invisible
         #hidden_state hide # hide|show
         #modifier Mod1
         #modifier Ctrl
