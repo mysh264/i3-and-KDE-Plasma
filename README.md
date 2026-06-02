@@ -1209,6 +1209,10 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
   
   yay -S mpv-mpris2-bin
   ```
+* ```subliminal``` , 
+  ```bash
+  yay -S subliminal --noconfirm
+  ```
 
 * ```mpv-config``` , My personal mpv configurations and scripts. <sup>[Github](https://github.com/mysh264/mpv-config)</sup> , <sup>[Forked](https://github.com/noelsimbolon/mpv-config)</sup>
 
