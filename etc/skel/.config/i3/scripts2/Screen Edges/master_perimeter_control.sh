@@ -27,7 +27,7 @@ L_START=0; L_END=$H
 L_CMD_IN=""; L_CMD_OUT=""
 
 # RIGHT EDGE (xfce4-terminal zone)
-R_ENABLED=true
+R_ENABLED=false
 R_ACT=1; R_DEACT=20; R_WAIT_IN=0; R_WAIT_OUT=0
 R_START=400; R_END=700
 R_CMD_IN="xfce4-terminal --drop-down > /dev/null 2>&1 &"; R_CMD_OUT=""
