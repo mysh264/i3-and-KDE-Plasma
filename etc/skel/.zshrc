@@ -128,4 +128,6 @@ alias vpn-off="sudo tailscale up --exit-node= --exit-node-allow-lan-access=false
 # alias ts='docker exec tailscale tailscale'
 export EDITOR=nano
 
+export PATH="$HOME/.local/bin:$PATH"
+
 fastfetch
