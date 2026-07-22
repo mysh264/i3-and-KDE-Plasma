@@ -30,8 +30,8 @@ for SCRIPT_PATH in "${SCRIPTS[@]}"; do
         # The '&' makes it a background task
         # 'disown' lets the manager exit without killing the child
         echo "Starting: $SCRIPT_NAME"
-        #bash "$SCRIPT_PATH" > /dev/null 2>&1 &
-        bash "$SCRIPT_PATH" &>> $HOME/.scripts_log/"$SCRIPT_NAME".log &
+        bash "$SCRIPT_PATH" > /dev/null 2>&1 &
+        # bash "$SCRIPT_PATH" &>> $HOME/.scripts_log/"$SCRIPT_NAME".log &
 
         disown
     else
