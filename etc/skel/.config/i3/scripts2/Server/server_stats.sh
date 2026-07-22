@@ -21,16 +21,18 @@ DATA=$(ssh -q -o ConnectTimeout=1 -S "$SOCKET" "$USER@$SERVER_IP" "
     RAM=\$(free | awk '/Mem/{printf \"%.0f%%\", (\$3/\$2)*100}')
 
     DISK_ROOT=\$(df -h / | awk 'NR==2 {print \$4}')
-    DISK_HL=\$(df -h /mnt/homelab 2>/dev/null | awk 'NR==2 {print \$4}')
-    DISK_PD=\$(df -h /mnt/personal_data 2>/dev/null | awk 'NR==2 {print \$4}')
+    # DISK_HL=\$(df -h /mnt/homelab 2>/dev/null | awk 'NR==2 {print \$4}')
+    # DISK_PD=\$(df -h /mnt/personal_data 2>/dev/null | awk 'NR==2 {print \$4}')
 
-    [ -z \"\$DISK_HL\" ] && DISK_HL=\"N/A\"
-    [ -z \"\$DISK_PD\" ] && DISK_PD=\"N/A\"
+    # [ -z \"\$DISK_HL\" ] && DISK_HL=\"N/A\"
+    # [ -z \"\$DISK_PD\" ] && DISK_PD=\"N/A\"
     [ -z \"\$FAN\" ] && FAN=\"N/A\"
     [ -z \"\$TEMP_NUM\" ] && TEMP_NUM=\"0\"
 
     #echo \"\$CPU_NUM,\$TEMP_NUM, Root:\$DISK_ROOT HL:\$DISK_HL PD:\$DISK_PD |  \$RAM |  \$(printf \"%.0f%%\" \$CPU_NUM) |  \${TEMP_NUM}°C |  \$LOAD |  \$FAN RPM\"
-    echo \"\$CPU_NUM,\$TEMP_NUM, /:\$DISK_ROOT HL:\$DISK_HL PD:\$DISK_PD |  \$RAM |  \$(printf \"%.0f%%\" \$CPU_NUM) |  \${TEMP_NUM}°C |  \$LOAD |  \$FAN\"
+    # echo \"\$CPU_NUM,\$TEMP_NUM, /:\$DISK_ROOT HL:\$DISK_HL PD:\$DISK_PD |  \$RAM |  \$(printf \"%.0f%%\" \$CPU_NUM) |  \${TEMP_NUM}°C |  \$LOAD |  \$FAN\"
+    echo \"\$CPU_NUM,\$TEMP_NUM, /:\$DISK_ROOT |  \$RAM |  \$(printf \"%.0f%%\" \$CPU_NUM) |  \${TEMP_NUM}°C |  \$LOAD |  \$FAN\"
+
 ")
 
 if [ $? -ne 0 ] || [ -z "$DATA" ]; then
