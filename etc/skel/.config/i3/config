@@ -501,6 +501,8 @@ assign [class="gwenview"] $ws6
 
 assign [class="Stremio"] $ws7
 assign [class="Kodi"] $ws7
+assign [class="Jellyfin Media Player"] $ws7
+assign [class="jellyfin-desktop"] $ws7
 
 assign [class="kitty"] $ws8
 assign [class="qBittorrent"] $ws8
