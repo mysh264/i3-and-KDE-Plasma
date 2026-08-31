@@ -125,6 +125,21 @@ set $comma 59
 set $period 60
 
 #########################################
+# Numpad
+# Note: Not Working As env, fix it later
+
+# set $numleft 83 #KP_Left # Next
+# set $numright 85 #KP_Right	# Back
+#
+# set $numup 80 #KP_Up # First
+# set $numdown 88 #KP_Down # Last
+#
+# set $num0 90 #KP_Insert # Toggle
+# set $num5 84 #KP_Begin # Toggle
+
+# set $numdelete 91 #KP_Delete
+
+#########################################
 
 #########################################
 #               Font                    #
@@ -191,7 +206,8 @@ $sym $mod+Tab workspace next
 $sym $mod+Shift+Tab workspace prev
 
 # switch between the current and the previously focused one
-$sym Shift+space workspace back_and_forth
+#$sym Shift+space workspace back_and_forth
+$sym Ctrl+space workspace back_and_forth
 
 # open new empty workspace
 $code $mod+Shift+$n $exec ~/.config/i3/scripts/empty_workspace
@@ -283,6 +299,80 @@ $code $mod+$z floating toggle
 
 # focus the parent container
 $code $mod+$a focus parent
+
+#########################################
+
+#########################################
+#            Num Pad Shortcuts          #
+#########################################
+
+# Num Pad Keys
+# switch/iterate between workspaces
+#KP_Right
+$code 85 workspace next
+#KP_Left
+$code 83 workspace prev
+
+# switch between the current and the previously focused one
+#KP_Insert | Num Zero 0
+$code 90 workspace back_and_forth
+#KP_Begin | Num Five 5
+$code 84 workspace back_and_forth
+
+# switch to first and last workspaces
+#KP_Up
+$code 80 $exec i3-msg workspace "$(i3-msg -t get_workspaces | jq -r '.[0].name')"
+#KP_Down
+$code 88 $exec i3-msg workspace "$(i3-msg -t get_workspaces | jq -r '.[-1].name')"
+
+#KP_Delete | Num .
+# $code 91 workspace 97
+$code 91 $exec $drop
+
+#End | 115
+$code 115 kill
+
+# Null Keys
+#KP_End | Num One 1
+# $code 87 nop
+#KP_Next | Num Three 3
+# $code 89 nop
+#KP_Home | Num Seven 7
+# $code 79 nop
+#KP_Prior | Num Nine 9
+# $code 81 nop
+#Num_Lock
+$code 77 nop
+#KP_Enter
+$code 104 nop
+#Home
+$code 110 nop
+#Prior | pg up
+$code 112 nop
+#Next | pg dn
+$code 117 nop
+
+# change focus:
+$sym Mod1+Left focus left
+$sym Mod1+Down focus down
+$sym Mod1+Up focus up
+$sym Mod1+Right focus right
+
+#KP_End | Num One 1
+$code 87 focus left
+#KP_Next | Num Three 3
+$code 89 focus right
+
+# move focused window:
+$sym Ctrl+Left move left
+$sym Ctrl+Down move down
+$sym Ctrl+Up move up
+$sym Ctrl+Right move right
+
+#KP_Home | Num Seven 7
+$code 79 move left
+#KP_Prior | Num Nine 9
+$code 81 move right
 
 #########################################
 
