@@ -1,0 +1,22 @@
+FingerPrint Support HP
+
+╰─$ yay -S libfprint-elanmoc2-working-git
+╰─$ sudo pacman -S fprintd
+╰─$ sudo systemctl restart fprintd.service
+
+╰─$ sudo nano /etc/pam.d/sddm
++++ Add auth sufficient pam_fprintd.so
+
+╰─$ sudo nano /etc/pam.d/system-local-login
++++ Add auth sufficient pam_fprintd.so
+
+╰─$ sudo nano /etc/pam.d/sudo
++++ Add auth sufficient pam_fprintd.so
+
+╰─$ sudo nano /etc/pam.d/system-login
++++ Add auth sufficient pam_fprintd.so
+
+
+╰─$ sudo cp /usr/lib/pam.d/polkit-1 /etc/pam.d/polkit-1
+╰─$ sudo nano /etc/pam.d/polkit-1
++++ Add auth sufficient pam_fprintd.so
