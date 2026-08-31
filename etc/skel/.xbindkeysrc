@@ -1,5 +1,5 @@
 # i3WM Workspace Toggle
-"xdotool key Shift+space"
+"xdotool key Ctrl+space"
 b:8    #Down Button
 
 # Start xfce4-dropdown therminal
