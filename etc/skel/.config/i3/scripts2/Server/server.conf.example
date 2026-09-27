@@ -1,0 +1,10 @@
+# Copy to server.conf (same folder) and fill in. server.conf is ignored by git.
+# The i3blocks [server_monitor] block stays hidden until this file exists.
+
+SERVER_IP="192.168.1.10"          # server address (LAN or Tailscale IP)
+SERVER_USER="me"                  # ssh user on the server
+KEY_PATH="$HOME/.ssh/id_ed25519"  # ssh key with access to the server
+
+# Two extra disks / mount points on the server to show free space for
+DISK_DOCKER="/srv/docker"
+DISK_PERSONAL="/srv/personal"

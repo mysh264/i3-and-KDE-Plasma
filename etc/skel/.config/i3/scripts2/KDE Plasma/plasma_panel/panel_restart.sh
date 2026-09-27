@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 plasmashell --replace & disown
 sleep 2

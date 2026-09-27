@@ -9,52 +9,25 @@
 
 # needs rofi config:
 # $HOME/.config/rofi/powermenu.rasi
-# set to be used in i3wm
+# set to be used in i3wm + KDE Plasma:
+# logout/reboot/shutdown go through Plasma's session manager (ksmserver)
+# so the session is saved and apps are closed cleanly.
 
 ROFI_THEME="${HOME}/.config/rofi/powermenu.rasi"
-# Define possible lock scripts/commands (edit this list as you like)
-LOCK_SCRIPTS=("${HOME}/.config/i3/scripts/blur-lock" "i3lock")
-
-# Find available lock script
-find_lock_script() {
-    for script in "${LOCK_SCRIPTS[@]}"; do
-        # Handle command names vs full paths
-        if [[ "$script" =~ ^[a-zA-Z0-9_-]+$ ]]; then
-            # It's a command name, check if available
-            if command -v "$script" >/dev/null 2>&1; then
-                echo "$script"
-                return 0
-            fi
-        else
-            # It's a path, check if file exists and is executable
-            if [[ -x "$script" ]]; then
-                echo "$script"
-                return 0
-            fi
-        fi
-    done
-    return 1
-}
 
 # Menu entries
-chancel=" Cancel"
-lock="  Lock"
-logout="  Logout"
-reboot="  Reboot"
-shutdown="  Shutdown"
-suspend="  Suspend"
-hibernate="  Hibernate"
+cancel=$'\uf05e  Cancel'
+lock=$'\uf023   Lock'
+logout=$'\uf007   Logout'
+reboot=$'\uf01e   Reboot'
+shutdown=$'\uf011   Shutdown'
+suspend=$'\uf186   Suspend'
+hibernate=$'\uf2dc   Hibernate'
 
-
-# Add lock only if script is found
-if lockcmd="$(find_lock_script)"; then
-    options="$chancel\n$lock\n$logout\n$reboot\n$shutdown\n$suspend\n$hibernate"
-else
-    options="$chancel\n$logout\n$reboot\n$shutdown\n$suspend\n$hibernate"
-fi
+options="$cancel\n$lock\n$logout\n$reboot\n$shutdown\n$suspend\n$hibernate"
 
 chosen="$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
-    -theme $ROFI_THEME)"
+    -theme "$ROFI_THEME")"
 
 case $chosen in
     "$lock")
@@ -64,13 +37,13 @@ case $chosen in
         exit 0
         ;;
     "$logout")
-        i3-msg exit
+        qdbus6 org.kde.Shutdown /Shutdown org.kde.Shutdown.logout
         ;;
     "$reboot")
-        systemctl reboot
+        qdbus6 org.kde.Shutdown /Shutdown org.kde.Shutdown.logoutAndReboot
         ;;
     "$shutdown")
-        systemctl poweroff
+        qdbus6 org.kde.Shutdown /Shutdown org.kde.Shutdown.logoutAndShutdown
         ;;
     "$suspend")
         systemctl suspend

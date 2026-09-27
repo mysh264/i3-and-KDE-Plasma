@@ -1,2 +1,12 @@
+# Cursor agent plans / local editor state
+.cursor/
 
-/etc/skel/.config/i3/scripts2/old
+# Personal absolute-path symlinks (would copy as broken links for other users)
+etc/skel/Shortcuts/
+
+# Private, machine-specific settings (see *.example files)
+etc/skel/.zshrc.local
+etc/skel/.config/i3/scripts2/Server/server.conf
+
+# Local backups of the server stats script
+etc/skel/.config/i3/scripts2/Server/Backup/

@@ -1,0 +1,211 @@
+# i3blocks TEMPLATE: scripts/theme-switch generates i3blocks.conf from this file.
+# Edit this file (not i3blocks.conf). Color placeholders like @ACCENT@ are filled from themes/<theme>.theme
+# (roles: BG SURFACE FG MUTED SEP ACCENT ACCENT_DIM ACCENT_FG OK WARN CRIT INFO LAUNCH_TERM LAUNCH_WEB LAUNCH_FILES)
+
+# i3blocks config file changed for EndeavourOS-i3 setup
+
+# source is available here:
+# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/i3blocks.conf
+# Maintainer: joekamprad [joekamprad //a_t// endeavouros.com]
+# Former Visual Designer: Florent Valetti [@FLVAL EndeavourOS]
+# created for i3wm setup on EndeavourOS
+# https://endeavouros.com
+
+# cheatsheet for icon fonts used on the block-bar:
+# https://fontawesome.com/v4.7/cheatsheet/
+
+# --> to update this run the following command:
+# wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/etc/skel/.config/i3/i3blocks.conf -P ~/.config/i3/
+
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+separator=false
+markup=pango
+# exported to every block command as env vars (used by the disk/memory/cpu/temperature scripts)
+WARN_COLOR=@WARN@
+CRIT_COLOR=@CRIT@
+
+[prev_workspace]
+command=sed -n '2p' /tmp/i3_ws_log | xargs -I {} echo " {}"
+interval=once
+# #color=#00d7ff # Cyberpunk Cyan
+# #color=#ffa726 # Amber
+color=@INFO@
+# #color=#88c0d0 # Nordic Frost
+# #color=#419DCC # Blue
+# #color=#50fa7b # Spring Green
+# #color=#f1fa8c # Soft Lemon
+# #color=#bd93f9 # Electric Purple
+# #color=#ffb86c # Vivid Amber
+# #color=#a6e22e # Electric Lime
+# #color=#ff5555 # Red
+# #color=#ff79c6 # Vivid Magenta
+signal=1
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+[ip_country]
+command=~/.config/i3/scripts2/ip_country.sh
+interval=300
+color=@INFO@
+signal=10
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+[server_monitor]
+command=~/.config/i3/scripts2/Server/server_stats.sh
+interval=30
+#markup=pango
+#color=#ff9800
+#color=#DD4814
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+[keyhint]
+command=~/.config/i3/scripts/keyhint-block
+interval=once
+signal=3
+
+[plasma-panel]
+label=
+command=~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_i3blocks.sh
+interval=once
+signal=2
+
+[terminal]
+full_text= 
+color=@LAUNCH_TERM@
+command=i3-msg -q exec konsole
+
+[browser]
+#full_text= 
+full_text= 
+color=@LAUNCH_WEB@
+#command=i3-msg -q exec firefox
+#command=i3-msg -q exec brave
+command=i3-msg -q exec "/usr/bin/flatpak run com.brave.Browser"
+
+[files]
+full_text= 
+color=@LAUNCH_FILES@
+command=i3-msg -q exec dolphin
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+# Disk usage
+#
+# The directory defaults to $HOME if the instance is not specified.
+# The script may be called with a optional argument to set the alert
+# (defaults to 10 for 10%).
+[disk]
+label=<span color='@ACCENT@'></span> 
+instance=/
+command=~/.config/i3/scripts/disk
+interval=30
+
+[disk]
+label=<span color='@ACCENT@'></span> 
+instance=/home
+command=~/.config/i3/scripts/disk
+interval=30
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory]
+label=<span color='@ACCENT@'></span> 
+command=~/.config/i3/scripts/memory
+interval=2
+
+[cpu_usage]
+label=<span color='@ACCENT@'></span> 
+command=~/.config/i3/scripts/cpu_usage
+#min_width=CPU: 100.00%
+interval=2
+
+[CPU-temperature]
+label=
+command=~/.config/i3/scripts/temperature --chip coretemp-isa-0000
+# command=~/.config/i3/scripts/temperature --chip acpitz-acpi-0
+interval=2
+#T_WARN=70
+#T_CRIT=90
+#SENSOR_CHIP=""
+# where SENSOR_CHIP can be find with sensors output
+# can be used also for GPU temperature or other temperature sensors lm-sensors detects.
+
+[bandwidth]
+command=~/.config/i3/scripts/bandwidth2
+interval=persist
+
+[load_average]
+label=<span color='@ACCENT@'></span>
+command=cat /proc/loadavg | awk '{print " " $1}'
+interval=5
+markup=pango
+
+[fan]
+label=<span color='@ACCENT@'></span>
+interval=5
+command=cat /sys/class/hwmon/hwmon*/fan1_input 2>/dev/null | head -1 | awk '{print " " $1 " RPM"}'
+
+[frequancy]
+label=<span color='@ACCENT@'></span> 
+interval=5
+#command=grep "cpu MHz" /proc/cpuinfo |cut -d ":" -f 2 | cut -d "." -f1 | head -1 | sed 's/$/ MHz/'
+command=stdbuf -oL awk '/cpu MHz/ {sum+=$4; c++} END {printf "%d\n", sum/c}' /proc/cpuinfo
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+[pavucontrol]
+full_text=♪
+color=@ACCENT@
+command=pavucontrol
+
+[volume]
+command=~/.config/i3/scripts/volume
+interval=2
+
+[simple-2]
+full_text=: :
+color=@SEP@
+
+[time]
+#label=
+command=date '+%a %d %b %H:%M:%S'
+interval=1
+
+[simple-2]
+full_text=: :
+color=@SEP@

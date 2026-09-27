@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 walldir=$HOME/.Wallpapers/*
 app=feh

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# keyhint-block - i3blocks button for the keybinding cheat sheet
+# click: toggle the sheet; accent color while it is open
+
+ACCENT="#926ee4"; MUTED="#a0a0a0"
+[ -f "$HOME/.config/i3/theme/current.sh" ] && . "$HOME/.config/i3/theme/current.sh"
+
+TOGGLE="$HOME/.config/i3/scripts/keyhint-toggle"
+
+# i3blocks sets $button when the block is clicked
+[ -n "$button" ] && "$TOGGLE" > /dev/null
+
+icon=$'\uf11c'
+echo "$icon"
+echo "$icon"
+if "$TOGGLE" --status; then echo "$ACCENT"; else echo "$MUTED"; fi

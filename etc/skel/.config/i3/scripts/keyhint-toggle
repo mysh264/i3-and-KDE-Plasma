@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# keyhint-toggle - show / hide the conky keybinding cheat sheet
+#
+# usage: keyhint-toggle             toggle the sheet
+#        keyhint-toggle --refresh   regenerate + restart it, only if it is open (used by theme-switch)
+#        keyhint-toggle --status    exit 0 if the sheet is open
+
+CONF="$HOME/.cache/i3-keyhint/keyhint.conf"
+GEN="$HOME/.config/i3/scripts/keyhint-gen"
+
+is_open() { pgrep -f "conky -c $CONF" > /dev/null; }
+
+open_sheet() {
+    "$GEN" > /dev/null || { notify-send -u critical "Keyhint" "keyhint-gen failed"; exit 1; }
+    setsid conky -c "$CONF" > /dev/null 2>&1 < /dev/null &
+    sleep 0.3
+}
+
+close_sheet() { pkill -f "conky -c $CONF"; }
+
+case "$1" in
+    --status)  is_open; exit $? ;;
+    --refresh) is_open || exit 0; close_sheet; sleep 0.2; open_sheet ;;
+    *)         if is_open; then close_sheet; else open_sheet; fi ;;
+esac
+
+# update the bar button
+pkill -RTMIN+3 i3blocks
+exit 0

@@ -5,8 +5,8 @@ A comprehensive guide to integrating the i3 tiling window manager seamlessly int
 
 ---
 
-> ![KDE Plasma and i3wm desktop integration overview - 1](Images/Screenshot_20260503_160155.png)
-> ![KDE Plasma and i3wm desktop integration overview - 2](Images/Screenshot_20260503_160341.png)
+> ![KDE Plasma and i3wm desktop integration overview - 1](Images/Screenshot_20260503_160155.webp)
+> ![KDE Plasma and i3wm desktop integration overview - 2](Images/Screenshot_20260503_160341.webp)
 
 ---
 
@@ -36,6 +36,24 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 ---
 
+## Features
+
+What this config adds on top of plain i3 + Plasma (`Super` = the Windows key):
+
+| Feature | Keys | What it does |
+|---|---|---|
+| Color themes | `Super+F2` / `Super+Shift+F2` | Next theme / pick one in rofi. Recolors window tabs, i3bar, i3blocks, rofi and the cheat sheet at once. Ships with plasma-whitesur, catppuccin-mocha, nord, gruvbox-dark, tokyo-night, dracula. |
+| Keybinding cheat sheet | `Super+F1` or the keyboard icon in i3blocks | A clean conky overlay generated from the i3 config itself, so it's always up to date. |
+| Two power menus | `Super+Shift+E` / `Super+Ctrl+E` | Rofi menu (lock, logout, reboot, shutdown through Plasma's session manager) or Plasma's own logout screen. |
+| Plasma panel control | `Super+U` / `Super+Shift+U` | Toggle the Plasma panel, or switch it to dock mode. Its state is shown in i3blocks. |
+| Hot corners and screen edges | mouse | Push the pointer into a corner or edge to trigger actions ([Screen Edges](etc/skel/.config/i3/scripts2/Screen%20Edges/master_perimeter_control.sh)). |
+| Extra mouse buttons | back / forward buttons | Previous workspace and a drop-down terminal ([.xbindkeysrc](etc/skel/.xbindkeysrc)). |
+| Frosted, readable tabs | - | Tabs are slightly transparent with a blur behind them (picom), and unfocused tab text stays readable in every theme. |
+| Arabic / RTL window titles | - | Titles always start left-to-right, so Arabic titles are centered and not cut off. |
+| Keyboard-layout proof shortcuts | - | Bindings use keycodes, so they keep working when the Arabic (or any other) layout is active. |
+
+---
+
 ## Table of Contents
 
 <details><summary>Click to view</summary>
@@ -44,6 +62,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
     * [Why i3 and KDE Plasma?](https://github.com/mysh264/i3-and-KDE-Plasma#why-i3-and-kde-plasma)
     * [i3wm vs. KWin Scripts](http://github.com/mysh264/i3-and-KDE-Plasma#why-use-i3wm-instead-of-a-kwin-script)
     * [Pros & Cons](https://github.com/mysh264/i3-and-KDE-Plasma#pros--cons)
+    * [Features](https://github.com/mysh264/i3-and-KDE-Plasma#features)
 
 
 2. **[Installation & Setup](https://github.com/mysh264/i3-and-KDE-Plasma#installation)**
@@ -62,7 +81,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 4. **Desktop Fixes & Optimization**
     * [Keyboard Shortcut Conflicts](https://github.com/mysh264/i3-and-KDE-Plasma#disabling-a-shortcut-that-breaks-stuff)
-    * [Plasma Logout Screen](https://github.com/mysh264/i3-and-KDE-Plasma#do-not-use-the-plasma-logout-screen)
+    * [Logout: Two Options](https://github.com/mysh264/i3-and-KDE-Plasma#logout-two-options)
     * [Splash Screen](https://github.com/mysh264/i3-and-KDE-Plasma#disable-the-kde-plasma-startup-screen-splash-screen)
     * [Fixing Mouse Cursors (System & Flatpak)](https://github.com/mysh264/i3-and-KDE-Plasma#fix-mouse-cursor)
     * [Fixing i3bar & Frame Fonts](https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame)
@@ -74,6 +93,7 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
     * [Random Wallpapers (Feh)](https://github.com/mysh264/i3-and-KDE-Plasma#random-wallpapers-feh)
     * [Picom](https://github.com/mysh264/i3-and-KDE-Plasma#picom)
     * [i3blocks](https://github.com/mysh264/i3-and-KDE-Plasma#i3blocks)
+    * [Color Themes](https://github.com/mysh264/i3-and-KDE-Plasma#color-themes)
     * [Rofi](https://github.com/mysh264/i3-and-KDE-Plasma#rofi-application-launcher-theme)
 
 
@@ -89,19 +109,19 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
     * [Easy Effects Audio Presets](https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets)
 
 
-7. **[App Recommendations](https://github.com/mysh264/i3-and-KDE-Plasma#app-recommendations)**
-    * [Terminals](https://github.com/mysh264/i3-and-KDE-Plasma#terminals)
-    * [Web Browsers](https://github.com/mysh264/i3-and-KDE-Plasma#web-browsers)
-    * [Email Clients](https://github.com/mysh264/i3-and-KDE-Plasma#email-clients)
-    * [Editors](https://github.com/mysh264/i3-and-KDE-Plasma#editors)
-    * [Downloader](https://github.com/mysh264/i3-and-KDE-Plasma#downloader)
-    * [Torrent](https://github.com/mysh264/i3-and-KDE-Plasma#torrent-downloaders)
-    * [Multimedia & Creative](https://github.com/mysh264/i3-and-KDE-Plasma#multimedia-tools)
-    * [Screenshot & Recording](https://github.com/mysh264/i3-and-KDE-Plasma#screen-recorder-tools)
-    * [Disk Utilities](https://github.com/mysh264/i3-and-KDE-Plasma#disk-utilities)
-    * [Password Managers](https://github.com/mysh264/i3-and-KDE-Plasma#password-managers)
-    * [Network](https://github.com/mysh264/i3-and-KDE-Plasma#network)
-    * [Communication & Productivity](https://github.com/mysh264/i3-and-KDE-Plasma#communication-and-productivity)
+7. **[App Recommendations](docs/APPS.md)**
+    * [Terminals](docs/APPS.md#terminals)
+    * [Web Browsers](docs/APPS.md#web-browsers)
+    * [Email Clients](docs/APPS.md#email-clients)
+    * [Editors](docs/APPS.md#editors)
+    * [Downloader](docs/APPS.md#downloader)
+    * [Torrent](docs/APPS.md#torrent-downloaders)
+    * [Multimedia & Creative](docs/APPS.md#multimedia-tools)
+    * [Screenshot & Recording](docs/APPS.md#screenshot--screen-recorder-tools)
+    * [Disk Utilities](docs/APPS.md#disk-utilities)
+    * [Password Managers](docs/APPS.md#password-managers)
+    * [Network](docs/APPS.md#networking)
+    * [Communication & Productivity](docs/APPS.md#communication-and-productivity)
 
 </details>
 
@@ -121,10 +141,27 @@ Short answer: **I3wm is better and more stable than any kwin script I tried**, a
 
 #### [mysh264/i3-and-KDE-Plasma/etc/skel/](https://github.com/mysh264/i3-and-KDE-Plasma/tree/main/etc/skel)
 
+**Option A: copy the files** (simple, your copies are independent from the repo)
+
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
 cd i3-and-KDE-Plasma
 cp -dvr etc/skel/. $HOME
+```
+
+**Option B: symlink the files** (what I use: editing a live config edits the repo, so `git pull` / `git diff` just work)
+
+```bash
+git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
+cd i3-and-KDE-Plasma
+./link.sh -n   # dry run, prints what would happen
+./link.sh      # anything already in the way is moved to ~/.dotfiles-backup-<date>/
+```
+
+After either option, apply a color theme once so every generated file matches:
+
+```bash
+~/.config/i3/scripts/theme-switch --apply
 ```
 
 ##### Tree Map ```i3-and-KDE-Plasma/etc/skel/```
@@ -135,52 +172,61 @@ cp -dvr etc/skel/. $HOME
 .
 ├── .config
 │   ├── conky
-│   │   └── *lean-conky-config-0.9.0 # https://github.com/mysh264/i3-and-KDE-Plasma#conky
-│   │       ├── *conky.conf # "Edited to work for Plasma + i3wm"
+│   │   └── *lean-conky-config-0.9.0          # system monitor (edited for Plasma + i3wm)
 │   ├── i3
-│   │   ├── *config # Edited to run with Plasma + i3wm
-│   │   ├── *i3blocks.conf # "Edited to run scripts-2/plasma_panel_i3blocks.sh + ... etc"
-│   │   ├── scripts # EndeavourOS scripts.
-│   │   └── *scripts-2
-│   │       ├── *fehbg.sh # "Random wallpapers (Feh)" # https://github.com/mysh264/i3-and-KDE-Plasma#random-wallpapers-feh
-│   │       ├── *plasma_panel_i3blocks.sh "Plasma Panel status" # https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel
-│   │       └── *plasma_panel.sh "Toggle Plasma Panel" # https://github.com/mysh264/i3-and-KDE-Plasma#toggle-hide-plasma-panel
+│   │   ├── *config                           # main i3 config (Plasma compatibility, keys, rules)
+│   │   ├── *i3blocks.conf.in                 # i3blocks TEMPLATE, edit this one (@ROLE@ colors)
+│   │   ├── i3blocks.conf                     # GENERATED from the template by theme-switch
+│   │   ├── i3blocks.extra.conf               # optional / unused blocks, kept for reference
+│   │   ├── *themes/                          # color themes (plasma-whitesur, catppuccin, nord, ...)
+│   │   ├── theme/                            # GENERATED: active theme (current.sh, i3-colors.conf)
+│   │   ├── *conky-keyhint/keyhint.conf       # keybinding cheat sheet (conky template)
+│   │   ├── scripts
+│   │   │   ├── *theme-switch                 # switch / pick color themes
+│   │   │   ├── *keyhint-gen, keyhint-toggle  # build and toggle the cheat sheet
+│   │   │   ├── *keyhint-block                # i3blocks button for the cheat sheet
+│   │   │   ├── *powermenu                    # rofi power menu (Plasma-aware logout/reboot/shutdown)
+│   │   │   ├── cpu_usage, memory, disk, temperature, volume, bandwidth2, empty_workspace
+│   │   │   └── _archive/                     # unused EndeavourOS scripts, kept for reference
+│   │   └── *scripts2
+│   │       ├── KDE Plasma
+│   │       │   ├── plasma-i3-orchestrator.sh # places Plasma popups / notifications under i3
+│   │       │   ├── id.sh                     # find X window ids by class / type / name
+│   │       │   └── plasma_panel/             # Plasma panel toggle, ghost mode, dock, i3blocks status
+│   │       ├── Screen Edges
+│   │       │   ├── master_perimeter_control.sh  # hot corners and screen edges
+│   │       │   └── i3bar_status.sh
+│   │       ├── Server/server_stats.sh        # home server status block (needs server.conf)
+│   │       ├── Workspace/track_workspaces.sh # "previous workspace" block
+│   │       ├── fehbg.sh                      # random wallpapers (feh)
+│   │       ├── ip_country.sh                 # public IP / country block
+│   │       └── restart_perimeter.sh
 │   ├── nano
 │   │   └── nanorc
 │   ├── picom
-│   │   └── *picom.conf "Edited to run Smoothly"
+│   │   └── *picom.conf                       # compositor: frosted tabs, rounded corners, fading
 │   ├── rofi
-│   │   ├── config.rasi
-│   │   ├── powermenu.rasi
-│   │   ├── power-profiles.rasi
-│   │   ├── rofidmenu.rasi
-│   │   └── rofikeyhint.rasi
+│   │   ├── config.rasi                       # launcher (imports theme-colors.rasi)
+│   │   ├── theme-colors.rasi                 # GENERATED by theme-switch
+│   │   ├── powermenu.rasi, power-profiles.rasi, rofidmenu.rasi, rofikeyhint.rasi
 │   ├── systemd
 │   │   └── user
-│   │       └── *plasma-i3.service "Systemd service to run i3 inside kde plasma" # https://github.com/mysh264/i3-and-KDE-Plasma#configuration
-│   └── viewnior
-│       └── viewnior.conf
+│   │       └── *plasma-i3.service            # runs i3 instead of KWin inside Plasma
+│   ├── viewnior
+│   └── yazi                                  # terminal file manager + plugins
 ├── .icons
 │   ├── default
-│   │   └── *index.theme # https://github.com/mysh264/i3-and-KDE-Plasma#fix-mouse-cursor
-│   ├── Layan-border-cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
-│   └── material_cursors # https://github.com/mysh264/i3-and-KDE-Plasma#mouse-cursor-theme
+│   │   └── *index.theme                      # default cursor theme
+│   ├── Layan-border-cursors
+│   └── material_cursors
 ├── .local
 │   └── share
-│       ├── applications
-│       │   └── *kitty-yt-x.desktop # https://github.com/kovidgoyal/kitty & https://github.com/Benexl/yt-x
-│       ├── *easyeffects # https://github.com/mysh264/i3-and-KDE-Plasma#easy-effects-presets
-│       │   └── output
-│       │       ├── GentleDynamics Dialogue Clarity Engine.json
-│       │       ├── GentleDynamics Feather Loudness.json
-│       │       └── GentleDynamics.json
-│       └── rofi
-│           └── themes
-│               ├── arc_dark_colors.rasi
-│               ├── arc_dark_transparent_colors.rasi
-│               └── deep-purple.rasi
-├── .Xresources # https://github.com/mysh264/i3-and-KDE-Plasma#fix-fonts-i3bar--i3-frame
-└── .zshrc # https://github.com/mysh264/i3-and-KDE-Plasma#shell
+│       ├── applications                      # yazi / kitty yt-x launchers
+│       ├── *easyeffects/output               # GentleDynamics audio presets
+│       └── rofi/themes                       # rofi color themes
+├── .xbindkeysrc                              # extra mouse buttons (back_and_forth, drop-down terminal)
+├── .Xresources                               # font rendering for i3bar / i3 frames
+└── .zshrc                                    # zsh + oh-my-zsh (private bits go in ~/.zshrc.local)
 ```
 </details>
 
@@ -294,7 +340,7 @@ We're gonna install a couple of packages that are required or nice-to-haves on i
 
 * ```viewnior``` , My favorite [image viewer](https://github.com/hellosiyan/Viewnior) (gwenview alternative)
 * ```conky``` , [light-weight system monitor](https://github.com/brndnmtthws/conky)
-* ```redshift``` , Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#Redshift-fix-geoclue)</Sup>
+* ```redshift``` , Color temperature adjustment tool <sup>[Geoclue fix](https://github.com/mysh264/i3-and-KDE-Plasma#redshift-fix-geoclue)</Sup>
 * ```awesome-terminal-fonts otf-font-awesome``` , if you are using [awesome fonts](https://fontawesome.com/v4/cheatsheet/) , you will need it
 * ```xfce4-terminal``` , [best drop-down terminal](https://docs.xfce.org/apps/xfce4-terminal/dropdown) (yakuake replacement)
 * ```sysstat tk gnuplot``` , some i3blocks scripts need them
@@ -439,13 +485,13 @@ for_window [title="^Desktop @ QRect.*"] kill, floating enable, border none
 
 > <p align="center">"KDE Plasma application launcher"</p>
 
-> ![KDE Plasma application launcher](Images/Screenshot_20260430_214529.png)
+> ![KDE Plasma application launcher](Images/Screenshot_20260430_214529.webp)
 
 Also, you can use `rofi` launcher. *Meta+E*
 
 > <p align="center">"Rofi application launcher"</p>
 
-> ![Rofi application launcher](Images/Screenshot_20260430_214059.png)
+> ![Rofi application launcher](Images/Screenshot_20260430_214059.webp)
 
 If you prefer to use `krunner`, this is the terminal command line to launch it, if you need it.
 ```bash
@@ -504,28 +550,35 @@ Launch the Plasma System Settings and go to *Keyboard > Shortcuts > Category Sys
 
 > <p align="center">"Screenshot of Activities Shortcut Settings"</p>
 
-> ![Screenshot of Activities Shortcut Settings](Images/Screenshot_20260430_232850.png)
+> ![Screenshot of Activities Shortcut Settings](Images/Screenshot_20260430_232850.webp)
 
 #### Meta+R "*Resize*"
 Launch the Plasma System Settings and go to *Category Workspace > Shortcuts > Category Applications > Spectacle* and disable the shortcut "Start/Stop Region Recording" that uses the combination ```Meta+R```.
 
 > <p align="center">"Screenshot of Spectacle Shortcut Settings"</p>
 
-> ![Screenshot of Spectacle Shortcut Settings](Images/Screenshot_20260430_232931.png)
+> ![Screenshot of Spectacle Shortcut Settings](Images/Screenshot_20260430_232931.webp)
 
 ---
 
-### Do not use the plasma logout screen
-Rofi will handle it, if you are using my configuration files or [EndeavourOS i3wm Edition configuration files (github)](https://github.com/endeavouros-team/endeavouros-i3wm-setup) , Just press ```Super+Shift+E```
+### Logout: two options
+Under i3 the Plasma logout screen used to open as a small broken window. With the rule below it opens fullscreen and works normally, so you can use either menu:
+
+* **`Super+Shift+E`: rofi power menu** ([powermenu](etc/skel/.config/i3/scripts/powermenu)). Quick keyboard menu: lock, logout, reboot, shutdown. Logout, reboot and shutdown go through Plasma's session manager (`qdbus6 org.kde.Shutdown`), so apps are closed cleanly and the session is saved.
+* **`Super+Ctrl+E`: Plasma's own logout screen**, the familiar full-screen KDE one.
 
 ```
-# exit-menu
-bindsym Mod4+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
+# rofi power menu
+$code $mod+Shift+$e $exec ~/.config/i3/scripts/powermenu
+# Plasma logout screen
+$code $mod+Ctrl+$e $exec qdbus6 org.kde.LogoutPrompt /LogoutPrompt org.kde.LogoutPrompt.promptAll
+# make the Plasma logout screen cover the whole screen
+for_window [class="ksmserver-logout-greeter"] fullscreen enable, border none
 ```
 
 > <p align="center">"Rofi exit menu"</p>
 
-> ![Rofi exit Menu](Images/Screenshot_20260430_215358.png)
+> ![Rofi exit Menu](Images/Screenshot_20260430_215358.webp)
 
 ---
 
@@ -534,7 +587,7 @@ Launch the Plasma System Settings and go to *Colors & Themes > Splash Screen* an
 
 > <p align="center">"Screenshot of Splash Screen Settings"</p>
 
-> ![Screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.png)
+> ![Screenshot of Splash Screen Settings](Images/Screenshot_20260430_211921.webp)
 
 -----
 
@@ -647,161 +700,56 @@ systemctl status geoclue.service
 
 ### Toggle Hide Plasma Panel
 
-i3wm does not support auto hide or toggle for plasma panel, and most of the time I don't use it, so I made a script using ```xdotool``` and ```xorg-xwininfo``` to work around this using ```Mod4+U``` to toggle plasma panel.
+i3wm can't auto-hide or toggle the Plasma panel, and most of the time I don't need it, so these scripts (using `xdotool` and `xorg-xwininfo`) take care of it.
 
-![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.gif)
+![Toggle Plasma Panel](Images/Toggle-Plasma-Panel.webp)
 
-***Note1: This script works perfectly if the Plasma panel is at the top of the screen, if you prefer to have the panel down, please check out the script before running it.***
+**Keys**
+* `Super+U`: show / hide the panel
+* `Super+Shift+U`: switch between dock mode (the panel reserves space) and ghost mode (floats above windows)
+* `Super+Shift+P`: restart the panel if it gets stuck
 
-***Note2: This script needs to be run at the startup, But we will not do that, just run the script once, and it will move the mouse cursor to the top edge of the screen, then it will give a unique name for the panel, so you can hide it or unhide it only, nothing else.***
+**How it works**
+* The panel shares the `plasmashell` class with notifications and popups, so at login [panel-startup.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel-startup.sh) finds the panel window and gives it a unique name (`Togglehidepanelplasma`). [panel-name.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel-name.sh) is how every other script finds it again.
+* [panel_toggle.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_toggle.sh) uses [panel_hide.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_hide.sh) and [panel_show.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_show.sh). [panel_dock_toggle.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_dock_toggle.sh) and [panel_ghost_mode.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_ghost_mode.sh) switch the mode, and [panel_restart.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_restart.sh) restarts plasmashell.
+* [panel_i3blocks.sh](etc/skel/.config/i3/scripts2/KDE%20Plasma/plasma_panel/panel_i3blocks.sh) shows the panel state in i3blocks, in the active theme's colors. It updates when the other scripts send `pkill -RTMIN+2 i3blocks`.
 
-***Note3: Plasma panel shares the classname [plasmashell] with other utilities "Like plasma notification" the only way to make it unique is to give it a name***
-
-1. Copy scripts-2 folder to i3 config directory
-
-```bash
-git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
-```
-
-```bash
-cd i3-and-KDE-Plasma
-```
-
-```bash
-cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
-```
-
-2. Install ```xdotool``` and ```xorg-xwininfo``` to run the scripts
+**Requirements**
 
 ```bash
 sudo pacman -S xdotool xorg-xwininfo
 ```
 
-3. Add this line to your i3 config file ```Super+U```
+***Note: the scripts assume the panel is at the top of the screen. If yours is at the bottom, check the coordinates in the scripts first.***
+
+The i3 config and i3blocks lines are already in this repo ([config](etc/skel/.config/i3/config), [i3blocks.conf.in](etc/skel/.config/i3/i3blocks.conf.in)):
 
 ```conf
-# Toggle plasma panel
-bindsym Mod4+u exec --no-startup-id ~/.config/i3/scripts-2/plasma_panel.sh && pkill -RTMIN+2 i3blocks
+# i3 config
+$exec "$HOME/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel-startup.sh"
+$code $mod+$u $exec ~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_toggle.sh && pkill -RTMIN+2 i3blocks
 ```
 
-4. Edit i3blocks.conf and add this lines
-
-```bash
-nano $HOME/.config/i3/i3blocks.conf
-```
-
-```
+```ini
+# i3blocks.conf.in
 [plasma-panel]
-label=
-command=~/.config/i3/scripts-2/plasma_panel_i3blocks.sh
+command=~/.config/i3/scripts2/'KDE Plasma'/plasma_panel/panel_i3blocks.sh
 interval=once
 signal=2
 ```
-
-<details>
-  <summary>Click to view plasma_panel.sh</summary>
-
-```sh
-
-#!/bin/bash
-
-name=Togglehidepanelplasma
-
-# xwininfo reply (xorg-xwininfo)
-hide=IsUnMapped
-unhide=IsViewable
-
-# Check if plasma panel name is set
-if xwininfo -name $name ; then
-    echo " All set"
-else
-    #xdotool selectwindow set_window --name "$name"
-    ## Auto select the panel by mouse
-    xdotool mousemove 500 15 ; xdotool selectwindow set_window --name "$name" & sleep 0.2 ;  xdotool click 1
-fi
-
-# Current panel status
-status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
-
-# Toggle the panel
-
-## if the panel is hidden then show it
-if [ $status == $hide ] ; then
-
-    if xdotool search -all --class "plasmashell" search --name "^$name"  windowmap ; then
-        echo "Plasma Panel is unhidden now"
-    fi
-else
-
-## is the panel is not hidden then hide it.
-    if [ $status == $unhide ] ; then
-        if xdotool search -all --class "plasmashell" search --name "^$name"  windowunmap ; then
-            echo "Plasma Panel is hidden now"
-            fi
-        fi
-
-fi
-
-```
-</details>
-
-
-<details>
-  <summary>Click to view plasma_panel_i3blocks.sh</summary>
-
-```sh
-
-#!/bin/bash
-
-## I3blocks colours
-# https://unix.stackexchange.com/questions/583409/i3blocks-script-coloring
-
-name=Togglehidepanelplasma
-
-# xwininfo reply (xorg-xwininfo)
-hide=IsUnMapped
-unhide=IsViewable
-
-# Current panel status
-status=$(xwininfo -name $name | grep 'Map State' | awk '{print $3}')
-
-# Check if plasma panel name is set
-if xwininfo -name $name &> /dev/null ; then
-    if [ $status == $hide ] ; then
-        #echo " "
-        echo
-        #echo \#961c90
-
-    else
-        if [ $status == $unhide ] ; then
-            echo " "
-            echo
-            echo \#15ff00
-        fi
-    fi
-
-else
-    echo "  Plasma Panel"
-    echo
-    echo  \#c20707
-fi
-
-```
-</details>
-
 
 ---
 
 ### Random wallpapers (Feh)
 
-![feh](Images/feh.gif)
+![feh](Images/feh.webp)
 
-1. Copy scripts-2 folder to i3 config directory
+1. Copy the scripts2 folder to your i3 config directory
 
 ```bash
 git clone https://github.com/mysh264/i3-and-KDE-Plasma.git
 cd i3-and-KDE-Plasma
-cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
+cp -dvr etc/skel/.config/i3/scripts2/ $HOME/.config/i3/
 ```
 
 2. Make Wallpaper directory ```$HOME/.Wallpapers``` , ***Note: This directory will be used for feh script, move/ln/copy your wallpapers folders/Images to this folder***
@@ -810,10 +758,10 @@ cp -dvr etc/skel/.config/i3/scripts-2/ $HOME/.config/i3/
 mkdir ~/.Wallpapers
 ```
 
-2. Add this line to your i3 config file to startup the scripts ```fehbg.sh```
+3. Add this line to your i3 config file to startup the scripts ```fehbg.sh```
 
 ```
-exec --no-startup-id ~/.config/i3/scripts-2/fehbg.sh -t 300 # -t means sleep time (300 = 5 min)
+exec --no-startup-id ~/.config/i3/scripts2/fehbg.sh -t 300 # -t means sleep time (300 = 5 min)
 ```
 
 <details>
@@ -853,24 +801,67 @@ done
 
 ### Picom
 
-Coming Soon: Check my config here [picom.conf](/etc/skel/.config/picom/picom.conf)
+My config: [picom.conf](etc/skel/.config/picom/picom.conf) (glx backend, vsync, fading, rounded corners). What matters for i3:
+
+* **Frosted tabs.** i3's title bars (`i3-frame`) are 85% opaque with a blur behind them, so the wallpaper shows through but the text stays sharp. Blur is turned on only for the tabs and i3bar; normal windows are not blurred.
+
+```conf
+frame-opacity = 0.85;
+opacity-rule = [ "85:class_g = 'i3-frame'", "70:class_g = 'i3bar'", ... ];
+blur: { method = "dual_kawase"; strength = 2; background = true; background-frame = true; ... }
+blur-background-exclude = [ "!(class_g = 'i3-frame' || class_g = 'i3bar')", ... ];
+```
+
+* Tune it with the `85` / `0.85` pair (lower = more glass) and the blur `strength`.
+* Unfocused windows are dimmed (`inactive-dim = 0.2`); the cheat sheet is excluded, so it always stays bright.
+* Picom does not reload its config on its own. Restart it after editing: `pkill -x picom; picom --config ~/.config/picom/picom.conf &`.
 
 https://wiki.archlinux.org/title/Picom
-
-<!-- Section coming soon -->
 
 ---
 
 ### I3blocks
 
-Coming Soon: Check my config here [i3block.conf](/etc/skel/.config/i3/i3blocks.conf)
+* **Edit the template, not the output.** [i3blocks.conf.in](etc/skel/.config/i3/i3blocks.conf.in) is the source; colors are written as `@ROLE@` placeholders (for example `color=@OK@`). `theme-switch` fills them in and writes [i3blocks.conf](etc/skel/.config/i3/i3blocks.conf). After editing the template, run `~/.config/i3/scripts/theme-switch --apply`.
+* Blocks you don't use are kept in [i3blocks.extra.conf](etc/skel/.config/i3/i3blocks.extra.conf); copy one back into the template to enable it.
+* Scripts: [scripts](etc/skel/.config/i3/scripts) (system blocks, based on EndeavourOS) and [scripts2](etc/skel/.config/i3/scripts2) (my own: Plasma panel, server, IP, workspaces).
+* Threshold colors (disk, memory, CPU, temperature) come from the theme through the `WARN_COLOR` / `CRIT_COLOR` variables.
+* Signals, to refresh a block from a script: `pkill -RTMIN+<n> i3blocks`
 
-* [scripts "EndeavourOS"](/etc/skel/.config/i3/scripts)
-* [scripts-2](/etc/skel/.config/i3/scripts-2)
+| Signal | Block |
+|---|---|
+| 1 | previous workspace |
+| 2 | Plasma panel state |
+| 3 | cheat sheet button |
+| 10 | public IP / country |
 
 https://github.com/vivien/i3blocks
 
-<!-- Section coming soon -->
+---
+
+### Color Themes
+
+`Super+F2` switches to the next theme, and `Super+Shift+F2` opens a rofi picker. You can also run [theme-switch](etc/skel/.config/i3/scripts/theme-switch) by hand: `theme-switch --list`, `theme-switch nord`, `theme-switch --apply` (re-apply the current theme).
+
+One theme recolors everything: window tabs and borders, i3bar, i3blocks, rofi and the cheat sheet.
+
+**Make your own theme**: copy a file in [themes/](etc/skel/.config/i3/themes) and edit the colors. Every theme defines the same roles:
+
+```sh
+NAME="My Theme"
+BG="#2b2b2b"          # bar and unfocused tab background
+SURFACE="#424242"     # raised surfaces, tab borders
+FG="#fcfcfc"          # main text
+MUTED="#a0a0a0"       # secondary text
+SEP="#5c5c5c"         # separators
+ACCENT="#926ee4"      # focused window, active workspace
+ACCENT_DIM="#7157aa"  # focused tab background
+ACCENT_FG="#fcfcfc"   # text on the accent colors
+OK="#27ae60"  WARN="#f67400"  CRIT="#da4453"  INFO="#d1c7f2"
+LAUNCH_TERM="#b39bf0" LAUNCH_WEB="#e5739b" LAUNCH_FILES="#5fa8d3"   # launcher icons in i3blocks
+```
+
+Then run `theme-switch my-theme` (the file name without `.theme`).
 
 ---
 
@@ -1018,7 +1009,7 @@ alias update-fonts="fc-cache -fv"
 
   
 
-![Conky screenshot](Images/Screenshot_20260503_160341.png)
+![Conky screenshot](Images/Screenshot_20260503_160341.webp)
 
 
 
@@ -1079,696 +1070,11 @@ exec --no-startup-id ~/.config/conky/lean-conky-config-0.9.0/start-lcc.sh
 
 <h2 align="center">App Recommendations</h2>
 
-### Terminals
+My list of recommended apps (terminals, browsers, editors, multimedia, extensions, ...) lives in **[docs/APPS.md](docs/APPS.md)**.
 
-<details><summary>Click to view</summary>
-
-* ```kitty``` , The fast, feature-rich, [GPU based terminal emulator](https://sw.kovidgoyal.net/kitty/).
-
-  ```bash
-  sudo pacman -S kitty
-  ```
-</details>
-
----
-
-### Web Browsers
-
-<details><summary>Click to view</summary>
-
-* ```brave``` <sup>[AUR](http://aur.archlinux.org/packages/brave-bin)</sup> , Web browser that blocks ads and trackers by default.
-
-  ```bash
-  yay -S brave-bin
-  ```
-
-* ```zen``` <sup>[Flatpak](http://flathub.org/en/apps/app.zen_browser.zen)</sup> <sup>[AUR](http://aur.archlinux.org/packages/zen-browser-bin)</sup> , [A fast, private and secure web browser built to improve your day-to-day experience.](https://zen-browser.app/)
-
-  ```bash
-  flatpak install flathub app.zen_browser.zen
-  
-  yay -S zen-browser-bin
-  ```
-</details>
-
----
-
-### Email Clients
-
-<details><summary>Click to view</summary>
-
-* ```thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us hunspell-ar``` , Thunderbird is **a free email application** that’s easy to set up and customize - and it’s loaded with great features!
-
-  ```bash
-  sudo pacman -S thunderbird thunderbird-i18n-en-us thunderbird-i18n-ar hunspell-en_us
-  ```
-  ```bash
-  yay -S hunspell-ar
-  ```
-
-* ```birdtray``` <sup>[AUR](http://aur.archlinux.org/packages/birdtray)</sup> , Run Thunderbird with a system tray icon.
-
-  ```bash
-  yay -S birdtray
-  ```
-</details>
-
----
-
-### Editors
-
-<details><summary>Click to view</summary>
-
-* ```github-desktop``` <sup>[Flatpak](https://flathub.org/en/apps/io.github.shiftey.Desktop)</sup> , GUI for managing Git and GitHub.
-
-  ```bash
-  flatpak install flathub io.github.shiftey.Desktop
-  ```
-
-* ```typora``` <sup>[AUR](http://aur.archlinux.org/packages/typora)</sup> , [A minimal markdown editor and reader.](https://typora.io/)
-
-  ```bash
-  yay -S typora
-  ```
-
-* ```zed``` <sup>[Flatpak](https://flathub.org/en/apps/dev.zed.Zed)</sup> , High-performance code editor.
-
-  ```bash
-  flatpak install flathub dev.zed.Zed
-  ```
-
-* ```meld``` , Compare files, directories and working copies.
-
-  ```bash
-  sudo pacman -S meld
-  ```
-</details>
-
----
-
-### Downloader
-
-<details><summary>Click to view</summary>
-
-* ```jdownloader2``` <sup>[AUR](http://aur.archlinux.org/packages/jdownloader2)</sup> , Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA.
-
-  ```bash
-  yay -S jdownloader2
-  ```
-</details>
-
----
-
-### Torrent Downloaders
-
-<details><summary>Click to view</summary>
-
-* ```qbittorrent``` , An open source Bittorrent client.
-
-  ```bash
-  sudo pacman -S qbittorrent
-  ```
-</details>
-
----
-
-### Multimedia Tools
-
-<details><summary>Click to view</summary>
-
-* ```mpv``` , A free, open source, and cross-platform media player.
-
-  ```bash
-  sudo pacman -S mpv xclip
-  ```
-
-* ```mpv-mpris2-bin```<sup>[AUR](http://aur.archlinux.org/packages/mpv-mpris2-bin)</sup> , Rust implementation of the MPRIS v2 DBus interface for the mpv.
-
-  ```bash
-  sudo pacman -S playerctl ffmpegthumbnailer
-  
-  yay -S mpv-mpris2-bin
-  ```
-* ```subliminal``` , 
-  ```bash
-  yay -S subliminal --noconfirm
-  ```
-
-* ```mpv-config``` , My personal mpv configurations and scripts. <sup>[Github](https://github.com/mysh264/mpv-config)</sup> , <sup>[Forked](https://github.com/noelsimbolon/mpv-config)</sup>
-
-  ```bash
-  cd $HOME/.config/mpv
-  ```
-  ```bash
-  git clone https://github.com/mysh264/mpv-config.git
-  ```
-  ```bash
-  mv mpv-config/{*,.*} .
-  ```
-  ```bash
-  rm -rvf mpv-config
-  ```
-  ```bash
-  cd
-  ```
-
-* ```easyeffects``` , [Audio Effects for Pipewire applications.](https://github.com/wwmm/easyeffects)
-
-  ```bash
-  sudo pacman -S easyeffects
-  ```
-
-* ```stremio``` <sup>[Flatpak](https://flathub.org/en/apps/com.stremio.Stremio)</sup> , [A one-stop hub for video content aggregation (Movies, TV shows, series, live television or web channels)](https://www.stremio.com/)
-
-  ```bash
-  flatpak install flathub com.stremio.Stremio
-  ```
-
-* ```yt-x``` <sup>[AUR](http://aur.archlinux.org/packages/yt-x)</sup> <sup>[Github](https://github.com/Benexl/yt-x)</sup> , Browse YouTube from your terminal. Plus other sites yt-dlp supports.
-
-  ***~Note: Use ```yt-x``` with ```kitty```~***
-
-  ```bash
-  yay -S yt-x-git
-  ```
-
-* ```video-trimmer``` , Trim videos quickly.
-
-  ```bash
-  sudo pacman -S video-trimmer
-  ```
-
-* ```handbrake``` , Video Transcoder.
-
-  ```bash
-  sudo pacman -S handbrake
-  ```
-</details>
-
----
-
-### Screenshot & Screen Recorder Tools
-
-<details><summary>Click to view</summary>
-
-* ```maim``` , Utility to take a screenshot using imlib2.
-
-  ```bash
-  sudo pacman -S maim slop
-  ```
-
-* ```obs-studio``` , Free, open source software for live streaming and recording.
-
-  ```bash
-  sudo pacman -S obs-studio
-  ```
-</details>
-
----
-
-### Disk Utilities
-
-<details><summary>Click to view</summary>
-
-* ```ventoy``` <sup>[AUR](http://aur.archlinux.org/packages/ventoy-bin)</sup> , [A new bootable USB solution](http://www.ventoy.net)
-
-  ```bash
-  yay -S ventoy-bin
-  ```
-
-* ```gparted``` , A Partition Magic clone, frontend to GNU Parted.
-
-  ```bash
-  sudo pacman -S gparted
-  ```
-
-* ```gnome-disk-utility``` , Disk Management Utility for GNOME.
-
-  ```bash
-  sudo pacman -S gnome-disk-utility
-  ```
-</details>
-
----
-
-### Password Managers
-
-<details><summary>Click to view</summary>
-
-* ```enpass``` <sup>[AUR](http://aur.archlinux.org/packages/enpass-bin)</sup> , [A multiplatform password manager](http://enpass.io/)
-
-  ```bash
-  yay -S enpass-bin
-  ```
-</details>
-
----
-
-### Networking
-
-<details><summary>Click to view</summary>
-
-* ```sniffnet``` , Application to comfortably monitor your network traffic
-
-  ```bash
-  sudo pacman -S sniffnet
-  ```
-</details>
-
----
-
-### File index and search
-
-<details><summary>Click to view</summary>
-
-* ```catfish``` , Versatile file searching tool.
-
-  ```bash
-  sudo pacman -S catfish plocate zeitgeist
-  ```
-
-* ```kfind``` , Find Files/folders.
-
-  ```bash
-  sudo pacman -S kfind mlocate
-  ```
-
-* ```ncdu``` , Disk usage analyzer with an ncurses interface.
-
-  ```bash
-  sudo pacman -S ncdu
-  ```
-
-  </details>
-
----
-
-### File Managers
-
-<details><summary>Click to view</summary>
-
-* ```yazi``` <sup>TUI</sup> <sup>[Github](https://github.com/sxyazi/yazi)</sup> , Blazing fast terminal file manager written in Rust, based on async /0
-
-  * [Quick start](https://yazi-rs.github.io/docs/quick-start)
-
-  ```bash
-  sudo pacman -S yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick xclip chafa git
-  ```
-
-  * [Plugins](https://github.com/yazi-rs/plugins)
-
-    <details><summary>Click to view</summary>
-
-    * [Full Boarder](https://github.com/yazi-rs/plugins/tree/main/full-border.yazi) , Add a full border to Yazi to make it look fancier.
-
-      * Installation:
-
-        ```bash
-        ya pkg add yazi-rs/plugins:full-border
-        ```
-
-      * Add this to your init.lua to enable the plugin: ```nano $HOME/.config/init.lua```
-
-        ```lua
-        require("full-border"):setup()
-        
-        # Or you can customize the border type:
-        
-        require("full-border"):setup {
-        	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-        	type = ui.Border.ROUNDED,
-        }
-        ```
-
-        ---
-
-    * [Git](https://github.com/yazi-rs/plugins/tree/main/git.yazi) , Show the status of Git file changes as linemode in the file list.
-
-      * Installation:
-
-        ```bash
-        ya pkg add yazi-rs/plugins:git
-        ```
-
-      * Add the following to your `~/.config/yazi/init.lua`: ```nano $HOME/.config/init.lua```
-
-        ```lua
-        th.git = th.git or {}
-        th.git.unknown_sign = " "
-        th.git.modified_sign = "M"
-        th.git.deleted_sign = "D"
-        th.git.clean_sign = "✔"
-        
-        require("git"):setup {
-        	-- Order of status signs showing in the linemode
-        	order = 1500,
-        }
-        ```
-
-      * And register it as fetchers in your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
-
-        ```toml
-        [[plugin.prepend_fetchers]]
-        id    = "git" # Remove if Yazi > v26.1.22
-        url   = "*"
-        run   = "git"
-        group = "git"
-        
-        [[plugin.prepend_fetchers]]
-        id    = "git" # Remove if Yazi > v26.1.22
-        url   = "*/"
-        run   = "git"
-        group = "git"
-        ```
-
-        ---
-
-    * [VCS Files](https://github.com/yazi-rs/plugins/tree/main/vcs-files.yazi) , Show Git file changes in Yazi.
-
-    
-      * Installation
-    
-          ```bash
-          ya pkg add yazi-rs/plugins:vcs-files
-          ```
-    
-    
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-          ```tmol
-          [[mgr.prepend_keymap]]
-          on   = [ "g", "c" ]
-          run  = "plugin vcs-files"
-          desc = "Show Git file changes"
-          ```
-
-          ---
-
-    
-    
-    * [Mount](https://github.com/yazi-rs/plugins/tree/main/mount.yazi) , A mount manager for Yazi, providing disk mount, unmount, and eject functionality.
-    
-      * Installation
-
-        ```bash
-        ya pkg add yazi-rs/plugins:mount
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```toml
-        [[mgr.prepend_keymap]]
-        on  = "M"
-        run = "plugin mount"
-        ```
-
-        ---
-
-    * [Zoom](https://github.com/yazi-rs/plugins/tree/main/zoom.yazi) , Enlarge or shrink the preview image of a file, which is useful for magnifying small files for viewing.
-    
-      * Installation
-
-        ```bash
-        ya pkg add yazi-rs/plugins:zoom
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```toml
-        [[mgr.prepend_keymap]]
-        on   = "+"
-        run  = "plugin zoom 1"
-        desc = "Zoom in hovered file"
-        
-        [[mgr.prepend_keymap]]
-        on   = "-"
-        run  = "plugin zoom -1"
-        desc = "Zoom out hovered file"
-        ```
-    
-        ---
-    
-    * [Chmod](https://github.com/yazi-rs/plugins/tree/main/chmod.yazi) , Execute `chmod` on the selected files to change their mode.
-    
-      * Installation
-    
-        ```bash
-        ya pkg add yazi-rs/plugins:chmod
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```toml
-        [[mgr.prepend_keymap]]
-        on   = [ "e", "E" ]
-        run  = "plugin chmod"
-        desc = "Chmod on selected files"
-        ```
-    
-        ---
-    
-    * [MIME EXT](https://github.com/yazi-rs/plugins/tree/main/mime-ext.yazi) , A MIME type provider based on a file extension database.
-    
-      * Installation
-
-        ```bash
-        ya pkg add yazi-rs/plugins:mime-ext
-        ```
-    
-      * Add this to your `~/.config/yazi/yazi.toml`: ```nano $HOME/.config/yazi.toml```
-    
-        ```toml
-        [[plugin.prepend_fetchers]]
-        id    = "mime" # Remove if Yazi > v26.1.22
-        url   = "local://*"
-        run   = "mime-ext.local"
-        prio  = "high"
-        group = "mime"
-        
-        [[plugin.prepend_fetchers]]
-        id    = "mime" # Remove if Yazi > v26.1.22
-        url   = "remote://*"
-        run   = "mime-ext.remote"
-        prio  = "high"
-        group = "mime"
-        ```
-    
-      * You can also customize it in your `~/.config/yazi/init.lua` with: ```nano $HOME/.config/yazi/init.lua```
-    
-        ```lua
-        require("mime-ext.local"):setup {
-        	-- Expand the existing filename database (lowercase), for example:
-        	with_files = {
-        		makefile = "text/makefile",
-        		-- ...
-        	},
-        
-        	-- Expand the existing extension database (lowercase), for example:
-        	with_exts = {
-        		mk = "text/makefile",
-        		-- ...
-        	},
-        
-        	-- If the MIME type is not in both filename and extension databases,
-        	-- then fallback to Yazi's preset `mime.local` plugin, which uses `file(1)`
-        	fallback_file1 = false,
-            }
-        ```
-    
-        ---
-    
-    * [DIFF](https://github.com/yazi-rs/plugins/tree/main/diff.yazi) , Diff the selected file with the hovered file, create a living patch, and copy it to the clipboard.
-    
-      * Installation
-    
-        ```bash
-        ya pkg add yazi-rs/plugins:diff
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```toml
-        [[mgr.prepend_keymap]]
-        on   = "<C-d>"
-        run  = "plugin diff"
-        desc = "Diff the selected with the hovered file"
-        ```
-    
-        ---
-    
-    * [Smart Enter](https://github.com/yazi-rs/plugins/tree/main/smart-enter.yazi) , Open files or enter directories all in one key!
-    
-      * Installation
-    
-        ```bash
-        ya pkg add yazi-rs/plugins:smart-enter
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```tmol
-        [[mgr.prepend_keymap]]
-        on   = "<Enter>"
-        run  = "plugin smart-enter"
-        desc = "Enter the child directory, or open the file"
-        ```
-    
-      * If you still want `open` to target multiple selected files, add this to your `~/.config/yazi/init.lua`: ```nano $HOME/.config/yazi/init.lua```
-    
-        ```lua
-        require("smart-enter"):setup {
-        	open_multi = true,
-        }
-        ```
-    
-        ---
-    
-    * [Toggle Pane](https://github.com/yazi-rs/plugins/tree/main/toggle-pane.yazi) , Toggle the show, hide, and maximize states for different panes: parent, current, and preview. 
-    
-      * Installation
-    
-        ```bash
-        ya pkg add yazi-rs/plugins:toggle-pane
-        ```
-    
-      * Add this to your `~/.config/yazi/keymap.toml`: ```nano $HOME/.config/yazi/keymap.toml```
-    
-        ```tmol
-        [[mgr.prepend_keymap]]
-        on   = "p"
-        run  = "plugin toggle-pane min-preview"
-        desc = "Show or hide the preview pane"
-        
-        [[mgr.prepend_keymap]]
-        on   = "P"
-        run  = "plugin toggle-pane max-preview"
-        desc = "Maximize or restore the preview pane"
-        ```
-    
-        ***Note: You can replace `preview` with `current` or `parent` to toggle the other panes.***
-    
-        ---
-    
-      </details>
-
-* ```ranger``` <sup>TUI</sup> <sup>[Github]()</sup> , Simple, vim-like file manager.
-
-  * [Video Previews](https://github.com/ranger/ranger/wiki/Video-Previews)
-
-  ```bash
-  sudo pacman -S ranger atool lha lzop unace zip elinks ffmpegthumbnailer highlight imagemagick libcaca lynx mediainfo odt2txt perl-image-exiftool perl-archive-zip perl-io-compress-brotli poppler python-pillow transmission-cli ueberzug w3m
-  ```
-
-* ```nnn``` <sup>TUI</sup> <sup>[Github](https://github.com/jarun/nnn)</sup> , The fastest terminal file manager ever written.
-
-  ```bash
-  sudo pacman -S nnn atool libarchive zip unzip trash-cli sshfs rclone fuse2
-  ```
-  </details>
-
----
-
-### Communication and Productivity
-
-<details><summary>Click to view</summary>
-
-* ```portal for teams``` <sup>[Flatpak](https://flathub.org/en/apps/com.github.IsmaelMartinez.teams_for_linux)</sup> , Unofficial Microsoft Teams client for Linux.
-
-  ```bash
-  flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
-  ```
-
-* ```teams-for-linux``` <sup>[AUR](https://aur.archlinux.org/packages/teams-for-linux)</sup> , Unofficial Microsoft Teams client for Linux using Electron.
-
-  ```bash
-  yay -S teams-for-linux
-  ```
-</details>
-
----
-
-<h2 align="center">Web Browsers Extensions/Add-ons</h2>
-
-### Firefox Extensions/Add-ons
-
-<details><summary>Click to view</summary>
-
-1. [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
-2. [Tweaks for YouTube](https://addons.mozilla.org/en-US/firefox/addon/tweaks-for-youtube/)
-    * _**Note: How to use**_
-      * _Appearance & Other Features > **Enable (Expanded Cinema Mode)**_
-      * _Preferences > Video View - Start New Video In > **Cinema mode**_
-      * _Preferences > Preferred Video Resolution > **1080p (HD)**_
-3. ~[Simple Translate](https://addons.mozilla.org/en-US/firefox/addon/simple-translate/)~
-4. [Simple Translate Popup Fix](https://addons.mozilla.org/en-GB/firefox/addon/simple-translate-popup-fix/)
-    * _**Note: How to use**_
-      * _Target language: **Arabic**_
-      * _Second language : **English**_
-      * _Choose: Behavior when selecting text: **Display translation panel**_
-      * _Enable: **Automatically switch to the second language**_
-5. [Grammarly: AI Writing and Grammar Checker App](https://addons.mozilla.org/en-US/firefox/addon/grammarly-1/)
-6. [AI Grammar Checker & Paraphraser – LanguageTool](https://addons.mozilla.org/en-US/firefox/addon/languagetool/)
-7. [Private Grammar Checker - Harper](https://addons.mozilla.org/en-US/firefox/addon/private-grammar-checker-harper/)
-8. [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour/)
-9. [Time Tracker - Web Habit Builder](https://addons.mozilla.org/en-US/firefox/addon/besttimetracker/)
-10. [Server IP](https://addons.mozilla.org/en-US/firefox/addon/server-ip/)
-11. [User-Agent Switcher and Manager](https://addons.mozilla.org/en-US/firefox/addon/user-agent-string-switcher/)
-12. [Allow Right-Click](https://addons.mozilla.org/en-US/firefox/addon/re-enable-right-click/)
-13. [Open Link with New Tab](https://addons.mozilla.org/en-US/firefox/addon/open-link-with-new-tab/)
-14. [I still don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/istilldontcareaboutcookies/)
-15. [Search by Image](https://addons.mozilla.org/en-US/firefox/addon/search_by_image/)
-
-</details>
-
----
-
-## Google Chrome Extensions/Add-ons
-
-<details><summary>Click to view</summary>
-
-1. [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh) *Note: If you are using ```Brave browser```,* ***DO NOT USE IT***
-2. [Tweaks for YouTube](https://chromewebstore.google.com/detail/tweaks-for-youtube/ogkoifddpkoabehfemkolflcjhklmkge)
-    * _**Note: How to use**_
-      * _Appearance & Other Features > **Enable (Expanded Cinema Mode)**_
-      * _Preferences > Video View - Start New Video In > **Cinema mode**_
-      * _Preferences > Preferred Video Resolution > **1080p (HD)**_
-3. [Simple Translate](https://chromewebstore.google.com/detail/simple-translate/ibplnjkanclpjokhdolnendpplpjiace)
-    * _**Note: How to use**_
-      * _Target language: **Arabic**_
-      * _Second language : **English**_
-      * _Choose: Behavior when selecting text: **Display translation panel**_
-      * _Enable: **Automatically switch to the second language**_
-4. [AI Grammar Checker & Paraphraser – LanguageTool](https://chromewebstore.google.com/detail/ai-grammar-checker-paraph/oldceeleldhonbafppcapldpdifcinji)
-5. [Private Grammar Checker - Harper](https://chromewebstore.google.com/detail/private-grammar-checker-h/lodbfhdipoipcjmlebjbgmmgekckhpfb)
-6. [Time Tracker - Web Habit Builder](https://chromewebstore.google.com/detail/time-tracker-web-habit-bu/dkdhhcbjijekmneelocdllcldcpmekmm)
-7. [Server IP](https://chromewebstore.google.com/detail/server-ip/adcbaggcjppnkmhfmjcdgagmggnfeikh)
-8. [User-Agent Switcher and Manager](http://chromewebstore.google.com/detail/user-agent-switcher-and-m/bhchdcejhohfmigjafbampogmaanbfkg)
-9. [Allow Right-Click](https://chromewebstore.google.com/detail/allow-right-click/hnafhkjheookmokbkpnfpmemlppjdgoi)
-10. [I still don't care about cookies](https://chromewebstore.google.com/detail/i-still-dont-care-about-c/edibdbjcniadpccecjdfdjjppcpchdlm)
-
-</details>
+More notes in [docs/](docs): [fingerprint login on HP laptops](docs/hp-fingerprint.md) and the [setup checklist](docs/TODO.md).
 
 ---
 
 <h3 align="center">Found this useful?</h3>
 <h3 align="center">Give it a ⭐ to help others find the best way to tile their KDE Plasma desktop!</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

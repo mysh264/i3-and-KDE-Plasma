@@ -121,7 +121,7 @@ alias update-fonts="fc-cache -fv"
 alias blue="sudo modprobe -r btusb ; sudo modprobe btusb ; sudo systemctl restart bluetooth"
 
 # Tailscale Exit Node Controls
-alias vpn-on="sudo tailscale up --exit-node=100.100.1.2 --exit-node-allow-lan-access --accept-routes --operator=$USER; sleep 2; pkill -RTMIN+10 i3blocks"
+# vpn-on (with your own exit node) is defined in ~/.zshrc.local
 alias vpn-off="sudo tailscale up --exit-node= --exit-node-allow-lan-access=false --accept-routes --operator=$USER; sleep 2; pkill -RTMIN+10 i3blocks"
 
 # alias tailscaleuser="sudo tailscale set --operator=$USER"
@@ -131,3 +131,13 @@ export EDITOR=nano
 export PATH="$HOME/.local/bin:$PATH"
 
 fastfetch
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# >>> Codex installer >>>
+export PATH="$HOME/.local/bin:$PATH"
+# <<< Codex installer <<<
+
+# Private, machine-specific settings (not in git)
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

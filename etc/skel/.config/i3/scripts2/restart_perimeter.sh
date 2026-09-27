@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 # --- CONFIGURATION ---
 SCRIPTS=(
     "$HOME/.config/i3/scripts2/Screen Edges/master_perimeter_control.sh"

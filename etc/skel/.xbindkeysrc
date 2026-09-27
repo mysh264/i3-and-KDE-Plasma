@@ -1,8 +1,8 @@
 # i3WM Workspace Toggle
-"xdotool key Ctrl+space"
+"i3-msg -q workspace back_and_forth"
 b:8    #Down Button
 
 # Start xfce4-dropdown therminal
-"xdotool key XF86Favorites"
+"xfce4-terminal --drop-down"
 b:9    #Up Button
 

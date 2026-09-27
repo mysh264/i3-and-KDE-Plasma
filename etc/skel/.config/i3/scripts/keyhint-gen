@@ -1,0 +1,389 @@
+#!/usr/bin/env python3
+"""keyhint-gen - build the conky keybinding cheat sheet from the i3 config.
+
+Reads:  ~/.config/i3/config (sections, comments, $code/$sym/bindsym/bindcode lines)
+        ~/.xbindkeysrc (mouse buttons), the hot-corner script (enabled corners)
+        ~/.config/i3/theme/current.sh (colors), ~/.config/i3/conky-keyhint/keyhint.conf (template)
+Writes: ~/.cache/i3-keyhint/keyhint.conf
+"""
+import re
+from pathlib import Path
+
+HOME = Path.home()
+I3 = HOME / ".config/i3"
+CONFIG = I3 / "config"
+TEMPLATE = I3 / "conky-keyhint/keyhint.conf"
+THEME = I3 / "theme/current.sh"
+XBINDKEYS = HOME / ".xbindkeysrc"
+PERIMETER = I3 / "scripts2/Screen Edges/master_perimeter_control.sh"
+OUT = HOME / ".cache/i3-keyhint/keyhint.conf"
+
+COLUMNS = 3
+LEFT = 30
+COL_WIDTH = 520
+KEY_WIDTH = 205
+KEY_MAX = 26
+DESC_MAX = 36
+
+DEFAULT_COLORS = {"BG": "#2b2b2b", "FG": "#fcfcfc", "MUTED": "#a0a0a0", "ACCENT": "#926ee4", "SEP": "#5c5c5c"}
+
+KEYCODES = {
+    9: "Esc", 23: "Tab", 36: "Enter", 49: "Grave", 65: "Space",
+    77: "NumLock", 79: "Num 7", 80: "Num 8", 81: "Num 9", 83: "Num 4", 84: "Num 5",
+    85: "Num 6", 87: "Num 1", 88: "Num 2", 89: "Num 3", 90: "Num 0", 91: "Num .",
+    95: "F11", 96: "F12", 104: "Num Enter", 110: "Home", 112: "PgUp", 115: "End", 117: "PgDn",
+}
+KEYCODES.update({10 + i: k for i, k in enumerate("1234567890-=")})
+KEYCODES.update({67 + i: f"F{i + 1}" for i in range(10)})
+
+KEYSYMS = {
+    "Return": "Enter", "space": "Space", "Left": "Left", "Right": "Right", "Up": "Up",
+    "Down": "Down", "XF86Favorites": "Favorites", "button1": "Left click", "button2": "Middle click",
+    "button3": "Right click", "Escape": "Esc",
+}
+VAR_KEYNAMES = {"bracketleft": "[", "bracketright": "]", "grave": "Grave", "comma": ",", "period": ".", ";": ";"}
+MODIFIERS = {"$mod": "Super", "Mod4": "Super", "$alt": "Alt", "Mod1": "Alt", "Ctrl": "Ctrl",
+             "Control": "Ctrl", "Shift": "Shift"}
+
+SECTION_NAMES = {
+    "Workspace Shortcuts": "Workspaces", "Windows Shortcuts": "Windows", "Num Pad Shortcuts": "Numpad",
+    "Applications Shortcuts": "Applications", "System Shortcuts": "System", "Other Shortcuts": "Plasma panel",
+    "Color settings for bar and windows": "Themes", "Bar1 settings (input comes from i3blocks)": "Bar",
+    "Application menu handled by rofi": "Menus", "Modes": "Resize mode",
+}
+
+BINDING = re.compile(r"^\s*(\$sym|\$code|\$sre|\$cre|bindsym|bindcode)\s+((?:--[\w-]+\s+)*)(\S+)\s+(.+?)\s*$")
+BANNER = re.compile(r"^#\s+([A-Za-z][^#]*?)\s+#\s*$")
+KEYNAME_COMMENT = re.compile(r"^#\s*(KP_\w+|End|Home|Prior|Next|Num_Lock|Null Keys)\b")
+CODE_COMMENT = re.compile(r"^#\s*(\$|bindsym|bindcode|exec|for_window|assign|set |bar |workspace )")
+WS_RANGE = re.compile(r"^(move container to workspace|workspace)\s+\$ws(\d+)$")
+
+
+def load_colors():
+    colors = dict(DEFAULT_COLORS)
+    if THEME.exists():
+        for line in THEME.read_text().splitlines():
+            m = re.match(r'^(\w+)="?(#[0-9a-fA-F]{6})"?$', line)
+            if m:
+                colors[m.group(1)] = m.group(2)
+    return colors
+
+
+def load_vars(lines):
+    variables = {}
+    for line in lines:
+        m = re.match(r"^\s*set\s+\$(\S+)\s+(.+?)\s*$", line)
+        if m:
+            variables[m.group(1)] = m.group(2)
+    return variables
+
+
+def key_name(token, kind, variables):
+    if token in MODIFIERS:
+        return MODIFIERS[token]
+    if token.startswith("$"):
+        name = token[1:]
+        value = variables.get(name, "")
+        if kind == "code" and value.isdigit():
+            if len(name) == 1:
+                return name.upper()
+            return VAR_KEYNAMES.get(name, name)
+        return value or name
+    if kind == "code" and token.isdigit():
+        return KEYCODES.get(int(token), f"key {token}")
+    return KEYSYMS.get(token, token)
+
+
+def combo_name(combo, kind, variables):
+    return " + ".join(key_name(t, kind, variables) for t in combo.split("+"))
+
+
+EXEC_NAMES = [
+    ("com.brave.Browser", "launch Brave"), ("--drop-down", "drop-down terminal"),
+    ("LogoutPrompt", "Plasma logout screen"), ("scripts/powermenu", "power menu"),
+    ("theme-switch --next", "next color theme"), ("theme-switch --pick", "pick a color theme"),
+    ("keyhint-toggle", "show / hide this cheat sheet"), ("panel_restart", "rescue / restart Plasma panel"),
+    ("panel_dock_toggle", "Plasma panel: dock mode"), ("panel_toggle", "toggle Plasma panel"),
+    ("empty_workspace", "new empty workspace"),
+]
+
+
+def resolve(text, variables):
+    return re.sub(r"\$(\w+)", lambda m: variables.get(m.group(1), m.group(0)).strip('"'), text)
+
+
+def exec_name(target, variables):
+    """(description, known) for an exec command; unknown scripts fall back to the config comment."""
+    target = resolve(target.strip().strip('"'), variables)
+    for needle, name in EXEC_NAMES:
+        if needle in target:
+            return name, True
+    if target.startswith("rofi"):
+        return ("window switcher" if "window" in target else "app launcher"), True
+    if target.startswith("killall"):
+        return "close " + " & ".join(re.findall(r"killall\s+(\S+)", target)), True
+    if target.startswith("i3-msg"):
+        return humanize(re.sub(r"^i3-msg\s+(-q\s+)?", "", target), variables)
+    first = target.split()[0].strip("'\"")
+    if "/" in first:
+        return Path(first).name.replace("_", " "), False
+    return f"launch {first.capitalize()}", True
+
+
+def humanize(cmd, variables):
+    """(description, known) for an i3 command."""
+    c = re.sub(r"^(\$exec|\$exalways|exec(\s+--no-startup-id)?)\s+", "exec ", cmd.strip())
+    if c.startswith("exec "):
+        target = c[5:]
+        if ".[0].name" in target:
+            return "first workspace", True
+        if ".[-1].name" in target:
+            return "last workspace", True
+        return exec_name(target, variables)
+    m = re.match(r'^\[class="([^"]+)"\]\s+kill$', c)
+    if m:
+        return f"close {m.group(1)}", True
+    m = WS_RANGE.match(c)
+    if m:
+        verb = "move window to" if m.group(1).startswith("move") else "switch to"
+        return f"{verb} workspace {m.group(2)}", True
+    table = {
+        "kill": "close window", "workspace next": "next workspace", "workspace prev": "previous workspace",
+        "workspace back_and_forth": "last workspace (toggle)", "fullscreen toggle": "toggle fullscreen",
+        "floating toggle": "toggle floating", "focus parent": "focus parent container",
+        "split h": "split horizontally", "split v": "split vertically", "layout stacking": "stacking layout",
+        "layout toggle tabbed split": "tabbed / split layout", "layout toggle split": "toggle split direction",
+        "reload": "reload i3 config", "restart": "restart i3 (keeps layout)", 'mode "resize"': "resize mode",
+        'mode "default"': "leave resize mode", "bar mode toggle": "show / hide the bar",
+        "move container to workspace prev, workspace prev": "move window to previous workspace",
+        "move container to workspace next, workspace next": "move window to next workspace",
+    }
+    if c in table:
+        return table[c], True
+    m = re.match(r"^(focus|move)\s+(left|right|up|down)$", c)
+    if m:
+        return f"{'focus' if m.group(1) == 'focus' else 'move window'} {m.group(2)}", True
+    m = re.match(r"^resize\s+(shrink|grow)\s+(width|height)", c)
+    if m:
+        return f"{m.group(1)} {m.group(2)}", True
+    return c, False
+
+
+def describe(cmd, comment, variables):
+    text, known = humanize(cmd, variables)
+    return text if known or not comment else comment
+
+
+def parse_config():
+    lines = CONFIG.read_text(encoding="utf-8").splitlines()
+    variables = load_vars(lines)
+    sections = {}          # name -> list of groups; group = {"comment": str, "items": [...]}
+    order = []
+    disabled = []
+    section = "General"
+    comment = None
+    block = None           # "mode" / "bar" while inside those blocks
+    group = None
+
+    def new_group():
+        nonlocal group
+        group = {"comment": comment, "items": []}
+        name = section
+        if block == "mode":
+            name = "Resize mode"
+        elif block == "bar":
+            name = "Bar"
+        if name not in sections:
+            sections[name] = []
+            order.append(name)
+        sections[name].append(group)
+
+    for i, raw in enumerate(lines):
+        line = raw.strip()
+        m = BANNER.match(line)
+        if m and i > 0 and lines[i - 1].startswith("####"):
+            section = SECTION_NAMES.get(m.group(1).strip(), m.group(1).strip())
+            comment, group = None, None
+            continue
+        if re.match(r'^mode\s+"', line):
+            block, comment, group = "mode", None, None
+            continue
+        if re.match(r"^bar\s*\{", line):
+            block, comment, group = "bar", None, None
+            continue
+        if line == "}" and block:
+            block, comment, group = None, None, None
+            continue
+        if not line:
+            comment, group = None, None
+            continue
+        if line.startswith("#"):
+            if KEYNAME_COMMENT.match(line) or CODE_COMMENT.match(line) or line.startswith("##"):
+                continue
+            text = line.lstrip("#").strip()
+            if text and not text.startswith("http"):
+                comment, group = text, None
+            continue
+        b = BINDING.match(raw)
+        if not b:
+            continue
+        kind = "code" if b.group(1) in ("$code", "$cre", "bindcode") else "sym"
+        key = combo_name(b.group(3), kind, variables)
+        cmd = b.group(4)
+        if cmd.strip() == "nop":
+            disabled.append(key)
+            continue
+        if group is None:
+            new_group()
+        group["items"].append({"key": key, "cmd": cmd, "combo": b.group(3), "kind": kind})
+    return sections, order, disabled, variables
+
+
+def group_rows(group, variables):
+    items = group["items"]
+    comment = group["comment"]
+    if len(items) == 1:
+        it = items[0]
+        return [(it["key"], describe(it["cmd"], comment, variables))]
+    ranges = [WS_RANGE.match(it["cmd"].strip()) for it in items]
+    if all(ranges) and len({r.group(1) for r in ranges}) == 1 and len(items) >= 3:
+        first, last = items[0]["key"], items[-1]["key"]
+        mods = first.rsplit(" + ", 1)[0] + " + " if " + " in first else ""
+        last_key = last.rsplit(" + ", 1)[-1]
+        first_key = first.rsplit(" + ", 1)[-1]
+        nums = sorted(int(r.group(2)) for r in ranges)
+        verb = "move window to" if ranges[0].group(1).startswith("move") else "switch to"
+        return [(f"{mods}{first_key} \u2026 {last_key}", f"{verb} workspace {nums[0]}\u2013{nums[-1]}")]
+    return [(it["key"], describe(it["cmd"], None, variables)) for it in items]
+
+
+def extra_sections():
+    extra = []
+    mouse = []
+    if XBINDKEYS.exists():
+        comment, cmd = None, None
+        for line in XBINDKEYS.read_text().splitlines():
+            s = line.strip()
+            if s.startswith("#"):
+                comment = s.lstrip("#").strip()
+            elif s.startswith('"'):
+                cmd = s.strip('"')
+            elif re.match(r"^b:\d+", s) and cmd:
+                btn = re.match(r"^b:(\d+)", s).group(1)
+                label = s.split("#", 1)[1].strip() if "#" in s else f"button {btn}"
+                mouse.append((f"Mouse {label.lower()}", describe(f"exec {cmd}", comment, {})))
+                comment, cmd = None, None
+    if mouse:
+        extra.append(("Mouse buttons", mouse))
+
+    corners = []
+    names = {"TL": "Top-left corner", "TR": "Top-right corner", "BL": "Bottom-left corner",
+             "BR": "Bottom-right corner", "T": "Top edge", "B": "Bottom edge", "L": "Left edge", "R": "Right edge"}
+    if PERIMETER.exists():
+        text = PERIMETER.read_text()
+        for zone, label in names.items():
+            if re.search(rf"^{zone}_ENABLED=true", text, re.M):
+                m = re.search(rf'^{zone}_CMD_IN="(.*?)";', text, re.M)
+                cmd = m.group(1) if m else ""
+                if "panel_toggle" in cmd:
+                    desc = "toggle Plasma panel"
+                elif "i3bar_status" in cmd:
+                    desc = "reveal the bar (when hidden)"
+                elif "back_and_forth" in cmd:
+                    desc = "last workspace (toggle)"
+                elif re.search(r"workspace (\S+)", cmd):
+                    desc = "workspace " + re.search(r"workspace (\S+)", cmd).group(1)
+                else:
+                    desc = cmd or "-"
+                corners.append((label, desc))
+    if corners:
+        extra.append(("Hot corners", corners))
+    return extra
+
+
+def esc(text):
+    return text.replace("$", "$$")
+
+
+def clip(text, limit):
+    return text if len(text) <= limit else text[: limit - 1] + "\u2026"
+
+
+def build_text(blocks, disabled, colors):
+    # distribute sections over the columns, keeping order and balancing height
+    total = sum(len(rows) + 2 for _, rows in blocks)
+    target = total / COLUMNS
+    columns, current, height = [], [], 0
+    for title, rows in blocks:
+        h = len(rows) + 2
+        if current and height + h / 2 > target and len(columns) < COLUMNS - 1:
+            columns.append(current)
+            current, height = [], 0
+        current.append((title, rows))
+        height += h
+    columns.append(current)
+
+    col_lines = []
+    for col in columns:
+        out = []
+        for title, rows in col:
+            out.append(("title", title.upper(), ""))
+            for key, desc in rows:
+                out.append(("row", clip(key, KEY_MAX), clip(desc, DESC_MAX)))
+            out.append(("gap", "", ""))
+        col_lines.append(out)
+
+    n = max(len(c) for c in col_lines)
+    text = []
+    text.append("${alignc}${font Noto Sans:bold:size=17}${color1}i3  Keybindings${font}${color}")
+    theme = ""
+    if THEME.exists():
+        m = re.search(r'^THEME_NAME="(.*)"', THEME.read_text(), re.M)
+        theme = m.group(1) if m else ""
+    text.append("${alignc}${color2}Super + F1 to close" + (f"   \u00b7   theme: {esc(theme)}" if theme else "") + "${color}")
+    text.append("${voffset 6}${color4}${hr 1}${color}")
+    text.append("${voffset 4}")
+    for r in range(n):
+        parts = []
+        for c, col in enumerate(col_lines):
+            if r >= len(col):
+                continue
+            kind, a, b = col[r]
+            x = LEFT + c * COL_WIDTH
+            if kind == "title":
+                parts.append(f"${{goto {x}}}${{font Noto Sans:bold:size=10}}${{color1}}{esc(a)}${{font}}")
+            elif kind == "row":
+                key = esc(a).replace(" + ", "${color2} + ${color3}")
+                parts.append(f"${{goto {x}}}${{color3}}{key}${{goto {x + KEY_WIDTH}}}${{color2}}{esc(b)}")
+        text.append("".join(parts) + "${color}")
+    if disabled:
+        text.append("${voffset 4}${color4}${hr 1}${color}")
+        text.append("${alignc}${color2}Disabled on purpose (anti mis-press):  ${color3}"
+                    + esc("   \u00b7   ".join(disabled)) + "${color}")
+    return "\n".join(text) + "\n"
+
+
+def main():
+    sections, order, disabled, variables = parse_config()
+    blocks = []
+    for name in order:
+        rows = []
+        for group in sections[name]:
+            rows.extend(group_rows(group, variables))
+        if rows:
+            blocks.append((name, rows))
+    blocks.extend(extra_sections())
+
+    colors = load_colors()
+    text = build_text(blocks, disabled, colors)
+    conf = TEMPLATE.read_text(encoding="utf-8")
+    for role in ("BG", "FG", "MUTED", "ACCENT", "SEP"):
+        conf = conf.replace(f"@{role}@", colors[role].lstrip("#"))
+    conf = conf.replace("@WIDTH@", str(LEFT + COLUMNS * COL_WIDTH - 40)).replace("@TEXT@", text)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(conf, encoding="utf-8")
+    print(OUT)
+
+
+if __name__ == "__main__":
+    main()

@@ -58,12 +58,12 @@ END {
 	printf("%02.f%%\n", pct)
 
 	# color
+	crit = ENVIRON["CRIT_COLOR"] ? ENVIRON["CRIT_COLOR"] : "#FF0000"
+	warn = ENVIRON["WARN_COLOR"] ? ENVIRON["WARN_COLOR"] : "#FFAE00"
 	if (pct > 90) {
-		print("#FF0000")
-	} else if (pct > 80) {
-		print("#FFAE00")
+		print(crit)
 	} else if (pct > 70) {
-		print("#FFF600")
+		print(warn)
 	}
 }
 ' /proc/meminfo

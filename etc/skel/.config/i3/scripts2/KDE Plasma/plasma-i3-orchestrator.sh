@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Notification box width (px) and distance from the right/top screen edges
+NOTIF_WIDTH=370
+NOTIF_MARGIN_RIGHT=100
+NOTIF_MARGIN_TOP=100
+
 # Listen for new window events
 i3-msg -t subscribe -m '["window"]' | while read -r line; do
     # Check if the event is a "new" window and if the class is plasmashell
@@ -8,9 +13,6 @@ i3-msg -t subscribe -m '["window"]' | while read -r line; do
     WID=$(echo "$line" | jq -r '.container.window')
 
     if [[ "$EVENT" == "new" && "$CLASS" == "plasmashell" ]]; then
-        # Give Plasma a millisecond to set its internal atoms
-        #sleep 0.1
-
         # Check the specific KDE atoms from your xprop data
         WINDOW_TYPE=$(xprop -id "$WID" _NET_WM_WINDOW_TYPE)
 
@@ -19,8 +21,10 @@ i3-msg -t subscribe -m '["window"]' | while read -r line; do
             i3-msg "[id=$WID] floating enable, border none, move position center, move down 400px, sticky enable"
 
         elif echo "$WINDOW_TYPE" | grep -q "_KDE_NET_WM_WINDOW_TYPE_CRITICAL_NOTIFICATION"; then
-            # Move Notification to top right
-            i3-msg "[id=$WID] floating enable, border none, move position 1450 px 100 px, sticky enable"
+            # Move Notification to top right (computed from the current screen width)
+            SCREEN_W=$(xdpyinfo | awk '/dimensions/ {split($2, d, "x"); print d[1]}')
+            X=$(( ${SCREEN_W:-1920} - NOTIF_WIDTH - NOTIF_MARGIN_RIGHT ))
+            i3-msg "[id=$WID] floating enable, border none, move position $X px $NOTIF_MARGIN_TOP px, sticky enable"
         fi
     fi
 done

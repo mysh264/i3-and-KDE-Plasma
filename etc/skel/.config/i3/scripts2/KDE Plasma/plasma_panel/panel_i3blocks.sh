@@ -5,6 +5,10 @@
 
 name=Togglehidepanelplasma
 
+# Theme colors (OK / CRIT), written by scripts/theme-switch
+OK="#15ff00"; CRIT="#c20707"
+[ -f "$HOME/.config/i3/theme/current.sh" ] && . "$HOME/.config/i3/theme/current.sh"
+
 # xwininfo reply (xorg-xwininfo)
 hide=IsUnMapped
 unhide=IsViewable
@@ -23,12 +27,12 @@ if xwininfo -name $name &> /dev/null ; then
         if [ $status == $unhide ] ; then
             echo " "
             echo
-            echo \#15ff00
+            echo "$OK"
         fi
     fi
 
 else
     echo "  Plasma Panel"
     echo
-    echo  \#c20707
+    echo "$CRIT"
 fi
