@@ -374,6 +374,22 @@ $code 79 move left
 #KP_Prior | Num Nine 9
 $code 81 move right
 
+# switch to workspace
+$code Shift+87 workspace  $ws1
+$code Shift+88 workspace  $ws2
+$code Shift+89 workspace  $ws3
+$code Shift+83 workspace  $ws4
+$code Shift+84 workspace  $ws5
+$code Shift+85 workspace  $ws6
+$code Shift+79 workspace  $ws7
+$code Shift+80 workspace  $ws8
+$code Shift+81 workspace  $ws9
+$code Shift+90 workspace  $ws10
+# $code Shift+
+# $code Shift+
+# $code Shift+
+
+
 #########################################
 
 #########################################
