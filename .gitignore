@@ -10,3 +10,4 @@ etc/skel/.config/i3/scripts2/Server/server.conf
 
 # Local backups of the server stats script
 etc/skel/.config/i3/scripts2/Server/Backup/
+etc/skel/.config/i3/scripts2/Server/id_ed25519
